@@ -1,6 +1,6 @@
-import game
+import game_menu
 
-g = game.Game()
+g = game_menu.Game()
 
 while g.running:
     g.playing = True
