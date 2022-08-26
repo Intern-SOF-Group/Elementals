@@ -7,6 +7,7 @@ import button
 class Game:
     def __init__(self):
         pygame.init()
+        pygame.display.set_caption('Elementals')
         self.running = True
         self.playing = False
         self.START_KEY = False
@@ -17,9 +18,29 @@ class Game:
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         # self.curr_menu = MainMenu(self)
 
-        # Button objects inside the game
-        self.start_image = pygame.image.load('images/sample_button.png').convert_alpha()
-        self.test_button = button.Button(500, 300, self.start_image, 1, self)
+        # Element buttons
+        self.element_button_scale = 8/15
+        self.element_button_y = 1180/3
+
+        self.lightning_image = pygame.image.load('images/lightning_button.png').convert_alpha()
+        self.lightning_button = button.Button(0, 0, self.lightning_image, self.element_button_scale, self)
+        self.lightning_button.rect_image.topleft = (0, self.element_button_y)
+
+        self.wind_image = pygame.image.load('images/wind_button.png').convert_alpha()
+        self.wind_button = button.Button(0, 0, self.wind_image, self.element_button_scale, self)
+        self.wind_button.rect_image.topleft = (self.lightning_button.rect_image.topright[0] - 1, self.element_button_y)
+
+        self.water_image = pygame.image.load('images/water_button.png').convert_alpha()
+        self.water_button = button.Button(0, 0, self.water_image, self.element_button_scale, self)
+        self.water_button.rect_image.topleft = (self.wind_button.rect_image.topright[0], self.element_button_y)
+
+        self.earth_image = pygame.image.load('images/earth_button.png').convert_alpha()
+        self.earth_button = button.Button(0, 0, self.earth_image, self.element_button_scale, self)
+        self.earth_button.rect_image.topleft = (self.water_button.rect_image.topright[0], self.element_button_y)
+
+        self.fire_image = pygame.image.load('images/fire_button.png').convert_alpha()
+        self.fire_button = button.Button(0, 0, self.fire_image, self.element_button_scale, self)
+        self.fire_button.rect_image.topleft = (self.earth_button.rect_image.topright[0], self.element_button_y)
 
     def game_loop(self):
         while self.playing:
@@ -27,8 +48,15 @@ class Game:
             if self.START_KEY:
                 self.playing = False
             self.canvas.fill(self.BLACK)
-            self.draw_text('Thanks for playing', 20, self.DISPLAY_W/2, self.DISPLAY_H/2)
-            self.test_button.draw()
+            # self.draw_text('Thanks for playing', 20, self.DISPLAY_W/2, self.DISPLAY_H/2)
+            # draw element buttons
+            self.lightning_button.draw()
+            self.wind_button.draw()
+            self.water_button.draw()
+            self.earth_button.draw()
+            self.fire_button.draw()
+
+
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
             self.reset_keys()
