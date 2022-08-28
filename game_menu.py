@@ -1,6 +1,6 @@
+import sys
 import pygame
 # from menu import MainMenu
-import sys
 import button
 import game_logic
 
@@ -21,7 +21,7 @@ class Game:
         # self.curr_menu = MainMenu(self)
 
         # game logic
-        self.game_logic = game_logic.GameLogic()
+        self.game_logic = game_logic.GameLogic(self)
 
         # Element buttons
         self.element_button_scale = 8/15

@@ -12,6 +12,7 @@ class Button:
         self.clicked = True
 
     def draw(self):
+        '''Draws buttons into the canvas'''
         mouse_pos = pygame.mouse.get_pos()
         self.canvas.blit(self.image, (self.rect_image.x, self.rect_image.y ))
 
@@ -22,20 +23,20 @@ class Button:
             elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked:
                 self.clicked = True
 
-# TODO: Fix bug when clicking and then dragging the mouse it outputs to the buttons
+
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton:
-    def __init__(self, x, y, image, scale, game, player_output_str, game_logic):
+    def __init__(self, x, y, image, scale, game_menu, player_output_str, game_logic):
         width = image.get_width()
         height = image.get_height()
         self.image = pygame.transform.scale(image, (int(width*scale), int(height*scale)))
         self.rect_image = self.image.get_rect()
         self.rect_image.center = (x, y)
-        self.canvas = game.canvas
+        self.canvas = game_menu.canvas
         self.clicked = True
         self.player_output_str = player_output_str
         self.player_output = game_logic
-        self.clicked_global = game # fixes drag clicking
+        self.clicked_global = game_menu # fixes drag clicking
 
     def draw(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -55,6 +56,3 @@ class ElementsButton:
             if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not self.clicked_global.clicked_global:
                 self.clicked_global.clicked_global = True
                 self.clicked = True
-
-        
-
