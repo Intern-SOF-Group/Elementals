@@ -17,6 +17,7 @@ class Game:
         self.window = pygame.display.set_mode((self.DISPLAY_W, self.DISPLAY_H))
         self.font_name = pygame.font.get_default_font()
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
+        self.clicked_global = True # fixes drag clicking
         # self.curr_menu = MainMenu(self)
 
         # game logic
