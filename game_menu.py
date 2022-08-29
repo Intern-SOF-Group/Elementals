@@ -47,6 +47,11 @@ class Game:
         self.fire_button = button.ElementsButton(0, 0, self.fire_image, self.element_button_scale, self, 'fire', self.game_logic)
         self.fire_button.rect_image.topleft = (self.earth_button.rect_image.topright[0], self.element_button_y)
 
+        # Text attributes
+        self.CPU_pointsx, self.CPU_pointsy = 600, 100
+        self.player_pointsx, self.player_pointsy = 200, 100
+        self.point_size = 25
+        self.point_offsety = -30
 
     def game_loop(self):
         while self.playing:
@@ -62,6 +67,13 @@ class Game:
             self.earth_button.draw()
             self.fire_button.draw()
             self.game_logic.game_IO_loop()
+
+            # Draw texts
+            self.draw_text('CPU Points', self.point_size, self.CPU_pointsx, self.CPU_pointsy + self.point_offsety)
+            self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy)
+            self.draw_text('Player Points', self.point_size, self.player_pointsx, self.player_pointsy + self.point_offsety)
+            self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy)
+
 
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
