@@ -3,7 +3,7 @@ import pygame
 # from menu import MainMenu
 import button
 import game_logic
-from debugger_pygame import debug
+# from debugger_pygame import debug
 
 
 class Game:
@@ -45,8 +45,6 @@ class Game:
             self.element_buttons.import_element_buttons()
 
             self.game_logic.game_IO_loop()
-            debug(self.game_logic.cpu_input, 725, 10, self.canvas)
-            debug(f'Clicked Global:{button.Button.clicked_global}', 25, 25, self.canvas)
 
             # Draw texts
             self.draw_text('CPU Points', self.point_size, self.CPU_pointsx, self.CPU_pointsy + self.point_offsety)
