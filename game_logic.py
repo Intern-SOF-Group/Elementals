@@ -7,7 +7,6 @@ class PlayerObj:
     def add_point(self):
         self.point += 1
 
-#TODO: Specify text point locations
 class GameLogic(PlayerObj):
     def __init__(self, game_menu):
         PlayerObj.__init__(self)
@@ -19,7 +18,7 @@ class GameLogic(PlayerObj):
         self.cpu_input = self.moves[random.randint(0, 4)]
         
     def game_IO_loop(self):
-        self.game_menu.draw_text(self.cpu_input, 10, 700, 200)
+        # self.game_menu.draw_text(f'for debugging purposes: {self.cpu_input}', 10, 700, 200)
 
         if self.player_move:
             if self.player_move == 'lightning':
