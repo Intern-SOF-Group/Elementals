@@ -1,89 +1,85 @@
 import pygame
 
-
 class Button:
-    game_logic = None
-    clicked_global = False
-    def __init__(self, x, y, image, scale, game):
+    game = None
+    clicked_global = True
+    def __init__(self, x, y, image, scale):
         width = image.get_width()
         height = image.get_height()
         self.image = pygame.transform.scale(image, (int(width*scale), int(height*scale)))
         self.rect_image = self.image.get_rect()
         self.rect_image.center = (x, y)
-        self.canvas = game.canvas
+        self.canvas = self.game.canvas
         self.clicked = True
-        # self.clicked_global = game # fixes drag clicking
-
 
     def draw(self):
         self.canvas.blit(self.image, (self.rect_image.x, self.rect_image.y ))
 
-
     def is_clicked(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and self.clicked_global:
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_global:
                 print('Button Clicked!')
                 self.clicked = False
-                self.clicked_global = False
+                Button.clicked_global = False
                 return True
-            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not self.clicked_global:
+            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_global:
                 self.clicked = True
-                self.clicked_global = True
+                Button.clicked_global = True
         elif not self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not self.clicked_global:
-                self.clicked_global = True
+            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_global:
                 self.clicked = True
+                Button.clicked_global = True
 
 
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton(Button):
-    def __init__(self, x, y, image, scale, game, player_output_str):
-        Button.__init__(self, x, y, image, scale, game)
+    def __init__(self, x, y, image, scale, player_output_str):
+        Button.__init__(self, x, y, image, scale)
         self.player_output_str = player_output_str
-        self.player_output = game.game_logic
-        self.clicked_global = game # fixes drag clicking
+        self.player_output = self.game.game_logic
 
     def player_input(self):
         if self.is_clicked():
             self.player_output.player_move = self.player_output_str
 
 
+class import_button:
+    def __init__(self):
+        self.element_button_y = 1180/3 + 1
+        self.scale = 8.05/15
+        self.lightning_image = pygame.image.load('images/lightning_button.png').convert_alpha()
+        self.lightning_button = ElementsButton(0, 0, self.lightning_image, self.scale, 'lightning')
+        self.lightning_button.rect_image.topleft = (0, self.element_button_y)
 
-def import_element_buttons(game, scale):
-    element_button_y = 1180/3 + 1
+        self.wind_image = pygame.image.load('images/wind_button.png').convert_alpha()
+        self.wind_button = ElementsButton(0, 0, self.wind_image, self.scale, 'wind')
+        self.wind_button.rect_image.topleft = (self.lightning_button.rect_image.topright[0] - 1, self.element_button_y)
 
-    lightning_image = pygame.image.load('images/lightning_button.png').convert_alpha()
-    lightning_button = ElementsButton(0, 0, lightning_image, scale, game, 'lightning')
-    lightning_button.rect_image.topleft = (0, element_button_y)
+        self.water_image = pygame.image.load('images/water_button.png').convert_alpha()
+        self.water_button = ElementsButton(0, 0, self.water_image, self.scale, 'water')
+        self.water_button.rect_image.topleft = (self.wind_button.rect_image.topright[0], self.element_button_y)
 
-    wind_image = pygame.image.load('images/wind_button.png').convert_alpha()
-    wind_button = ElementsButton(0, 0, wind_image, scale, game, 'wind')
-    wind_button.rect_image.topleft = (lightning_button.rect_image.topright[0] - 1, element_button_y)
+        self.earth_image = pygame.image.load('images/earth_button.png').convert_alpha()
+        self.earth_button = ElementsButton(0, 0, self.earth_image, self.scale, 'earth')
+        self.earth_button.rect_image.topleft = (self.water_button.rect_image.topright[0], self.element_button_y)
 
-    water_image = pygame.image.load('images/water_button.png').convert_alpha()
-    water_button = ElementsButton(0, 0, water_image, scale, game, 'water')
-    water_button.rect_image.topleft = (wind_button.rect_image.topright[0], element_button_y)
+        self.fire_image = pygame.image.load('images/fire_button.png').convert_alpha()
+        self.fire_button = ElementsButton(0, 0, self.fire_image, self.scale, 'fire')
+        self.fire_button.rect_image.topleft = (self.earth_button.rect_image.topright[0], self.element_button_y)
 
-    earth_image = pygame.image.load('images/earth_button.png').convert_alpha()
-    earth_button = ElementsButton(0, 0, earth_image, scale, game, 'earth')
-    earth_button.rect_image.topleft = (water_button.rect_image.topright[0], element_button_y)
+    def import_element_buttons(self):
+        self.lightning_button.draw()
+        self.lightning_button.player_input()
 
-    fire_image = pygame.image.load('images/fire_button.png').convert_alpha()
-    fire_button = ElementsButton(0, 0, fire_image, scale, game, 'fire')
-    fire_button.rect_image.topleft = (earth_button.rect_image.topright[0], element_button_y)
+        self.wind_button.draw()
+        self.wind_button.player_input()
 
-    lightning_button.draw()
-    lightning_button.player_input()
+        self.water_button.draw()
+        self.water_button.player_input()
 
-    wind_button.draw()
-    wind_button.player_input()
+        self.earth_button.draw()
+        self.earth_button.player_input()
 
-    water_button.draw()
-    water_button.player_input()
-
-    earth_button.draw()
-    earth_button.player_input()
-
-    fire_button.draw()
-    fire_button.player_input()
+        self.fire_button.draw()
+        self.fire_button.player_input()

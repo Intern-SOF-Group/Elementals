@@ -19,36 +19,10 @@ class Game:
         self.font_name = pygame.font.get_default_font()
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.VIOLET = (142, 68, 173)
-        # self.clicked_global = True # fixes drag clicking
         # self.curr_menu = MainMenu(self)
 
         # game logic
         self.game_logic = game_logic.GameLogic(self)
-
-        # Element buttons
-        self.element_button_scale = 8.05/15
-        self.element_button_y = 1180/3 + 1
-
-        # self.lightning_image = pygame.image.load('images/lightning_button.png').convert_alpha()
-        # self.lightning_button = button.ElementsButton(0, 0, self.lightning_image, self.element_button_scale, self, 'lightning')
-        # self.lightning_button.rect_image.topleft = (0, self.element_button_y)
-
-        # self.wind_image = pygame.image.load('images/wind_button.png').convert_alpha()
-        # self.wind_button = button.ElementsButton(0, 0, self.wind_image, self.element_button_scale, self, 'wind')
-        # self.wind_button.rect_image.topleft = (self.lightning_button.rect_image.topright[0] - 1, self.element_button_y)
-
-        # self.water_image = pygame.image.load('images/water_button.png').convert_alpha()
-        # self.water_button = button.ElementsButton(0, 0, self.water_image, self.element_button_scale, self, 'water')
-        # self.water_button.rect_image.topleft = (self.wind_button.rect_image.topright[0], self.element_button_y)
-
-        # self.earth_image = pygame.image.load('images/earth_button.png').convert_alpha()
-        # self.earth_button = button.ElementsButton(0, 0, self.earth_image, self.element_button_scale, self, 'earth')
-        # self.earth_button.rect_image.topleft = (self.water_button.rect_image.topright[0], self.element_button_y)
-
-        # self.fire_image = pygame.image.load('images/fire_button.png').convert_alpha()
-        # self.fire_button = button.ElementsButton(0, 0, self.fire_image, self.element_button_scale, self, 'fire')
-        # self.fire_button.rect_image.topleft = (self.earth_button.rect_image.topright[0], self.element_button_y)
-
 
         # Points text attributes
         self.CPU_pointsx, self.CPU_pointsy = 600, 100
@@ -56,6 +30,10 @@ class Game:
         self.point_size = 25
         self.point_offsety = -30
 
+        # buttons
+        button.Button.game = self
+        self.element_buttons = button.import_button()
+        
     def game_loop(self):
         while self.playing:
             self.check_events()
@@ -64,16 +42,11 @@ class Game:
             self.canvas.fill(self.VIOLET)
 
             # draw element buttons and check for inputs
-            # self.lightning_button.draw()
-            # self.lightning_button.player_input()
-            # self.wind_button.draw()
-            # self.water_button.draw()
-            # self.earth_button.draw()
-            # self.fire_button.draw()
-            button.import_element_buttons(self, self.element_button_scale)
+            self.element_buttons.import_element_buttons()
 
             self.game_logic.game_IO_loop()
             debug(self.game_logic.cpu_input, 725, 10, self.canvas)
+            debug(f'Clicked Global:{button.Button.clicked_global}', 25, 25, self.canvas)
 
             # Draw texts
             self.draw_text('CPU Points', self.point_size, self.CPU_pointsx, self.CPU_pointsy + self.point_offsety)
