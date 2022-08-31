@@ -3,7 +3,7 @@ import pygame
 
 class Button:
     game = None
-    clicked_global = True
+    clicked_elements = True
     def __init__(self, x, y, image, scale):
         width = image.get_width()
         height = image.get_height()
@@ -19,25 +19,28 @@ class Button:
     def is_clicked_elements(self): # this fixes drag clicking
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_global:
-                # print('Button Clicked!')
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and self.clicked_elements:
+                print('Button Clicked!')
                 self.clicked = False
-                Button.clicked_global = False
+                self.clicked_elements = False
                 return True
-            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_global:
+            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not self.clicked_elements:
                 self.clicked = True
-                Button.clicked_global = True
+                self.clicked_elements = True
         elif not self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_global:
+            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not self.clicked_elements:
                 self.clicked = True
-                Button.clicked_global = True
+                self.clicked_elements = True
     
     def is_clicked2(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_global:
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked_elements:
                 print('Button Clicked!')
+                self.clicked_elements = False 
                 return True
+            elif not pygame.mouse.get_pressed()[0] and not self.clicked_elements:
+                self.clicked_elements = True
 
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton(Button):
@@ -113,13 +116,43 @@ class ImportMainMenuButton:
 
     def check_curr_menu(self):
         if self.start_button.is_clicked2():
-            # self.main_menu.game.playing = True
-            # self.main_menu.run_display = False
-            # self.main_menu.game.curr_menu = None
-            Button.game.playing = True
+            # Button.game.playing = True
             self.main_menu.run_display = False
-            Button.game.curr_menu = None
+            Button.game.curr_menu = Button.game.max_points_menu
 
         elif self.quit_button.is_clicked2():
             Button.game.quit_game()
 
+
+class ImportMaxPointsMenuButton:
+    def __init__(self, max_points_menu):
+        self.max_points_menu = max_points_menu
+        self.button_img_loc = 'assets/button_images'
+        self.mid_w = self.max_points_menu.mid_w
+        self.scale = 1
+
+        self.long_game_image = pygame.image.load(f'{self.button_img_loc}/long_game_button.png').convert_alpha()
+        self.long_game_button = Button(self.mid_w, 200, self.long_game_image, self.scale)
+
+        self.short_game_image = pygame.image.load(f'{self.button_img_loc}/short_game_button.png').convert_alpha()
+        self.short_game_button = Button(self.mid_w, 300, self.short_game_image, self.scale)
+        
+        self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
+        self.back_button = Button(self.mid_w, 400, self.back_image, self.scale)
+
+    def import_max_points_menu_button(self):
+        self.long_game_button.draw()
+        self.short_game_button.draw()
+        self.back_button.draw()
+        self.check_curr_menu()
+
+    # TODO: make the buttons go to game after clicking
+    def check_curr_menu(self):
+        if self.long_game_button.is_clicked2():
+            pass
+
+        elif self.short_game_button.is_clicked2():
+            pass
+
+        elif self.back_button.is_clicked2():
+            pass

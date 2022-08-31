@@ -1,5 +1,5 @@
 import pygame
-from button import ImportMainMenuButton
+from button import ImportMainMenuButton, ImportMaxPointsMenuButton
 
 class Menu:
     def __init__(self, game):
@@ -21,6 +21,20 @@ class MainMenu(Menu):
     def display_menu(self):
         self.run_display = True
         while self.run_display:
+            self.game.canvas.fill(self.game.VIOLET)
             self.game.check_events()
             self.menu_button.import_menu_button()
+            self.blit_canvas()
+
+class MaxPointsMenu(Menu):
+    def __init__(self, game):
+        Menu.__init__(self, game)
+        self.menu_button = ImportMaxPointsMenuButton(self)
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.canvas.fill(self.game.VIOLET)
+            self.game.check_events()
+            self.menu_button.import_max_points_menu_button()
             self.blit_canvas()
