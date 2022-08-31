@@ -16,7 +16,7 @@ class Button:
     def draw(self):
         self.canvas.blit(self.image, (self.rect_image.x, self.rect_image.y ))
 
-    def is_clicked_elements(self):
+    def is_clicked_elements(self): # this fixes drag clicking
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_global:
@@ -91,20 +91,6 @@ class ImportElementsButton:
 
         self.fire_button.draw()
         self.fire_button.player_input()
-
-
-# class MenuButton(Button):
-#     def __init__(self, x, y, image, scale):
-#         Button.__init__(self, x, y, image, scale)
-#         self.game = Button.game
-
-#     def check_curr_menu(self):
-#         if self.start_button.is_clicked():
-#             self.game.playing = True
-
-#         elif self.quit_button.is_clicked():
-#             self.game.quit_game()
-
 
 
 class ImportMainMenuButton:
