@@ -1,7 +1,7 @@
 import sys
 import pygame
 # from menu import MainMenu
-import button
+from button import Button, ImportElementsButton
 import game_logic
 # from debugger_pygame import debug
 
@@ -31,8 +31,8 @@ class Game:
         self.point_offsety = -30
 
         # buttons
-        button.Button.game = self
-        self.element_buttons = button.import_button()
+        Button.game = self
+        self.element_buttons = ImportElementsButton()
         
     def game_loop(self):
         while self.playing:
