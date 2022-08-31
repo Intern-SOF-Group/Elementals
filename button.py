@@ -16,11 +16,11 @@ class Button:
     def draw(self):
         self.canvas.blit(self.image, (self.rect_image.x, self.rect_image.y ))
 
-    def is_clicked(self):
+    def is_clicked_elements(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_global:
-                print('Button Clicked!')
+                # print('Button Clicked!')
                 self.clicked = False
                 Button.clicked_global = False
                 return True
@@ -31,7 +31,13 @@ class Button:
             if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_global:
                 self.clicked = True
                 Button.clicked_global = True
-
+    
+    def is_clicked2(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.rect_image.collidepoint(mouse_pos):
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_global:
+                print('Button Clicked!')
+                return True
 
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton(Button):
@@ -41,7 +47,7 @@ class ElementsButton(Button):
         self.player_output = self.game.game_logic
 
     def player_input(self):
-        if self.is_clicked():
+        if self.is_clicked_elements():
             self.player_output.player_move = self.player_output_str
 
 
@@ -120,7 +126,7 @@ class ImportMainMenuButton:
         self.check_curr_menu()
 
     def check_curr_menu(self):
-        if self.start_button.is_clicked():
+        if self.start_button.is_clicked2():
             # self.main_menu.game.playing = True
             # self.main_menu.run_display = False
             # self.main_menu.game.curr_menu = None
@@ -128,8 +134,6 @@ class ImportMainMenuButton:
             self.main_menu.run_display = False
             Button.game.curr_menu = None
 
-        elif self.quit_button.is_clicked():
-            self.main_menu.run_display = False
-            Button.game.playing = False
+        elif self.quit_button.is_clicked2():
             Button.game.quit_game()
 

@@ -1,6 +1,5 @@
 import sys
 import pygame
-# from menu import MainMenu
 from button import Button, ImportElementsButton
 import game_logic
 # from debugger_pygame import debug
@@ -34,7 +33,6 @@ class Game:
         self.point_offsety = -30
 
         # buttons
-        # Button.game = self
         self.element_buttons = ImportElementsButton()
         
     def game_loop(self):
@@ -62,7 +60,7 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running, self.playing = False, False
-                # self.curr_menu.run_display = False
+                self.curr_menu.run_display = False
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:

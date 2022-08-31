@@ -21,7 +21,6 @@ class MainMenu(Menu):
     def display_menu(self):
         self.run_display = True
         while self.run_display:
-            print(self.game.playing)
             self.game.check_events()
             self.menu_button.import_menu_button()
             self.blit_canvas()
