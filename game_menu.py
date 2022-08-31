@@ -4,12 +4,14 @@ import pygame
 from button import Button, ImportElementsButton
 import game_logic
 # from debugger_pygame import debug
+from menu import *
 
 
 class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption('Elementals')
+        Button.game = self
         self.running = True
         self.playing = False
         self.START_KEY = False
@@ -19,7 +21,8 @@ class Game:
         self.font_name = pygame.font.get_default_font()
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.VIOLET = (142, 68, 173)
-        # self.curr_menu = MainMenu(self)
+        self.main_menu = MainMenu(self)
+        self.curr_menu = self.main_menu
 
         # game logic
         self.game_logic = game_logic.GameLogic(self)
@@ -31,14 +34,12 @@ class Game:
         self.point_offsety = -30
 
         # buttons
-        Button.game = self
+        # Button.game = self
         self.element_buttons = ImportElementsButton()
         
     def game_loop(self):
         while self.playing:
             self.check_events()
-            if self.START_KEY:
-                self.playing = False
             self.canvas.fill(self.VIOLET)
 
             # draw element buttons and check for inputs

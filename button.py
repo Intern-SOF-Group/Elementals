@@ -1,5 +1,6 @@
 import pygame
 
+
 class Button:
     game = None
     clicked_global = True
@@ -19,7 +20,7 @@ class Button:
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_global:
-                # print('Button Clicked!')
+                print('Button Clicked!')
                 self.clicked = False
                 Button.clicked_global = False
                 return True
@@ -86,9 +87,49 @@ class ImportElementsButton:
         self.fire_button.player_input()
 
 
-class MenuButton(Button):
-    def __init__(self, x, y, image, scale):
-        super().__init__(x, y, image, scale)
-        self.canvas = self.game.canvas
+# class MenuButton(Button):
+#     def __init__(self, x, y, image, scale):
+#         Button.__init__(self, x, y, image, scale)
+#         self.game = Button.game
 
-# class ImportMenuButton:
+#     def check_curr_menu(self):
+#         if self.start_button.is_clicked():
+#             self.game.playing = True
+
+#         elif self.quit_button.is_clicked():
+#             self.game.quit_game()
+
+
+
+class ImportMainMenuButton:
+    def __init__(self, main_menu):
+        self.main_menu = main_menu
+        self.button_img_loc = 'assets/button_images'
+        self.mid_w = self.main_menu.mid_w
+        self.scale = 1
+
+        self.start_image = pygame.image.load(f'{self.button_img_loc}/start_button.png').convert_alpha()
+        self.start_button = Button(self.mid_w, 200, self.start_image, self.scale)
+
+        self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
+        self.quit_button = Button(self.mid_w, 300, self.quit_image, self.scale)
+
+    def import_menu_button(self):
+        self.start_button.draw()
+        self.quit_button.draw()
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.start_button.is_clicked():
+            # self.main_menu.game.playing = True
+            # self.main_menu.run_display = False
+            # self.main_menu.game.curr_menu = None
+            Button.game.playing = True
+            self.main_menu.run_display = False
+            Button.game.curr_menu = None
+
+        elif self.quit_button.is_clicked():
+            self.main_menu.run_display = False
+            Button.game.playing = False
+            Button.game.quit_game()
+

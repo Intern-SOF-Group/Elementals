@@ -4,7 +4,7 @@ g = game_menu.Game()
 
 # menu = menu.Menu()
 
-while True:
-    g.playing = True
+while g.running:
+    g.curr_menu.display_menu()
     g.game_loop()
 
