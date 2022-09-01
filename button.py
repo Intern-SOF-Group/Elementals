@@ -145,7 +145,6 @@ class ImportMaxPointsMenuButton:
         self.back_button.draw()
         self.check_curr_menu()
 
-    # TODO: make the buttons go to game after clicking
     def check_curr_menu(self):
         if self.long_game_button.is_clicked2():
             Button.game.game_logic.max_points = 20
