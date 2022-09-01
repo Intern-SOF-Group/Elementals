@@ -178,4 +178,7 @@ class GameLogic(PlayerObj):
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
             self.cpu_input = self.moves[random.randint(0, 4)]
+
+        if self.player.point == self.max_points:
+            pass
         

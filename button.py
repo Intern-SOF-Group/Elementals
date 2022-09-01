@@ -19,18 +19,18 @@ class Button:
     def is_clicked_elements(self): # this fixes drag clicking
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and self.clicked_elements:
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_elements:
                 print('Button Clicked!')
                 self.clicked = False
-                self.clicked_elements = False
+                Button.clicked_elements = False
                 return True
-            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not self.clicked_elements:
+            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
                 self.clicked = True
-                self.clicked_elements = True
+                Button.clicked_elements = True
         elif not self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not self.clicked_elements:
+            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
                 self.clicked = True
-                self.clicked_elements = True
+                Button.clicked_elements = True
     
     def is_clicked2(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -149,10 +149,14 @@ class ImportMaxPointsMenuButton:
     # TODO: make the buttons go to game after clicking
     def check_curr_menu(self):
         if self.long_game_button.is_clicked2():
-            pass
+            self.max_points_menu.run_display = False
+            Button.game.curr_menu = None
+            Button.game.playing = True
 
         elif self.short_game_button.is_clicked2():
-            pass
+            self.max_points_menu.run_display = False
+            Button.game.curr_menu = None
+            Button.game.playing = True
 
         elif self.back_button.is_clicked2():
             self.max_points_menu.run_display = False
