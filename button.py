@@ -20,7 +20,7 @@ class Button:
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_elements:
-                print('Button Clicked!')
+                # print('Button Clicked!')
                 self.clicked = False
                 Button.clicked_elements = False
                 return True
@@ -36,7 +36,7 @@ class Button:
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.game.clicked_global:
-                print('Button Clicked!')
+                # print('Button Clicked!')
                 self.game.clicked_global = False 
                 return True
             elif not pygame.mouse.get_pressed()[0] and not self.game.clicked_global:
@@ -116,7 +116,6 @@ class ImportMainMenuButton:
 
     def check_curr_menu(self):
         if self.start_button.is_clicked2():
-            # Button.game.playing = True
             self.main_menu.run_display = False
             Button.game.curr_menu = Button.game.max_points_menu
 
@@ -149,11 +148,13 @@ class ImportMaxPointsMenuButton:
     # TODO: make the buttons go to game after clicking
     def check_curr_menu(self):
         if self.long_game_button.is_clicked2():
+            Button.game.game_logic.max_points = 20
             self.max_points_menu.run_display = False
             Button.game.curr_menu = None
             Button.game.playing = True
 
         elif self.short_game_button.is_clicked2():
+            Button.game.game_logic.max_points = 10
             self.max_points_menu.run_display = False
             Button.game.curr_menu = None
             Button.game.playing = True

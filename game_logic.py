@@ -16,7 +16,7 @@ class GameLogic(PlayerObj):
         self.moves = ['lightning', 'wind', 'water', 'earth', 'fire']
         self.game_menu = game_menu
         self.cpu_input = self.moves[random.randint(0, 4)]
-        self.max_points = None
+        self.max_points = 0
         
     def game_IO_loop(self):
         # self.game_menu.draw_text(f'for debugging purposes: {self.cpu_input}', 10, 700, 200)
@@ -180,5 +180,12 @@ class GameLogic(PlayerObj):
             self.cpu_input = self.moves[random.randint(0, 4)]
 
         if self.player.point == self.max_points:
-            pass
-        
+            self.game_menu.playing = False
+            self.game_menu.curr_menu = None
+            self.player.point = 0
+            self.CPU.point = 0
+        elif self.CPU.point == self.max_points:
+            self.game_menu.playing = False
+            self.game_menu.curr_menu = None
+            self.player.point = 0
+            self.CPU.point = 0
