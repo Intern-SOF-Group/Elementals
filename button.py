@@ -161,3 +161,29 @@ class ImportMaxPointsMenuButton:
         elif self.back_button.is_clicked2():
             self.max_points_menu.run_display = False
             Button.game.curr_menu = Button.game.main_menu
+
+
+class ImportWinLoseMenuButton:
+    def __init__(self, win_lose_menu):
+        self.win_lose_menu = win_lose_menu
+        self.button_img_loc = 'assets/button_images'
+        self.mid_w = self.win_lose_menu.mid_w
+        self.scale = 1
+
+        self.play_again_image = pygame.image.load(f'{self.button_img_loc}/play_again_button.png').convert_alpha()
+        self.play_again_button = Button(self.mid_w, 200, self.play_again_image, self.scale)
+
+        self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
+        self.quit_button = Button(self.mid_w, 300, self.quit_image, self.scale)
+
+    def import_win_lose_menu_button(self):
+        self.play_again_button.draw()
+        self.quit_button.draw()
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.play_again_button.is_clicked2():
+            Button.game.curr_menu = Button.game.max_points_menu
+            self.win_lose_menu.run_display = False
+        elif self.quit_button.is_clicked2():
+            Button.game.quit_game()

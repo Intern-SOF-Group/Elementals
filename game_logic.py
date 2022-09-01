@@ -179,13 +179,13 @@ class GameLogic(PlayerObj):
                     self.player_move = ''
             self.cpu_input = self.moves[random.randint(0, 4)]
 
-        if self.player.point == self.max_points:
+        if (self.player.point == self.max_points) or (self.CPU.point == self.max_points):
+            if self.player.point == self.max_points:
+                self.player.point = 0
+                self.CPU.point = 0
+            elif self.CPU.point == self.max_points:
+                self.player.point = 0
+                self.CPU.point = 0
             self.game_menu.playing = False
-            self.game_menu.curr_menu = None
-            self.player.point = 0
-            self.CPU.point = 0
-        elif self.CPU.point == self.max_points:
-            self.game_menu.playing = False
-            self.game_menu.curr_menu = None
-            self.player.point = 0
-            self.CPU.point = 0
+            self.game_menu.curr_menu = self.game_menu.win_lose_menu
+            
