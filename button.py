@@ -35,12 +35,12 @@ class Button:
     def is_clicked2(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked_elements:
+            if pygame.mouse.get_pressed()[0] == 1 and self.game.clicked_global:
                 print('Button Clicked!')
-                self.clicked_elements = False 
+                self.game.clicked_global = False 
                 return True
-            elif not pygame.mouse.get_pressed()[0] and not self.clicked_elements:
-                self.clicked_elements = True
+            elif not pygame.mouse.get_pressed()[0] and not self.game.clicked_global:
+                self.game.clicked_global = True
 
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton(Button):
@@ -155,4 +155,5 @@ class ImportMaxPointsMenuButton:
             pass
 
         elif self.back_button.is_clicked2():
-            pass
+            self.max_points_menu.run_display = False
+            Button.game.curr_menu = Button.game.main_menu

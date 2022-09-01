@@ -16,6 +16,7 @@ class GameLogic(PlayerObj):
         self.moves = ['lightning', 'wind', 'water', 'earth', 'fire']
         self.game_menu = game_menu
         self.cpu_input = self.moves[random.randint(0, 4)]
+        self.max_points = None
         
     def game_IO_loop(self):
         # self.game_menu.draw_text(f'for debugging purposes: {self.cpu_input}', 10, 700, 200)
