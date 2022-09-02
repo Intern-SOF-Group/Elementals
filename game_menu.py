@@ -36,7 +36,7 @@ class Game:
         self.point_offsety = -30
 
         # buttons
-        # self.element_buttons = ImportElementsButton()
+        self.element_buttons = ImportElementsButton()
         
     def game_loop(self):
         while self.playing:
