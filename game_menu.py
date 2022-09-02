@@ -22,8 +22,8 @@ class Game:
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.VIOLET = (142, 68, 173)
         self.main_menu = MainMenu(self)
-        self.max_points_menu = MaxPointsMenu(self)
-        self.win_lose_menu = WinLoseMenu(self)
+        # self.max_points_menu = MaxPointsMenu(self)
+        # self.win_lose_menu = WinLoseMenu(self)
         self.curr_menu = self.main_menu
 
         # game logic
@@ -36,7 +36,7 @@ class Game:
         self.point_offsety = -30
 
         # buttons
-        self.element_buttons = ImportElementsButton()
+        # self.element_buttons = ImportElementsButton()
         
     def game_loop(self):
         while self.playing:

@@ -4,17 +4,25 @@ import pygame
 class Button:
     game = None
     clicked_elements = True
-    def __init__(self, x, y, image, scale):
-        width = image.get_width()
-        height = image.get_height()
-        self.image = pygame.transform.scale(image, (int(width*scale), int(height*scale)))
+    def __init__(self, x, y, image, scale, hover_image):
+        self.scale = scale
+        self.width = image.get_width()
+        self.height = image.get_height()
+        self.image = pygame.transform.scale(image, (int(self.width*scale), int(self.height*scale)))
         self.rect_image = self.image.get_rect()
         self.rect_image.center = (x, y)
+        self.curr_image = self.image
         self.canvas = self.game.canvas
         self.clicked = True
+        self.hover_image = pygame.transform.scale(hover_image, (int(self.width*scale), int(self.height*scale)))
 
     def draw(self):
-        self.canvas.blit(self.image, (self.rect_image.x, self.rect_image.y ))
+        mouse_pos = pygame.mouse.get_pos()
+        if self.rect_image.collidepoint(mouse_pos):
+            self.curr_image = self.hover_image
+        elif not self.rect_image.collidepoint(mouse_pos):
+            self.curr_image = self.image
+        self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y ))
 
     def is_clicked_elements(self): # this fixes drag clicking
         mouse_pos = pygame.mouse.get_pos()
@@ -99,15 +107,17 @@ class ImportElementsButton:
 class ImportMainMenuButton:
     def __init__(self, main_menu):
         self.main_menu = main_menu
-        self.button_img_loc = 'assets/button_images'
+        self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.main_menu.mid_w
         self.scale = 1
 
         self.start_image = pygame.image.load(f'{self.button_img_loc}/start_button.png').convert_alpha()
-        self.start_button = Button(self.mid_w, 200, self.start_image, self.scale)
+        self.start_hover_image = pygame.image.load(f'{self.button_img_loc}/start_button_hover.png').convert_alpha()
+        self.start_button = Button(self.mid_w, 170, self.start_image, self.scale, self.start_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
-        self.quit_button = Button(self.mid_w, 300, self.quit_image, self.scale)
+        self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
+        self.quit_button = Button(self.mid_w, self.start_button.rect_image.centery + 150, self.quit_image, self.scale, self.quit_hover_image)
 
     def import_menu_button(self):
         self.start_button.draw()
