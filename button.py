@@ -49,7 +49,7 @@ class Button:
                 return True
             elif not pygame.mouse.get_pressed()[0] and not self.game.clicked_global:
                 self.game.clicked_global = True
-
+#TODO: Fix button positions, add backgrounds
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton(Button):
     def __init__(self, x, y, image, scale, hover_image, player_output_str):
@@ -185,15 +185,17 @@ class ImportMaxPointsMenuButton:
 class ImportWinLoseMenuButton:
     def __init__(self, win_lose_menu):
         self.win_lose_menu = win_lose_menu
-        self.button_img_loc = 'assets/button_images'
+        self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.win_lose_menu.mid_w
         self.scale = 1
 
         self.play_again_image = pygame.image.load(f'{self.button_img_loc}/play_again_button.png').convert_alpha()
-        self.play_again_button = Button(self.mid_w, 200, self.play_again_image, self.scale)
+        self.play_again_hover_image = pygame.image.load(f'{self.button_img_loc}/play_again_button_hover.png').convert_alpha()
+        self.play_again_button = Button(self.mid_w, 200, self.play_again_image, self.scale, self.play_again_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
-        self.quit_button = Button(self.mid_w, 300, self.quit_image, self.scale)
+        self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
+        self.quit_button = Button(self.mid_w, 300, self.quit_image, self.scale, self.quit_hover_image)
 
     def import_win_lose_menu_button(self):
         self.play_again_button.draw()

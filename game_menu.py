@@ -23,7 +23,7 @@ class Game:
         self.VIOLET = (142, 68, 173)
         self.main_menu = MainMenu(self)
         self.max_points_menu = MaxPointsMenu(self)
-        # self.win_lose_menu = WinLoseMenu(self)
+        self.win_lose_menu = WinLoseMenu(self)
         self.curr_menu = self.main_menu
 
         # game logic
