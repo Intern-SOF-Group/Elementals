@@ -16,6 +16,7 @@ class Game:
         self.playing = False
         self.START_KEY = False
         self.DISPLAY_W, self.DISPLAY_H = 800, 500
+        self.mid_w, self.mid_h = self.DISPLAY_W/2, self.DISPLAY_H/2
         self.canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
         self.window = pygame.display.set_mode((self.DISPLAY_W, self.DISPLAY_H))
         self.font_name = pygame.font.get_default_font()

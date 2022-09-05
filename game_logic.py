@@ -17,6 +17,7 @@ class GameLogic(PlayerObj):
         self.game_menu = game_menu
         self.cpu_input = self.moves[random.randint(0, 4)]
         self.max_points = 0
+        self.winner_state = ''
 
     def game_IO_loop(self):
         # self.game_menu.draw_text(f'for debugging purposes: {self.cpu_input}', 10, 700, 200)
@@ -25,6 +26,7 @@ class GameLogic(PlayerObj):
             if self.player_move == 'lightning':
                 if self.cpu_input == 'lightning':
                     print('Tie!')
+                    self.winner_state = 'Tie!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     # self.game_menu.draw_text(str(self.player.point), 10, 100, 200)
@@ -32,24 +34,28 @@ class GameLogic(PlayerObj):
                 elif self.cpu_input == 'wind':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'water':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'earth':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'fire':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
@@ -57,30 +63,35 @@ class GameLogic(PlayerObj):
             elif self.player_move == 'wind':
                 if self.cpu_input == 'wind':
                     print('Tie!')
+                    self.winner_state = 'Tie!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'water':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'earth':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'fire':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'lightning':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
@@ -88,30 +99,35 @@ class GameLogic(PlayerObj):
             elif self.player_move == 'water':
                 if self.cpu_input == 'water':
                     print('Tie!')
+                    self.winner_state = 'Tie!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'earth':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'fire':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'lightning':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'wind':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
@@ -119,30 +135,35 @@ class GameLogic(PlayerObj):
             elif self.player_move == 'earth':
                 if self.cpu_input == 'earth':
                     print('Tie!')
+                    self.winner_state = 'Tie!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'fire':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'lightning':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'wind':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'water':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
@@ -150,30 +171,35 @@ class GameLogic(PlayerObj):
             elif self.player_move == 'fire':
                 if self.cpu_input == 'fire':
                     print('Tie!')
+                    self.winner_state = 'Tie!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'lightning':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'wind':
                     self.player.add_point()
                     print('Player wins!')
+                    self.winner_state = 'Player Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'water':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
                 elif self.cpu_input == 'earth':
                     self.CPU.add_point()
                     print('CPU wins!')
+                    self.winner_state = 'CPU Wins!'
                     print(f'Player points: {self.player.point}')
                     print(f'CPU points: {self.CPU.point}\n')
                     self.player_move = ''
@@ -188,4 +214,5 @@ class GameLogic(PlayerObj):
                 self.CPU.point = 0
             self.game_menu.playing = False
             self.game_menu.curr_menu = self.game_menu.win_lose_menu
-            
+
+        self.game_menu.draw_text(self.winner_state, 40, self.game_menu.mid_w, self.game_menu.mid_h)
