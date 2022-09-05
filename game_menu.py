@@ -26,6 +26,12 @@ class Game:
         self.win_lose_menu = WinLoseMenu(self)
         self.curr_menu = self.main_menu
 
+        # game background
+        self.bg_img_loc = 'assets/sent_images'
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/main_game_bg.png').convert_alpha()
+        self.image_rect = self.bg_img.get_rect()
+        self.image_rect.topleft = (0, 0)
+
         # game logic
         self.game_logic = game_logic.GameLogic(self)
 
@@ -42,6 +48,7 @@ class Game:
         while self.playing:
             self.check_events()
             self.canvas.fill(self.VIOLET)
+            self.canvas.blit(self.bg_img, self.image_rect.topleft)
 
             # draw element buttons and check for inputs
             self.element_buttons.import_element_buttons()

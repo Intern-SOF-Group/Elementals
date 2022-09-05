@@ -17,7 +17,7 @@ class GameLogic(PlayerObj):
         self.game_menu = game_menu
         self.cpu_input = self.moves[random.randint(0, 4)]
         self.max_points = 0
-        
+
     def game_IO_loop(self):
         # self.game_menu.draw_text(f'for debugging purposes: {self.cpu_input}', 10, 700, 200)
 

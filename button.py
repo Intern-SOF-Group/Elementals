@@ -39,13 +39,13 @@ class Button:
             if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
                 self.clicked = True
                 Button.clicked_elements = True
-    
+
     def is_clicked2(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.game.clicked_global:
                 # print('Button Clicked!')
-                self.game.clicked_global = False 
+                self.game.clicked_global = False
                 return True
             elif not pygame.mouse.get_pressed()[0] and not self.game.clicked_global:
                 self.game.clicked_global = True
@@ -145,18 +145,19 @@ class ImportMaxPointsMenuButton:
         self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.max_points_menu.mid_w
         self.scale = 1
+        self.y_offset = 125
 
         self.long_game_image = pygame.image.load(f'{self.button_img_loc}/long_game_button.png').convert_alpha()
         self.long_game_hover_image = pygame.image.load(f'{self.button_img_loc}/long_game_button_hover.png').convert_alpha()
-        self.long_game_button = Button(self.mid_w, 200, self.long_game_image, self.scale, self.long_game_hover_image)
+        self.long_game_button = Button(self.mid_w, 130, self.long_game_image, self.scale, self.long_game_hover_image)
 
         self.short_game_image = pygame.image.load(f'{self.button_img_loc}/short_game_button.png').convert_alpha()
         self.short_game_hover_image = pygame.image.load(f'{self.button_img_loc}/short_game_button_hover.png').convert_alpha()
-        self.short_game_button = Button(self.mid_w, 300, self.short_game_image, self.scale, self.short_game_hover_image)
-        
+        self.short_game_button = Button(self.mid_w, self.long_game_button.rect_image.centery + self.y_offset, self.short_game_image, self.scale, self.short_game_hover_image)
+
         self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
         self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
-        self.back_button = Button(self.mid_w, 400, self.back_image, self.scale, self.back_hover_image)
+        self.back_button = Button(self.mid_w, self.short_game_button.rect_image.centery + self.y_offset, self.back_image, self.scale, self.back_hover_image)
 
     def import_max_points_menu_button(self):
         self.long_game_button.draw()
