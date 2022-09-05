@@ -190,6 +190,8 @@ class ImportWinLoseMenuButton:
         self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.win_lose_menu.mid_w
         self.scale = 1
+        self.y_offset = 125
+
 
         self.play_again_image = pygame.image.load(f'{self.button_img_loc}/play_again_button.png').convert_alpha()
         self.play_again_hover_image = pygame.image.load(f'{self.button_img_loc}/play_again_button_hover.png').convert_alpha()
@@ -197,7 +199,7 @@ class ImportWinLoseMenuButton:
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
-        self.quit_button = Button(self.mid_w, 300, self.quit_image, self.scale, self.quit_hover_image)
+        self.quit_button = Button(self.mid_w, self.play_again_button.rect_image.centery + self.y_offset, self.quit_image, self.scale, self.quit_hover_image)
 
     def import_win_lose_menu_button(self):
         self.play_again_button.draw()

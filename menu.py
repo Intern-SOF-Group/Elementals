@@ -63,11 +63,13 @@ class WinLoseMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
         self.win_lose_button = ImportWinLoseMenuButton(self)
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg2.png').convert_alpha()
 
     def display_menu(self):
         self.run_display = True
         while self.run_display:
-            self.game.canvas.fill(self.game.VIOLET)
+            # self.game.canvas.fill(self.game.VIOLET)
+            self.bg_loader(self.bg_img, 1)
             self.game.check_events()
             self.win_lose_button.import_win_lose_menu_button()
             self.blit_canvas()
