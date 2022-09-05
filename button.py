@@ -65,34 +65,35 @@ class ElementsButton(Button):
 class ImportElementsButton:
     def __init__(self):
         self.button_img_loc = 'assets/sent_images/button_images/elements'
-        self.element_button_y = 350
+        self.element_button_y = 400
         self.scale = 1
-        self.x_offset = 60
+        self.x_offset = 150
 
-        self.lightning_image = pygame.image.load(f'{self.button_img_loc}/lightning_button.png').convert_alpha()
-        self.lightning_hover_image = pygame.image.load(f'{self.button_img_loc}/lightning_button_hover.png').convert_alpha()
-        self.lightning_button = ElementsButton(0, 0, self.lightning_image, self.scale, self.lightning_hover_image, 'lightning')
-        self.lightning_button.rect_image.topleft = (30, self.element_button_y)
-
-        self.wind_image = pygame.image.load(f'{self.button_img_loc}/wind_button.png').convert_alpha()
-        self.wind_hover_image = pygame.image.load(f'{self.button_img_loc}/wind_button_hover.png').convert_alpha()
-        self.wind_button = ElementsButton(0, 0, self.wind_image, self.scale, self.wind_hover_image, 'wind')
-        self.wind_button.rect_image.topleft = (self.lightning_button.rect_image.topright[0] - 1 + self.x_offset, self.element_button_y)
 
         self.water_image = pygame.image.load(f'{self.button_img_loc}/water_button.png').convert_alpha()
         self.water_hover_image = pygame.image.load(f'{self.button_img_loc}/water_button_hover.png').convert_alpha()
         self.water_button = ElementsButton(0, 0, self.water_image, self.scale, self.water_hover_image, 'water')
-        self.water_button.rect_image.topleft = (self.wind_button.rect_image.topright[0] + self.x_offset, self.element_button_y)
+        self.water_button.rect_image.center = (Button.game.mid_w, self.element_button_y)
+
+        self.wind_image = pygame.image.load(f'{self.button_img_loc}/wind_button.png').convert_alpha()
+        self.wind_hover_image = pygame.image.load(f'{self.button_img_loc}/wind_button_hover.png').convert_alpha()
+        self.wind_button = ElementsButton(0, 0, self.wind_image, self.scale, self.wind_hover_image, 'wind')
+        self.wind_button.rect_image.center = (self.water_button.rect_image.center[0] - self.x_offset, self.element_button_y)
+
+        self.lightning_image = pygame.image.load(f'{self.button_img_loc}/lightning_button.png').convert_alpha()
+        self.lightning_hover_image = pygame.image.load(f'{self.button_img_loc}/lightning_button_hover.png').convert_alpha()
+        self.lightning_button = ElementsButton(0, 0, self.lightning_image, self.scale, self.lightning_hover_image, 'lightning')
+        self.lightning_button.rect_image.center = (self.wind_button.rect_image.center[0] - self.x_offset, self.element_button_y)
 
         self.earth_image = pygame.image.load(f'{self.button_img_loc}/earth_button.png').convert_alpha()
         self.earth_hover_image = pygame.image.load(f'{self.button_img_loc}/earth_button_hover.png').convert_alpha()
         self.earth_button = ElementsButton(0, 0, self.earth_image, self.scale, self.earth_hover_image, 'earth')
-        self.earth_button.rect_image.topleft = (self.water_button.rect_image.topright[0] + self.x_offset, self.element_button_y)
+        self.earth_button.rect_image.center = (self.water_button.rect_image.center[0] + self.x_offset, self.element_button_y)
 
         self.fire_image = pygame.image.load(f'{self.button_img_loc}/fire_button.png').convert_alpha()
         self.fire_hover_image = pygame.image.load(f'{self.button_img_loc}/fire_button_hover.png').convert_alpha()
         self.fire_button = ElementsButton(0, 0, self.fire_image, self.scale, self.fire_hover_image, 'fire')
-        self.fire_button.rect_image.topleft = (self.earth_button.rect_image.topright[0] + self.x_offset, self.element_button_y)
+        self.fire_button.rect_image.center = (self.earth_button.rect_image.center[0] + self.x_offset, self.element_button_y)
 
     def import_element_buttons(self):
         self.lightning_button.draw()
