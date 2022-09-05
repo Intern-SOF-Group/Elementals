@@ -26,6 +26,7 @@ class Game:
         self.main_menu = MainMenu(self)
         self.max_points_menu = MaxPointsMenu(self)
         self.win_lose_menu = WinLoseMenu(self)
+        self.hint_menu = HintMenu(self)
         self.curr_menu = self.main_menu
 
         # game background

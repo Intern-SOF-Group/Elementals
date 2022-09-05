@@ -162,10 +162,15 @@ class ImportMaxPointsMenuButton:
         self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
         self.back_button = Button(self.mid_w, self.short_game_button.rect_image.centery + self.y_offset, self.back_image, self.scale, self.back_hover_image)
 
+        self.hint_image = pygame.image.load(f'{self.button_img_loc}/hint_button.png').convert_alpha()
+        self.hint_hover_image = pygame.image.load(f'{self.button_img_loc}/hint_button_hover.png').convert_alpha()
+        self.hint_button = Button(50, 450, self.hint_image, self.scale, self.hint_hover_image)
+
     def import_max_points_menu_button(self):
         self.long_game_button.draw()
         self.short_game_button.draw()
         self.back_button.draw()
+        self.hint_button.draw()
         self.check_curr_menu()
 
     def check_curr_menu(self):
@@ -184,6 +189,12 @@ class ImportMaxPointsMenuButton:
         elif self.back_button.is_clicked2():
             self.max_points_menu.run_display = False
             Button.game.curr_menu = Button.game.main_menu
+
+        elif self.hint_button.is_clicked2():
+            self.max_points_menu.run_display = False
+            Button.game.curr_menu = Button.game.hint_menu
+
+        
 
 
 class ImportWinLoseMenuButton:
@@ -214,3 +225,22 @@ class ImportWinLoseMenuButton:
             self.win_lose_menu.run_display = False
         elif self.quit_button.is_clicked2():
             Button.game.quit_game()
+
+
+class ImportHintMenuButton:
+    def __init__(self, hint_menu):
+        self.hint_menu = hint_menu
+        self.button_img_loc = 'assets/sent_images/button_images'
+
+        self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
+        self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
+        self.back_button = Button(Button.game.mid_w, 450, self.back_image, 1, self.back_hover_image)
+
+    def import_hint_menu_button(self):
+        self.back_button.draw()
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.back_button.is_clicked2():
+            Button.game.curr_menu = Button.game.max_points_menu
+            self.hint_menu.run_display = False

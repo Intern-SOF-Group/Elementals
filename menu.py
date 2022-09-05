@@ -1,5 +1,5 @@
 import pygame
-from button import ImportMainMenuButton, ImportMaxPointsMenuButton, ImportWinLoseMenuButton
+from button import ImportHintMenuButton, ImportMainMenuButton, ImportMaxPointsMenuButton, ImportWinLoseMenuButton
 
 class Menu:
     def __init__(self, game):
@@ -13,12 +13,16 @@ class Menu:
         self.game.window.blit(self.game.canvas, (0,0))
         pygame.display.update()
 
-    def bg_loader(self, img, scale):
+    def bg_loader(self, img, scale, x=0, y=0):
         W = img.get_width()
         H = img.get_height()
         image = pygame.transform.scale(img, (int(W*scale), int(H*scale)))
-        image_rect = image.get_rect()
-        image_rect.topleft = (0, 0)
+        if x==0 and y==0:
+            image_rect = image.get_rect()
+            image_rect.topleft = (0, 0)
+        else:
+            image_rect = image.get_rect()
+            image_rect.center = (x, y)
         self.draw_bg(image, image_rect)
 
     def draw_bg(self, image, image_rect):
@@ -73,4 +77,22 @@ class WinLoseMenu(Menu):
             self.bg_loader(self.bg_img, 1)
             self.game.check_events()
             self.win_lose_button.import_win_lose_menu_button()
+            self.blit_canvas()
+
+class HintMenu(Menu):
+    def __init__(self, game):
+        Menu.__init__(self, game)
+        self.hint_button = ImportHintMenuButton(self)
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/hint.png').convert_alpha()
+        self.bg2_img = pygame.image.load(f'{self.bg_img_loc}/bg2.png').convert_alpha()
+
+
+    
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.bg_loader(self.bg2_img, 1)
+            self.bg_loader(self.bg_img, 1, self.mid_w, self.mid_h)
+            self.game.check_events()
+            self.hint_button.import_hint_menu_button()
             self.blit_canvas()
