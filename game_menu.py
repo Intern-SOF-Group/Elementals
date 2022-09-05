@@ -1,9 +1,9 @@
 import sys
 import pygame
-from button import *
+from button import Button, ImportElementsButton, ImportHintButton
 import game_logic
 # from debugger_pygame import debug
-from menu import *
+from menu import MainMenu, MaxPointsMenu, WinLoseMenu, HintMenu
 
 
 class Game:
@@ -14,6 +14,7 @@ class Game:
         self.clicked_global = True
         self.running = True
         self.playing = False
+        self.playing2 = False # This is for hint buttons and also to have to states of playing
         self.START_KEY = False
         self.DISPLAY_W, self.DISPLAY_H = 800, 500
         self.mid_w, self.mid_h = self.DISPLAY_W/2, self.DISPLAY_H/2
@@ -46,8 +47,8 @@ class Game:
 
         # buttons
         self.element_buttons = ImportElementsButton()
-        self.hint_button = ImportHintMenuButton(self.hint_menu)
-        
+        self.hint_button = ImportHintButton(50, 50, 1, self)
+       
     def game_loop(self):
         while self.playing:
             self.check_events()
@@ -56,7 +57,7 @@ class Game:
 
             # draw element buttons and check for inputs
             self.element_buttons.import_element_buttons()
-            # self.hint_button.import_hint_menu_button()
+            self.hint_button.import_hint_button()
 
             self.game_logic.game_IO_loop()
 
@@ -69,20 +70,16 @@ class Game:
 
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
-            self.reset_keys()
 
     def check_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.running, self.playing = False, False
+                self.running, self.playing, self.playing2 = False, False, False
                 self.curr_menu.run_display = False
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 pass
-
-    def reset_keys(self):
-        pass
 
     def draw_text(self, text, size, x, y, font_name=pygame.font.get_default_font(), color=(255, 255, 255)):
         font = pygame.font.Font(font_name, size)

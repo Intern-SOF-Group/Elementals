@@ -175,12 +175,14 @@ class ImportMaxPointsMenuButton:
             self.max_points_menu.run_display = False
             Button.game.curr_menu = None
             Button.game.playing = True
+            Button.game.playing2 = True
 
         elif self.short_game_button.is_clicked2():
             Button.game.game_logic.max_points = 10
             self.max_points_menu.run_display = False
             Button.game.curr_menu = None
             Button.game.playing = True
+            Button.game.playing2 = True
 
         elif self.back_button.is_clicked2():
             self.max_points_menu.run_display = False
@@ -231,8 +233,10 @@ class ImportHintMenuButton:
         self.check_curr_menu()
 
     def check_curr_menu(self):
-        if Button.game.playing:
-            self.hint_menu.run_display = False
+        if Button.game.playing2:
+            if self.back_button.is_clicked2():
+                self.hint_menu.run_display = False
+                Button.game.playing = True
         else:
             if self.back_button.is_clicked2():
                 Button.game.curr_menu = Button.game.max_points_menu
@@ -254,7 +258,8 @@ class ImportHintButton:
     def check_curr_menu(self):
         if self.hint_button.is_clicked2():
             if Button.game.playing:
-                self.game.curr_menu.run_display = False
+                self.game.playing = False
+                self.game.curr_menu = Button.game.hint_menu
             else:
                 self.game.curr_menu.run_display = False
                 self.game.curr_menu = Button.game.hint_menu
