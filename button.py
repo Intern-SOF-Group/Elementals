@@ -5,6 +5,7 @@ class Button:
     game = None
     clicked_elements = True
     def __init__(self, x, y, image, scale, hover_image):
+        self.mid_w, self.mid_h = self.game.mid_w, self.game.mid_h
         self.scale = scale
         self.width = image.get_width()
         self.height = image.get_height()
@@ -49,7 +50,7 @@ class Button:
                 return True
             elif not pygame.mouse.get_pressed()[0] and not self.game.clicked_global:
                 self.game.clicked_global = True
-#TODO: Fix button positions, add backgrounds
+
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton(Button):
     def __init__(self, x, y, image, scale, hover_image, player_output_str):
@@ -162,15 +163,10 @@ class ImportMaxPointsMenuButton:
         self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
         self.back_button = Button(self.mid_w, self.short_game_button.rect_image.centery + self.y_offset, self.back_image, self.scale, self.back_hover_image)
 
-        self.hint_image = pygame.image.load(f'{self.button_img_loc}/hint_button.png').convert_alpha()
-        self.hint_hover_image = pygame.image.load(f'{self.button_img_loc}/hint_button_hover.png').convert_alpha()
-        self.hint_button = Button(50, 450, self.hint_image, self.scale, self.hint_hover_image)
-
     def import_max_points_menu_button(self):
         self.long_game_button.draw()
         self.short_game_button.draw()
         self.back_button.draw()
-        self.hint_button.draw()
         self.check_curr_menu()
 
     def check_curr_menu(self):
@@ -190,13 +186,7 @@ class ImportMaxPointsMenuButton:
             self.max_points_menu.run_display = False
             Button.game.curr_menu = Button.game.main_menu
 
-        elif self.hint_button.is_clicked2():
-            self.max_points_menu.run_display = False
-            Button.game.curr_menu = Button.game.hint_menu
-
         
-
-
 class ImportWinLoseMenuButton:
     def __init__(self, win_lose_menu):
         self.win_lose_menu = win_lose_menu
@@ -241,6 +231,31 @@ class ImportHintMenuButton:
         self.check_curr_menu()
 
     def check_curr_menu(self):
-        if self.back_button.is_clicked2():
-            Button.game.curr_menu = Button.game.max_points_menu
+        if Button.game.playing:
             self.hint_menu.run_display = False
+        else:
+            if self.back_button.is_clicked2():
+                Button.game.curr_menu = Button.game.max_points_menu
+                self.hint_menu.run_display = False
+
+class ImportHintButton:
+    def __init__(self, x, y, scale, game):
+        self.game = game
+        self.scale = scale
+        self.button_img_loc = 'assets/sent_images/button_images'
+        self.hint_image = pygame.image.load(f'{self.button_img_loc}/hint_button.png').convert_alpha()
+        self.hint_hover_image = pygame.image.load(f'{self.button_img_loc}/hint_button_hover.png').convert_alpha()
+        self.hint_button = Button(x, y, self.hint_image, self.scale, self.hint_hover_image)
+
+    def import_hint_button(self):
+        self.hint_button.draw()
+        self.check_curr_menu()
+    
+    def check_curr_menu(self):
+        if self.hint_button.is_clicked2():
+            if Button.game.playing:
+                self.game.curr_menu.run_display = False
+            else:
+                self.game.curr_menu.run_display = False
+                self.game.curr_menu = Button.game.hint_menu
+                

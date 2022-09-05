@@ -1,6 +1,6 @@
 import sys
 import pygame
-from button import Button, ImportElementsButton
+from button import *
 import game_logic
 # from debugger_pygame import debug
 from menu import *
@@ -46,6 +46,7 @@ class Game:
 
         # buttons
         self.element_buttons = ImportElementsButton()
+        self.hint_button = ImportHintMenuButton(self.hint_menu)
         
     def game_loop(self):
         while self.playing:
@@ -55,6 +56,7 @@ class Game:
 
             # draw element buttons and check for inputs
             self.element_buttons.import_element_buttons()
+            # self.hint_button.import_hint_menu_button()
 
             self.game_logic.game_IO_loop()
 

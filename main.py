@@ -8,6 +8,6 @@ pygame.mixer.music.play(loops=-1, fade_ms=2000)
 
 while g.running:
     # print(g.playing)
-    # print(g.curr_menu)
-    g.curr_menu.display_menu()
+    # print(g.curr_menu.display_menu)
     g.game_loop()
+    g.curr_menu.display_menu()

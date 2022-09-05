@@ -1,5 +1,5 @@
 import pygame
-from button import ImportHintMenuButton, ImportMainMenuButton, ImportMaxPointsMenuButton, ImportWinLoseMenuButton
+from button import ImportHintButton, ImportHintMenuButton, ImportMainMenuButton, ImportMaxPointsMenuButton, ImportWinLoseMenuButton
 
 class Menu:
     def __init__(self, game):
@@ -53,6 +53,7 @@ class MaxPointsMenu(Menu):
         Menu.__init__(self, game)
         self.menu_button = ImportMaxPointsMenuButton(self)
         self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg2.png').convert_alpha()
+        self.hint_button = ImportHintButton(50, 450, 1, self.game)
 
     def display_menu(self):
         self.run_display = True
@@ -61,6 +62,7 @@ class MaxPointsMenu(Menu):
             self.bg_loader(self.bg_img, 1)
             self.game.check_events()
             self.menu_button.import_max_points_menu_button()
+            self.hint_button.import_hint_button()
             self.blit_canvas()
 
 
@@ -86,8 +88,6 @@ class HintMenu(Menu):
         self.bg_img = pygame.image.load(f'{self.bg_img_loc}/hint.png').convert_alpha()
         self.bg2_img = pygame.image.load(f'{self.bg_img_loc}/bg2.png').convert_alpha()
 
-
-    
     def display_menu(self):
         self.run_display = True
         while self.run_display:
