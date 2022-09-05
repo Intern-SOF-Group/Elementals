@@ -38,6 +38,7 @@ class MainMenu(Menu):
         while self.run_display:
             # self.game.canvas.fill(self.game.VIOLET)
             self.bg_loader(self.bg_img, 1)
+            self.game.draw_text('ELEMENTALS', 90, self.mid_w, 100, self.game.font_war, (38, 19, 0))
 
             self.game.check_events()
             self.menu_button.import_menu_button()

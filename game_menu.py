@@ -20,6 +20,7 @@ class Game:
         self.canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
         self.window = pygame.display.set_mode((self.DISPLAY_W, self.DISPLAY_H))
         self.font_name = pygame.font.get_default_font()
+        self.font_war = 'assets/sent_images/warpriest.ttf'
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.VIOLET = (142, 68, 173)
         self.main_menu = MainMenu(self)
@@ -80,9 +81,9 @@ class Game:
     def reset_keys(self):
         pass
 
-    def draw_text(self, text, size, x, y):
-        font = pygame.font.Font(self.font_name, size)
-        text_surface = font.render(text, True, self.WHITE)
+    def draw_text(self, text, size, x, y, font_name=pygame.font.get_default_font(), color=(255, 255, 255)):
+        font = pygame.font.Font(font_name, size)
+        text_surface = font.render(text, True, color)
         text_rect = text_surface.get_rect()
         text_rect.center = (x, y)
         self.canvas.blit(text_surface, text_rect)

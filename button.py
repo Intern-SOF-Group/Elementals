@@ -65,14 +65,14 @@ class ElementsButton(Button):
 class ImportElementsButton:
     def __init__(self):
         self.button_img_loc = 'assets/sent_images/button_images/elements'
-        self.element_button_y = 1180/3 + 1
+        self.element_button_y = 350
         self.scale = 1
-        self.x_offset = 75
+        self.x_offset = 60
 
         self.lightning_image = pygame.image.load(f'{self.button_img_loc}/lightning_button.png').convert_alpha()
         self.lightning_hover_image = pygame.image.load(f'{self.button_img_loc}/lightning_button_hover.png').convert_alpha()
         self.lightning_button = ElementsButton(0, 0, self.lightning_image, self.scale, self.lightning_hover_image, 'lightning')
-        self.lightning_button.rect_image.topleft = (0, self.element_button_y)
+        self.lightning_button.rect_image.topleft = (30, self.element_button_y)
 
         self.wind_image = pygame.image.load(f'{self.button_img_loc}/wind_button.png').convert_alpha()
         self.wind_hover_image = pygame.image.load(f'{self.button_img_loc}/wind_button_hover.png').convert_alpha()
@@ -117,14 +117,15 @@ class ImportMainMenuButton:
         self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.main_menu.mid_w
         self.scale = 1
+        self.y_offset = 125
 
         self.start_image = pygame.image.load(f'{self.button_img_loc}/start_button.png').convert_alpha()
         self.start_hover_image = pygame.image.load(f'{self.button_img_loc}/start_button_hover.png').convert_alpha()
-        self.start_button = Button(self.mid_w, 170, self.start_image, self.scale, self.start_hover_image)
+        self.start_button = Button(self.mid_w, 270, self.start_image, self.scale, self.start_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
-        self.quit_button = Button(self.mid_w, self.start_button.rect_image.centery + 150, self.quit_image, self.scale, self.quit_hover_image)
+        self.quit_button = Button(self.mid_w, self.start_button.rect_image.centery + self.y_offset, self.quit_image, self.scale, self.quit_hover_image)
 
     def import_menu_button(self):
         self.start_button.draw()
