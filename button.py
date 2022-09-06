@@ -123,7 +123,7 @@ class ImportMainMenuButton:
 
         self.start_image = pygame.image.load(f'{self.button_img_loc}/start_button.png').convert_alpha()
         self.start_hover_image = pygame.image.load(f'{self.button_img_loc}/start_button_hover.png').convert_alpha()
-        self.start_button = Button(self.mid_w, 270, self.start_image, self.scale, self.start_hover_image)
+        self.start_button = Button(self.mid_w, 400, self.start_image, self.scale, self.start_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()

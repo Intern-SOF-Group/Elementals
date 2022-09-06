@@ -35,13 +35,16 @@ class MainMenu(Menu):
         Menu.__init__(self, game)
         self.menu_button = ImportMainMenuButton(self)
         self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg1.png').convert_alpha()
-
+        self.title = pygame.image.load(f'{self.bg_img_loc}/title.png').convert_alpha()
 
     def display_menu(self):
         self.run_display = True
         while self.run_display:
             self.bg_loader(self.bg_img, 1)
-            self.draw_text('ELEMENTALS', 150, self.mid_w, 100, self.game.font_war, (38, 19, 0))
+            self.bg_loader(self.title, 1, self.mid_w, 200)
+
+            # self.draw_text('ELEMENTALS', 151, self.mid_w, 200, self.game.font_war, (204, 204, 0))
+            # self.draw_text('ELEMENTALS', 150, self.mid_w, 200, self.game.font_war, (38, 19, 0))
 
             self.game.check_events()
             self.menu_button.import_menu_button()
