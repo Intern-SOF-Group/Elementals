@@ -85,6 +85,7 @@ class WinLoseMenu(Menu):
         while self.run_display:
             self.bg_loader(self.bg_img, 1)
             self.game.check_events()
+            self.game.draw_text(self.game.win_state, 151, self.mid_w, 200, self.game.ancient_font)
             self.win_lose_button.import_win_lose_menu_button()
             self.blit_canvas()
 

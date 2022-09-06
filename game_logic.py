@@ -189,9 +189,11 @@ class GameLogic(PlayerObj):
             if self.player.point == self.max_points:
                 self.player.point = 0
                 self.CPU.point = 0
+                self.game_menu.win_state = 'You Win!'
             elif self.CPU.point == self.max_points:
                 self.player.point = 0
                 self.CPU.point = 0
+                self.game_menu.win_state = 'You Lose!'
             self.player_move = ''
             self.cpu_input = ''
             self.game_menu.player_input = self.player_move

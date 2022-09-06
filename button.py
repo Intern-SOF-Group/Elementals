@@ -200,7 +200,7 @@ class ImportWinLoseMenuButton:
 
         self.play_again_image = pygame.image.load(f'{self.button_img_loc}/play_again_button.png').convert_alpha()
         self.play_again_hover_image = pygame.image.load(f'{self.button_img_loc}/play_again_button_hover.png').convert_alpha()
-        self.play_again_button = Button(self.mid_w, 300, self.play_again_image, self.scale, self.play_again_hover_image)
+        self.play_again_button = Button(self.mid_w, 500, self.play_again_image, self.scale, self.play_again_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
@@ -213,6 +213,7 @@ class ImportWinLoseMenuButton:
 
     def check_curr_menu(self):
         if self.play_again_button.is_clicked2():
+            Button.game.win_state = ''
             Button.game.curr_menu = Button.game.max_points_menu
             self.win_lose_menu.run_display = False
         elif self.quit_button.is_clicked2():
@@ -262,5 +263,4 @@ class ImportHintButton:
                 self.game.curr_menu = Button.game.hint_menu
             else:
                 self.game.curr_menu.run_display = False
-                self.game.curr_menu = Button.game.hint_menu
-                
+                self.game.curr_menu = Button.game.hint_menu          

@@ -39,6 +39,7 @@ class Game:
         self.game_logic = game_logic.GameLogic(self)
         self.player_input = ''
         self.CPU_input = ''
+        self.win_state = ''
 
         # Points text attributes
         self.playersy = 210
