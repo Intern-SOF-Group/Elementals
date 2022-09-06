@@ -66,7 +66,7 @@ class ElementsButton(Button):
 class ImportElementsButton:
     def __init__(self):
         self.button_img_loc = 'assets/sent_images/button_images/elements'
-        self.element_button_y = 400
+        self.element_button_y = 660
         self.scale = 1
         self.x_offset = 150
 
@@ -153,7 +153,7 @@ class ImportMaxPointsMenuButton:
 
         self.long_game_image = pygame.image.load(f'{self.button_img_loc}/long_game_button.png').convert_alpha()
         self.long_game_hover_image = pygame.image.load(f'{self.button_img_loc}/long_game_button_hover.png').convert_alpha()
-        self.long_game_button = Button(self.mid_w, 130, self.long_game_image, self.scale, self.long_game_hover_image)
+        self.long_game_button = Button(self.mid_w, 250, self.long_game_image, self.scale, self.long_game_hover_image)
 
         self.short_game_image = pygame.image.load(f'{self.button_img_loc}/short_game_button.png').convert_alpha()
         self.short_game_hover_image = pygame.image.load(f'{self.button_img_loc}/short_game_button_hover.png').convert_alpha()
@@ -200,7 +200,7 @@ class ImportWinLoseMenuButton:
 
         self.play_again_image = pygame.image.load(f'{self.button_img_loc}/play_again_button.png').convert_alpha()
         self.play_again_hover_image = pygame.image.load(f'{self.button_img_loc}/play_again_button_hover.png').convert_alpha()
-        self.play_again_button = Button(self.mid_w, 200, self.play_again_image, self.scale, self.play_again_hover_image)
+        self.play_again_button = Button(self.mid_w, 300, self.play_again_image, self.scale, self.play_again_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
@@ -226,7 +226,7 @@ class ImportHintMenuButton:
 
         self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
         self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
-        self.back_button = Button(Button.game.mid_w, 450, self.back_image, 1, self.back_hover_image)
+        self.back_button = Button(Button.game.mid_w, 650, self.back_image, 1, self.back_hover_image)
 
     def import_hint_menu_button(self):
         self.back_button.draw()

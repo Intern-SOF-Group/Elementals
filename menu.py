@@ -62,7 +62,7 @@ class MaxPointsMenu(Menu):
         Menu.__init__(self, game)
         self.menu_button = ImportMaxPointsMenuButton(self)
         self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg2.png').convert_alpha()
-        self.hint_button = ImportHintButton(50, 450, 1, self.game)
+        self.hint_button = ImportHintButton(75, 675, 1, self.game)
 
     def display_menu(self):
         self.run_display = True

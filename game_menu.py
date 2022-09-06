@@ -39,10 +39,12 @@ class Game:
         self.game_logic = game_logic.GameLogic(self)
 
         # Points text attributes
-        self.CPU_pointsx, self.CPU_pointsy = 600, 100
-        self.player_pointsx, self.player_pointsy = 200, 100
-        self.point_size = 25
+        self.playersy = 210
+        self.CPU_pointsx, self.CPU_pointsy = 956, self.playersy
+        self.player_pointsx, self.player_pointsy = 245, self.playersy
+        self.point_size = 75
         self.point_offsety = -30
+        self.ancient_font = 'assets\sent_images\AncientModernTales-a7Po.ttf'
 
         # buttons
         self.element_buttons = ImportElementsButton()
@@ -61,10 +63,10 @@ class Game:
             self.game_logic.game_IO_loop()
 
             # Draw texts
-            self.draw_text('CPU Points', self.point_size, self.CPU_pointsx, self.CPU_pointsy + self.point_offsety)
-            self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy)
-            self.draw_text('Player Points', self.point_size, self.player_pointsx, self.player_pointsy + self.point_offsety)
-            self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy)
+            # self.draw_text('CPU Points', self.point_size, self.CPU_pointsx, self.CPU_pointsy + self.point_offsety)
+            self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font)
+            # self.draw_text('Player Points', self.point_size, self.player_pointsx, self.player_pointsy + self.point_offsety)
+            self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font)
 
 
             self.window.blit(self.canvas, (0, 0))
