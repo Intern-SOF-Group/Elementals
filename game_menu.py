@@ -15,7 +15,7 @@ class Game:
         self.playing = False
         self.playing2 = False # This is for hint buttons and also to have to states of playing
         self.START_KEY = False
-        self.DISPLAY_W, self.DISPLAY_H = 800, 500
+        self.DISPLAY_W, self.DISPLAY_H = 1200, 750
         self.mid_w, self.mid_h = self.DISPLAY_W/2, self.DISPLAY_H/2
         self.canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
         self.window = pygame.display.set_mode((self.DISPLAY_W, self.DISPLAY_H))
@@ -31,7 +31,7 @@ class Game:
 
         # game background
         self.bg_img_loc = 'assets/sent_images'
-        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/main_game_bg.png').convert_alpha()
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg3.png').convert_alpha()
         self.image_rect = self.bg_img.get_rect()
         self.image_rect.topleft = (0, 0)
 

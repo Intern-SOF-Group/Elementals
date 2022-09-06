@@ -41,11 +41,18 @@ class MainMenu(Menu):
         self.run_display = True
         while self.run_display:
             self.bg_loader(self.bg_img, 1)
-            self.game.draw_text('ELEMENTALS', 90, self.mid_w, 100, self.game.font_war, (38, 19, 0))
+            self.draw_text('ELEMENTALS', 150, self.mid_w, 100, self.game.font_war, (38, 19, 0))
 
             self.game.check_events()
             self.menu_button.import_menu_button()
             self.blit_canvas()
+    
+    def draw_text(self, text, size, x, y, font_name=pygame.font.get_default_font(), color=(255, 255, 255)):
+        font = pygame.font.Font(font_name, size)
+        text_surface = font.render(text, True, color)
+        text_rect = text_surface.get_rect()
+        text_rect.center = (x, y)
+        self.game.canvas.blit(text_surface, text_rect)
 
 class MaxPointsMenu(Menu):
     def __init__(self, game):
