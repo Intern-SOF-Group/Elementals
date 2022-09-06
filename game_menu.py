@@ -46,7 +46,7 @@ class Game:
         self.player_pointsx, self.player_pointsy = 245, self.playersy
         self.point_size = 75
         self.point_offsety = -30
-        self.ancient_font = 'assets\sent_images\AncientModernTales-a7Po.ttf'
+        self.ancient_font = r'assets\sent_images\AncientModernTales-a7Po.ttf'
 
         # buttons
         self.element_buttons = ImportElementsButton()
@@ -69,9 +69,7 @@ class Game:
 
         self.fire_image = pygame.image.load(f'{self.button_img_loc}/fire_button.png').convert_alpha()
         self.fire_rect = self.fire_image.get_rect()
-
-
-       
+      
     def game_loop(self):
         while self.playing:
             self.check_events()
@@ -90,7 +88,7 @@ class Game:
 
             # Display turn images
             self.display_turn()
-            
+
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
 

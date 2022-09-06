@@ -201,6 +201,6 @@ class GameLogic(PlayerObj):
             self.game_menu.playing2 = False
             self.game_menu.curr_menu = self.game_menu.win_lose_menu
 
-        self.game_menu.draw_text(self.winner_state, 40, self.game_menu.mid_w, self.game_menu.mid_h)
+        self.game_menu.draw_text(self.winner_state, 80, self.game_menu.mid_w, self.game_menu.mid_h, self.game_menu.ancient_font)
 
 
