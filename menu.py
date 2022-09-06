@@ -40,7 +40,6 @@ class MainMenu(Menu):
     def display_menu(self):
         self.run_display = True
         while self.run_display:
-            # self.game.canvas.fill(self.game.VIOLET)
             self.bg_loader(self.bg_img, 1)
             self.game.draw_text('ELEMENTALS', 90, self.mid_w, 100, self.game.font_war, (38, 19, 0))
 
@@ -58,7 +57,6 @@ class MaxPointsMenu(Menu):
     def display_menu(self):
         self.run_display = True
         while self.run_display:
-            # self.game.canvas.fill(self.game.VIOLET)
             self.bg_loader(self.bg_img, 1)
             self.game.check_events()
             self.menu_button.import_max_points_menu_button()
@@ -75,7 +73,6 @@ class WinLoseMenu(Menu):
     def display_menu(self):
         self.run_display = True
         while self.run_display:
-            # self.game.canvas.fill(self.game.VIOLET)
             self.bg_loader(self.bg_img, 1)
             self.game.check_events()
             self.win_lose_button.import_win_lose_menu_button()

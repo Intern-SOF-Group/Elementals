@@ -2,7 +2,6 @@ import sys
 import pygame
 from button import Button, ImportElementsButton, ImportHintButton
 import game_logic
-# from debugger_pygame import debug
 from menu import MainMenu, MaxPointsMenu, WinLoseMenu, HintMenu
 
 
