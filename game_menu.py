@@ -49,6 +49,15 @@ class Game:
         # buttons
         self.element_buttons = ImportElementsButton()
         self.hint_button = ImportHintButton(50, 50, 1, self)
+
+        # element images
+        self.button_img_loc = 'assets/sent_images/button_images/elements'
+        self.water_image = pygame.image.load(f'{self.button_img_loc}/water_button.png').convert_alpha()
+        self.wind_image = pygame.image.load(f'{self.button_img_loc}/wind_button.png').convert_alpha()
+        self.lightning_image = pygame.image.load(f'{self.button_img_loc}/lightning_button.png').convert_alpha()
+        self.earth_image = pygame.image.load(f'{self.button_img_loc}/earth_button.png').convert_alpha()
+        self.fire_image = pygame.image.load(f'{self.button_img_loc}/fire_button.png').convert_alpha()
+
        
     def game_loop(self):
         while self.playing:
