@@ -51,7 +51,7 @@ class Game:
 
         # buttons
         self.element_buttons = ImportElementsButton()
-        self.hint_button = ImportHintButton(50, 50, 1, self)
+        self.hint_button = ImportHintButton(60, 700, 1, self)
 
         # element images
         self.turny = 400
