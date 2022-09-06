@@ -37,6 +37,8 @@ class Game:
 
         # game logic
         self.game_logic = game_logic.GameLogic(self)
+        self.player_input = ''
+        self.CPU_input = ''
 
         # Points text attributes
         self.playersy = 210
@@ -51,12 +53,23 @@ class Game:
         self.hint_button = ImportHintButton(50, 50, 1, self)
 
         # element images
+        self.turny = 400
         self.button_img_loc = 'assets/sent_images/button_images/elements'
         self.water_image = pygame.image.load(f'{self.button_img_loc}/water_button.png').convert_alpha()
+        self.water_rect = self.water_image.get_rect()
+
         self.wind_image = pygame.image.load(f'{self.button_img_loc}/wind_button.png').convert_alpha()
+        self.wind_rect = self.wind_image.get_rect()
+
         self.lightning_image = pygame.image.load(f'{self.button_img_loc}/lightning_button.png').convert_alpha()
+        self.lightning_rect = self.lightning_image.get_rect()
+
         self.earth_image = pygame.image.load(f'{self.button_img_loc}/earth_button.png').convert_alpha()
+        self.earth_rect = self.earth_image.get_rect()
+
         self.fire_image = pygame.image.load(f'{self.button_img_loc}/fire_button.png').convert_alpha()
+        self.fire_rect = self.fire_image.get_rect()
+
 
        
     def game_loop(self):
@@ -72,12 +85,12 @@ class Game:
             self.game_logic.game_IO_loop()
 
             # Draw texts
-            # self.draw_text('CPU Points', self.point_size, self.CPU_pointsx, self.CPU_pointsy + self.point_offsety)
             self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font)
-            # self.draw_text('Player Points', self.point_size, self.player_pointsx, self.player_pointsy + self.point_offsety)
             self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font)
 
-
+            # Display turn images
+            self.display_turn()
+            
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
 
@@ -101,3 +114,37 @@ class Game:
     def quit_game(self):
         self.curr_menu.run_display = False
         pygame.event.post(pygame.event.Event(pygame.QUIT))
+
+    # displays turn images
+    def display_turn(self):
+        if self.player_input == 'water':
+            self.water_rect.center = (self.player_pointsx, self.turny)
+            self.canvas.blit(self.water_image, self.water_rect)
+        elif self.player_input == 'wind':
+            self.wind_rect.center = (self.player_pointsx, self.turny)
+            self.canvas.blit(self.wind_image, self.wind_rect)
+        elif self.player_input == 'lightning':
+            self.lightning_rect.center = (self.player_pointsx, self.turny)
+            self.canvas.blit(self.lightning_image, self.lightning_rect)
+        elif self.player_input == 'earth':
+            self.earth_rect.center = (self.player_pointsx, self.turny)
+            self.canvas.blit(self.earth_image, self.earth_rect)
+        elif self.player_input == 'fire':
+            self.fire_rect.center = (self.player_pointsx, self.turny)
+            self.canvas.blit(self.fire_image, self.fire_rect)
+
+        if self.CPU_input == 'water':
+            self.water_rect.center = (self.CPU_pointsx, self.turny)
+            self.canvas.blit(self.water_image, self.water_rect)
+        elif self.CPU_input == 'wind':
+            self.wind_rect.center = (self.CPU_pointsx, self.turny)
+            self.canvas.blit(self.wind_image, self.wind_rect)
+        elif self.CPU_input == 'lightning':
+            self.lightning_rect.center = (self.CPU_pointsx, self.turny)
+            self.canvas.blit(self.lightning_image, self.lightning_rect)
+        elif self.CPU_input == 'earth':
+            self.earth_rect.center = (self.CPU_pointsx, self.turny)
+            self.canvas.blit(self.earth_image, self.earth_rect)
+        elif self.CPU_input == 'fire':
+            self.fire_rect.center = (self.CPU_pointsx, self.turny)
+            self.canvas.blit(self.fire_image, self.fire_rect)
