@@ -97,7 +97,6 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running, self.playing, self.playing2 = False, False, False
-                self.curr_menu.run_display = False
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
