@@ -1,5 +1,5 @@
 import pygame
-from Elementals.data import game_menu
+from data import game_menu
 
 g = game_menu.Game()
 

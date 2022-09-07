@@ -1,8 +1,8 @@
 import sys
 import pygame
-from Elementals.data.button import Button, ImportElementsButton, ImportHintButton
-from Elementals.data import game_logic
-from Elementals.data.menu import MainMenu, MaxPointsMenu, WinLoseMenu, HintMenu
+from data.button import Button, ImportElementsButton, ImportHintButton
+from data import game_logic
+from data.menu import MainMenu, MaxPointsMenu, WinLoseMenu, HintMenu
 
 
 class Game:
