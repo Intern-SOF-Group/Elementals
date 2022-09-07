@@ -1,5 +1,6 @@
 import pygame
-import game_menu
+from Elementals.data import game_menu
+
 g = game_menu.Game()
 
 music = pygame.mixer.music.load('assets/audio_files/bg1_music.mp3')
