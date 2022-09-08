@@ -74,6 +74,9 @@ class Game:
         self.fire_image = pygame.image.load(f'{self.button_img_loc}/fire_button.png').convert_alpha()
         self.fire_rect = self.fire_image.get_rect()
       
+        # clock
+        self.clock = pygame.time.Clock()
+
     def game_loop(self):
         while self.playing:
             self.check_events()
@@ -95,6 +98,7 @@ class Game:
 
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
+            self.clock.tick(60)
 
     def check_events(self):
         for event in pygame.event.get():
