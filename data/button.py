@@ -133,7 +133,7 @@ class ImportMainMenuButton:
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
         self.quit_button = Button(self.mid_w, self.credits_button.rect_image.centery + self.y_offset, self.quit_image, self.scale, self.quit_hover_image)
-        
+
     def import_menu_button(self):
         self.start_button.draw()
         self.quit_button.draw()
@@ -144,6 +144,10 @@ class ImportMainMenuButton:
         if self.start_button.is_clicked2():
             self.main_menu.run_display = False
             Button.game.curr_menu = Button.game.max_points_menu
+
+        elif self.credits_button.is_clicked2():
+            self.main_menu.run_display = False
+            Button.game.curr_menu = Button.game.credits_menu
 
         elif self.quit_button.is_clicked2():
             Button.game.quit_game()
@@ -270,3 +274,22 @@ class ImportHintButton:
             else:
                 self.game.curr_menu.run_display = False
                 self.game.curr_menu = Button.game.hint_menu          
+
+
+class ImportCreditsButton:
+    def __init__(self, hint_menu):
+        self.hint_menu = hint_menu
+        self.mid_w = self.hint_menu.mid_w
+        self.button_img_loc = 'assets/sent_images/button_images'
+        self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
+        self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
+        self.back_button = Button(self.mid_w, 700, self.back_image, 1, self.back_hover_image)
+
+    def import_credits_button(self):
+        self.back_button.draw()
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.back_button.is_clicked2():
+            self.hint_menu.run_display = False
+            Button.game.curr_menu = Button.game.main_menu

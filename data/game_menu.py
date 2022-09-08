@@ -2,7 +2,7 @@ import sys
 import pygame
 from data.button import Button, ImportElementsButton, ImportHintButton
 from data import game_logic
-from data.menu import MainMenu, MaxPointsMenu, WinLoseMenu, HintMenu
+from data.menu import CreditsMenu, MainMenu, MaxPointsMenu, WinLoseMenu, HintMenu
 
 
 class Game:
@@ -23,10 +23,13 @@ class Game:
         self.font_war = 'assets/sent_images/warpriest.ttf'
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.VIOLET = (142, 68, 173)
+
+        # menus
         self.main_menu = MainMenu(self)
         self.max_points_menu = MaxPointsMenu(self)
         self.win_lose_menu = WinLoseMenu(self)
         self.hint_menu = HintMenu(self)
+        self.credits_menu = CreditsMenu(self)
         self.curr_menu = self.main_menu
 
         # game background
