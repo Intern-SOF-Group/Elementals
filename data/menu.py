@@ -104,3 +104,9 @@ class HintMenu(Menu):
             self.game.check_events()
             self.hint_button.import_hint_menu_button()
             self.blit_canvas()
+
+
+class CreditsMenu(Menu):
+    def __init__(self, game):
+        Menu.__init__(self, game)
+        

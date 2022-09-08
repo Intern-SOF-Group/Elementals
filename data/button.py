@@ -123,15 +123,21 @@ class ImportMainMenuButton:
 
         self.start_image = pygame.image.load(f'{self.button_img_loc}/start_button.png').convert_alpha()
         self.start_hover_image = pygame.image.load(f'{self.button_img_loc}/start_button_hover.png').convert_alpha()
-        self.start_button = Button(self.mid_w, 400, self.start_image, self.scale, self.start_hover_image)
+        self.start_button = Button(self.mid_w, 370, self.start_image, self.scale, self.start_hover_image)
+
+
+        self.credits_image = pygame.image.load(f'{self.button_img_loc}/credits_button.png').convert_alpha()
+        self.credits_hover_image = pygame.image.load(f'{self.button_img_loc}/credits_button_hover.png').convert_alpha()
+        self.credits_button = Button(self.mid_w, self.start_button.rect_image.centery + self.y_offset, self.credits_image, self.scale, self.credits_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
-        self.quit_button = Button(self.mid_w, self.start_button.rect_image.centery + self.y_offset, self.quit_image, self.scale, self.quit_hover_image)
-
+        self.quit_button = Button(self.mid_w, self.credits_button.rect_image.centery + self.y_offset, self.quit_image, self.scale, self.quit_hover_image)
+        
     def import_menu_button(self):
         self.start_button.draw()
         self.quit_button.draw()
+        self.credits_button.draw()
         self.check_curr_menu()
 
     def check_curr_menu(self):
