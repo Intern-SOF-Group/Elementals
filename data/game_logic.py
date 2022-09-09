@@ -11,10 +11,10 @@ class GameLogic(PlayerObj):
     def __init__(self, game_menu):
         PlayerObj.__init__(self)
         self.player = PlayerObj()
-        self.player_move = ''
         self.CPU = PlayerObj()
         self.moves = ['lightning', 'wind', 'water', 'earth', 'fire']
         self.game_menu = game_menu
+        self.player_move = ''
         self.cpu_input = ''
         self.max_points = 0
         self.winner_state = ''

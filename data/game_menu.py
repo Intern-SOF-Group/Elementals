@@ -1,7 +1,7 @@
 import sys
 import pygame
 from data.button import Button, ImportElementsButton, ImportHintButton
-from data import game_logic
+from data import game_logic, sprites
 from data.menu import CreditsMenu, MainMenu, MaxPointsMenu, WinLoseMenu, HintMenu
 
 
@@ -14,7 +14,6 @@ class Game:
         self.running = True
         self.playing = False
         self.playing2 = False # This is for hint buttons and also to have to states of playing
-        self.START_KEY = False
         self.DISPLAY_W, self.DISPLAY_H = 1200, 750
         self.mid_w, self.mid_h = self.DISPLAY_W/2, self.DISPLAY_H/2
         self.canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
@@ -50,7 +49,7 @@ class Game:
         self.player_pointsx, self.player_pointsy = 245, self.playersy
         self.point_size = 75
         self.point_offsety = -30
-        self.ancient_font = r'assets\sent_images\AncientModernTales-a7Po.ttf'
+        self.ancient_font = 'assets/sent_images/AncientModernTales-a7Po.ttf'
 
         # buttons
         self.element_buttons = ImportElementsButton()
@@ -77,6 +76,11 @@ class Game:
         # clock
         self.clock = pygame.time.Clock()
 
+        # Sprites
+        self.turn_sprite = sprites.GameSprites(self.player_pointsx, self.turny)
+        self.group_sprites = pygame.sprite.Group()
+        self.group_sprites.add(self.turn_sprite)
+
     def game_loop(self):
         while self.playing:
             self.check_events()
@@ -95,6 +99,9 @@ class Game:
 
             # Display turn images
             self.display_turn()
+
+            # Display sprites
+            self.draw_sprite()
 
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
@@ -127,9 +134,14 @@ class Game:
             self.canvas.blit(self.water_image, self.water_rect)
         elif self.player_input == 'wind':
             self.wind_rect.center = (self.player_pointsx, self.turny)
+            self.turn_sprite.turn = 'wind'
+            self.turn_sprite.display_sprites = True
             self.canvas.blit(self.wind_image, self.wind_rect)
         elif self.player_input == 'lightning':
             self.lightning_rect.center = (self.player_pointsx, self.turny)
+            self.turn_sprite.turn = 'lightning'
+            self.turn_sprite.display_sprites = True
+
             self.canvas.blit(self.lightning_image, self.lightning_rect)
         elif self.player_input == 'earth':
             self.earth_rect.center = (self.player_pointsx, self.turny)
@@ -153,3 +165,8 @@ class Game:
         elif self.CPU_input == 'fire':
             self.fire_rect.center = (self.CPU_pointsx, self.turny)
             self.canvas.blit(self.fire_image, self.fire_rect)
+
+    def draw_sprite(self):
+        self.group_sprites.update()
+        if self.turn_sprite.display_sprites:
+            self.group_sprites.draw(self.canvas)
