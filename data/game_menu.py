@@ -137,10 +137,10 @@ class Game:
                 self.canvas.blit(self.water_image, self.water_rect)
             elif self.player_input == 'wind':
                 self.wind_rect.center = (self.player_pointsx, self.turny)
-                self.canvas.blit(self.wind_image, self.wind_rect)
+                # self.canvas.blit(self.wind_image, self.wind_rect)
             elif self.player_input == 'lightning':
                 self.lightning_rect.center = (self.player_pointsx, self.turny)
-                self.canvas.blit(self.lightning_image, self.lightning_rect)
+                # self.canvas.blit(self.lightning_image, self.lightning_rect)
             elif self.player_input == 'earth':
                 self.earth_rect.center = (self.player_pointsx, self.turny)
                 self.canvas.blit(self.earth_image, self.earth_rect)

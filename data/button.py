@@ -283,7 +283,7 @@ class ImportCreditsButton:
         self.button_img_loc = 'assets/sent_images/button_images'
         self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
         self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
-        self.back_button = Button(self.mid_w, 700, self.back_image, 1, self.back_hover_image)
+        self.back_button = Button(self.mid_w, 600, self.back_image, 1, self.back_hover_image)
 
     def import_credits_button(self):
         self.back_button.draw()
