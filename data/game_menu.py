@@ -129,42 +129,40 @@ class Game:
 
     # displays turn images
     def display_turn(self):
-        if self.player_input == 'water':
-            self.water_rect.center = (self.player_pointsx, self.turny)
-            self.canvas.blit(self.water_image, self.water_rect)
-        elif self.player_input == 'wind':
-            self.wind_rect.center = (self.player_pointsx, self.turny)
-            self.turn_sprite.turn = 'wind'
+        if self.game_logic.game_start:
             self.turn_sprite.display_sprites = True
-            self.canvas.blit(self.wind_image, self.wind_rect)
-        elif self.player_input == 'lightning':
-            self.lightning_rect.center = (self.player_pointsx, self.turny)
-            self.turn_sprite.turn = 'lightning'
-            self.turn_sprite.display_sprites = True
+            self.turn_sprite.turn = self.player_input
+            if self.player_input == 'water':
+                self.water_rect.center = (self.player_pointsx, self.turny)
+                self.canvas.blit(self.water_image, self.water_rect)
+            elif self.player_input == 'wind':
+                self.wind_rect.center = (self.player_pointsx, self.turny)
+                self.canvas.blit(self.wind_image, self.wind_rect)
+            elif self.player_input == 'lightning':
+                self.lightning_rect.center = (self.player_pointsx, self.turny)
+                self.canvas.blit(self.lightning_image, self.lightning_rect)
+            elif self.player_input == 'earth':
+                self.earth_rect.center = (self.player_pointsx, self.turny)
+                self.canvas.blit(self.earth_image, self.earth_rect)
+            elif self.player_input == 'fire':
+                self.fire_rect.center = (self.player_pointsx, self.turny)
+                self.canvas.blit(self.fire_image, self.fire_rect)
 
-            self.canvas.blit(self.lightning_image, self.lightning_rect)
-        elif self.player_input == 'earth':
-            self.earth_rect.center = (self.player_pointsx, self.turny)
-            self.canvas.blit(self.earth_image, self.earth_rect)
-        elif self.player_input == 'fire':
-            self.fire_rect.center = (self.player_pointsx, self.turny)
-            self.canvas.blit(self.fire_image, self.fire_rect)
-
-        if self.CPU_input == 'water':
-            self.water_rect.center = (self.CPU_pointsx, self.turny)
-            self.canvas.blit(self.water_image, self.water_rect)
-        elif self.CPU_input == 'wind':
-            self.wind_rect.center = (self.CPU_pointsx, self.turny)
-            self.canvas.blit(self.wind_image, self.wind_rect)
-        elif self.CPU_input == 'lightning':
-            self.lightning_rect.center = (self.CPU_pointsx, self.turny)
-            self.canvas.blit(self.lightning_image, self.lightning_rect)
-        elif self.CPU_input == 'earth':
-            self.earth_rect.center = (self.CPU_pointsx, self.turny)
-            self.canvas.blit(self.earth_image, self.earth_rect)
-        elif self.CPU_input == 'fire':
-            self.fire_rect.center = (self.CPU_pointsx, self.turny)
-            self.canvas.blit(self.fire_image, self.fire_rect)
+            if self.CPU_input == 'water':
+                self.water_rect.center = (self.CPU_pointsx, self.turny)
+                self.canvas.blit(self.water_image, self.water_rect)
+            elif self.CPU_input == 'wind':
+                self.wind_rect.center = (self.CPU_pointsx, self.turny)
+                self.canvas.blit(self.wind_image, self.wind_rect)
+            elif self.CPU_input == 'lightning':
+                self.lightning_rect.center = (self.CPU_pointsx, self.turny)
+                self.canvas.blit(self.lightning_image, self.lightning_rect)
+            elif self.CPU_input == 'earth':
+                self.earth_rect.center = (self.CPU_pointsx, self.turny)
+                self.canvas.blit(self.earth_image, self.earth_rect)
+            elif self.CPU_input == 'fire':
+                self.fire_rect.center = (self.CPU_pointsx, self.turny)
+                self.canvas.blit(self.fire_image, self.fire_rect)
 
     def draw_sprite(self):
         self.group_sprites.update()

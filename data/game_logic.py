@@ -18,11 +18,13 @@ class GameLogic(PlayerObj):
         self.cpu_input = ''
         self.max_points = 0
         self.winner_state = ''
+        self.game_start = False
 
     def game_IO_loop(self):
         # self.game_menu.draw_text(f'for debugging purposes: {self.cpu_input}', 10, 700, 200)
 
         if self.player_move:
+            self.game_start = True
             self.cpu_input = self.moves[random.randint(0, 4)]
             if self.player_move == 'lightning':
                 if self.cpu_input == 'lightning':
@@ -194,6 +196,7 @@ class GameLogic(PlayerObj):
                 self.player.point = 0
                 self.CPU.point = 0
                 self.game_menu.win_state = 'You Lose!'
+            self.game_start = False
             self.player_move = ''
             self.cpu_input = ''
             self.game_menu.player_input = self.player_move
