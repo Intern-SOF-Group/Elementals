@@ -134,7 +134,7 @@ class Game:
             self.turn_sprite.turn = self.player_input
             if self.player_input == 'water':
                 self.water_rect.center = (self.player_pointsx, self.turny)
-                self.canvas.blit(self.water_image, self.water_rect)
+                # self.canvas.blit(self.water_image, self.water_rect)
             elif self.player_input == 'wind':
                 self.wind_rect.center = (self.player_pointsx, self.turny)
                 # self.canvas.blit(self.wind_image, self.wind_rect)

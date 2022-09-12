@@ -24,7 +24,13 @@ class GameSprites(pygame.sprite.Sprite):
 
         # Water sprites
         self.water_sprite = []
-
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 1.png'))
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 2.png'))
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 3.png'))
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 4.png'))
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 5.png'))
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 6.png'))
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 7.png'))
         # Wind sprites
         self.wind_sprite = []
         self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 1.png'))
