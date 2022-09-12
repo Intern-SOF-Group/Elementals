@@ -17,6 +17,13 @@ class GameSprites(pygame.sprite.Sprite):
 
         # Fire sprites
         self.fire_sprite = []
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 1.png'))
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 2.png'))
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 3.png'))
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 4.png'))
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 5.png'))
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 6.png'))
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 7.png'))
 
         # Lightning sprites
         self.lightning_sprite = []

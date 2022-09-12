@@ -198,6 +198,7 @@ class GameLogic(PlayerObj):
                 self.game_menu.win_state = 'You Lose!'
             self.game_start = False
             self.game_menu.turn_sprite.display_sprites = False
+            self.game_menu.CPU_turn_sprite.display_sprites = False
             self.player_move = ''
             self.cpu_input = ''
             self.game_menu.player_input = self.player_move
