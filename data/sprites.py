@@ -7,7 +7,13 @@ class GameSprites(pygame.sprite.Sprite):
         self.sprite_loc = 'assets/sent_images/sprites'
         # Earth sprites
         self.earth_sprite = []
-        
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 1.png'))
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 2.png'))
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 3.png'))
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 4.png'))
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 5.png'))
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 6.png'))
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 7.png'))
 
         # Fire sprites
         self.fire_sprite = []

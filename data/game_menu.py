@@ -143,7 +143,7 @@ class Game:
                 # self.canvas.blit(self.lightning_image, self.lightning_rect)
             elif self.player_input == 'earth':
                 self.earth_rect.center = (self.player_pointsx, self.turny)
-                self.canvas.blit(self.earth_image, self.earth_rect)
+                # self.canvas.blit(self.earth_image, self.earth_rect)
             elif self.player_input == 'fire':
                 self.fire_rect.center = (self.player_pointsx, self.turny)
                 self.canvas.blit(self.fire_image, self.fire_rect)
