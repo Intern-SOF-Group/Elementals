@@ -17,42 +17,58 @@ class Button:
         self.clicked = True
         self.hover_image = pygame.transform.scale(hover_image, (int(self.width*scale), int(self.height*scale)))
         self.hover_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_hover_sfx.mp3')
+        self.clicked_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_clicked_sfx.mp3')
         self.is_hovered = False
 
     def draw(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
-            if not self.is_hovered:
-                self.hover_sfx.play()
-                self.is_hovered = True
             self.curr_image = self.hover_image
         elif not self.rect_image.collidepoint(mouse_pos):
-            self.curr_image = self.image
-            if self.is_hovered:
-                self.is_hovered = False
+            self.curr_image = self.image  
         self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y))
 
 
     def is_clicked2(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
+            if not self.is_hovered:
+                self.hover_sfx.play()
+                self.is_hovered = True
+
             if pygame.mouse.get_pressed()[0] == 1 and self.game.clicked_global:
                 # print('Button Clicked!')
                 self.game.clicked_global = False
+                self.clicked_sfx.play()
                 return True
             elif not pygame.mouse.get_pressed()[0] and not self.game.clicked_global:
                 self.game.clicked_global = True
+
+        elif not self.rect_image.collidepoint(mouse_pos):
+            if self.is_hovered:
+                self.is_hovered = False
 
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton(Button):
     def __init__(self, x, y, image, scale, hover_image, player_output_str):
         Button.__init__(self, x, y, image, scale, hover_image)
+        # This is the I/O of this class to the game logic part of the game
         self.player_output_str = player_output_str
         self.player_output = self.game.game_logic
+
+        # sfx of each element buttons (made into a dictionary for easy coding)
+        self.elements_clicked_sfx = {
+            "earth": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/earth_sfx.wav'),
+            "fire": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/fire_sfx.wav'),
+            "lightning": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/lightning_sfx.wav'),
+            "water": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/water_sfx.wav'),
+            "wind": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/wind_sfx.wav')
+        }
 
     def player_input(self):
         if self.is_clicked_elements():
             self.player_output.player_move = self.player_output_str
+            self.elements_clicked_sfx[self.player_output_str].play()
     
     def is_clicked_elements(self): # this fixes drag clicking
         mouse_pos = pygame.mouse.get_pos()
@@ -73,14 +89,9 @@ class ElementsButton(Button):
     def draw_elements(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
-            if not self.is_hovered:
-                self.hover_sfx.play()
-                self.is_hovered = True
             self.curr_image = self.hover_image
         elif not self.rect_image.collidepoint(mouse_pos):
             self.curr_image = self.image
-            if self.is_hovered:
-                self.is_hovered = False
         self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y))
 
 
