@@ -17,7 +17,7 @@ class Button:
         self.clicked = True
         self.hover_image = pygame.transform.scale(hover_image, (int(self.width*scale), int(self.height*scale)))
         self.hover_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_hover_sfx.mp3')
-        self.clicked_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_clicked_sfx.mp3')
+        self.clicked_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_clicked_sfx.wav')
         self.is_hovered = False
 
     def draw(self):
