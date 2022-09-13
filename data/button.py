@@ -60,7 +60,7 @@ class ElementsButton(Button):
         self.elements_clicked_sfx = {
             "earth": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/earth_sfx.wav'),
             "fire": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/fire_sfx.wav'),
-            "lightning": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/lightning_sfx.wav'),
+            "lightning": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/lightning_sfx.mp3'),
             "water": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/water_sfx.wav'),
             "wind": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/wind_sfx.wav')
         }
