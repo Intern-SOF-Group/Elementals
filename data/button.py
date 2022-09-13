@@ -16,30 +16,22 @@ class Button:
         self.canvas = self.game.canvas
         self.clicked = True
         self.hover_image = pygame.transform.scale(hover_image, (int(self.width*scale), int(self.height*scale)))
+        self.hover_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_hover_sfx.mp3')
+        self.is_hovered = False
 
     def draw(self):
         mouse_pos = pygame.mouse.get_pos()
         if self.rect_image.collidepoint(mouse_pos):
+            if not self.is_hovered:
+                self.hover_sfx.play()
+                self.is_hovered = True
             self.curr_image = self.hover_image
         elif not self.rect_image.collidepoint(mouse_pos):
             self.curr_image = self.image
-        self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y ))
+            if self.is_hovered:
+                self.is_hovered = False
+        self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y))
 
-    def is_clicked_elements(self): # this fixes drag clicking
-        mouse_pos = pygame.mouse.get_pos()
-        if self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_elements:
-                # print('Button Clicked!')
-                self.clicked = False
-                Button.clicked_elements = False
-                return True
-            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
-                self.clicked = True
-                Button.clicked_elements = True
-        elif not self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
-                self.clicked = True
-                Button.clicked_elements = True
 
     def is_clicked2(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -61,6 +53,35 @@ class ElementsButton(Button):
     def player_input(self):
         if self.is_clicked_elements():
             self.player_output.player_move = self.player_output_str
+    
+    def is_clicked_elements(self): # this fixes drag clicking
+        mouse_pos = pygame.mouse.get_pos()
+        if self.rect_image.collidepoint(mouse_pos):
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_elements:
+                # print('Button Clicked!')
+                self.clicked = False
+                Button.clicked_elements = False
+                return True
+            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
+                self.clicked = True
+                Button.clicked_elements = True
+        elif not self.rect_image.collidepoint(mouse_pos):
+            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
+                self.clicked = True
+                Button.clicked_elements = True
+    
+    def draw_elements(self):
+        mouse_pos = pygame.mouse.get_pos()
+        if self.rect_image.collidepoint(mouse_pos):
+            if not self.is_hovered:
+                self.hover_sfx.play()
+                self.is_hovered = True
+            self.curr_image = self.hover_image
+        elif not self.rect_image.collidepoint(mouse_pos):
+            self.curr_image = self.image
+            if self.is_hovered:
+                self.is_hovered = False
+        self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y))
 
 
 class ImportElementsButton:
@@ -97,19 +118,19 @@ class ImportElementsButton:
         self.fire_button.rect_image.center = (self.earth_button.rect_image.center[0] + self.x_offset, self.element_button_y)
 
     def import_element_buttons(self):
-        self.lightning_button.draw()
+        self.lightning_button.draw_elements()
         self.lightning_button.player_input()
 
-        self.wind_button.draw()
+        self.wind_button.draw_elements()
         self.wind_button.player_input()
 
-        self.water_button.draw()
+        self.water_button.draw_elements()
         self.water_button.player_input()
 
-        self.earth_button.draw()
+        self.earth_button.draw_elements()
         self.earth_button.player_input()
 
-        self.fire_button.draw()
+        self.fire_button.draw_elements()
         self.fire_button.player_input()
 
 

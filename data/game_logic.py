@@ -196,6 +196,8 @@ class GameLogic(PlayerObj):
                 self.player.point = 0
                 self.CPU.point = 0
                 self.game_menu.win_state = 'You Lose!'
+
+            # Resets the important variables after the game finishes
             self.game_start = False
             self.game_menu.turn_sprite.display_sprites = False
             self.game_menu.CPU_turn_sprite.display_sprites = False
