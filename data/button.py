@@ -17,7 +17,9 @@ class Button:
         self.clicked = True
         self.hover_image = pygame.transform.scale(hover_image, (int(self.width*scale), int(self.height*scale)))
         self.hover_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_hover_sfx.mp3')
+        self.hover_sfx.set_volume(0.2)
         self.clicked_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_clicked_sfx.wav')
+        self.clicked_sfx.set_volume(0.4)
         self.is_hovered = False
 
     def draw(self):
@@ -64,6 +66,11 @@ class ElementsButton(Button):
             "water": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/water_sfx.wav'),
             "wind": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/wind_sfx.wav')
         }
+
+        for i in self.elements_clicked_sfx.values():
+            i.set_volume(0.4)
+
+        self.highlight = False # for highlighting at start of game
 
     def player_input(self):
         if self.is_clicked_elements():
