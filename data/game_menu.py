@@ -115,8 +115,6 @@ class Game:
                 self.running, self.playing, self.playing2 = False, False, False
                 pygame.quit()
                 sys.exit()
-            if event.type == pygame.KEYDOWN:
-                pass
 
     def draw_text(self, text, size, x, y, font_name=pygame.font.get_default_font(), color=(255, 255, 255)):
         font = pygame.font.Font(font_name, size)

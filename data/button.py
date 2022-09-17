@@ -52,12 +52,21 @@ class Button:
 
 # this class button is specifically for the elements buttons because it needs I/O connection to the game logic
 class ElementsButton(Button):
+    # higlight buttons at the start of game
+    highlight_state = True # this is the togglestate of individual element button
+    curr_highlight = ''
+    highlight_duration = 1 # duration on how long the highlight will last
+    highlight_time = 0 # an if variable to check if this is equals to the highlight_duration
+    is_clicking_timer = 0 # this increases if player is not clicking element buttons
+    is_clicking_max_timer = 8 # this will let the highlight trigger if is_clicking_timer reached this
+
     def __init__(self, x, y, image, scale, hover_image, player_output_str):
         Button.__init__(self, x, y, image, scale, hover_image)
         # This is the I/O of this class to the game logic part of the game
         self.player_output_str = player_output_str
         self.player_output = self.game.game_logic
 
+        
         # sfx of each element buttons (made into a dictionary for easy coding)
         self.elements_clicked_sfx = {
             "earth": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/earth_sfx.wav'),
@@ -70,8 +79,6 @@ class ElementsButton(Button):
         for i in self.elements_clicked_sfx.values():
             i.set_volume(0.4)
 
-        self.highlight = False # for highlighting at start of game
-
     def player_input(self):
         if self.is_clicked_elements():
             self.player_output.player_move = self.player_output_str
@@ -79,6 +86,7 @@ class ElementsButton(Button):
     
     def is_clicked_elements(self): # this fixes drag clicking
         mouse_pos = pygame.mouse.get_pos()
+
         if self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_elements:
                 # print('Button Clicked!')
@@ -88,6 +96,7 @@ class ElementsButton(Button):
             elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
                 self.clicked = True
                 Button.clicked_elements = True
+
         elif not self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
                 self.clicked = True
@@ -95,12 +104,15 @@ class ElementsButton(Button):
     
     def draw_elements(self):
         mouse_pos = pygame.mouse.get_pos()
-        if self.rect_image.collidepoint(mouse_pos):
+        if self.rect_image.collidepoint(mouse_pos) or (self.highlight_state and self.curr_highlight==self.player_output_str):
             self.curr_image = self.hover_image
+
         elif not self.rect_image.collidepoint(mouse_pos):
             self.curr_image = self.image
-        self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y))
 
+        self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y)) 
+
+    
 
 class ImportElementsButton:
     def __init__(self):
@@ -109,6 +121,9 @@ class ImportElementsButton:
         self.scale = 1
         self.x_offset = 150
 
+        # for highlight
+        self.element_list = ['lightning', 'wind', 'water', 'earth', 'fire']
+        self.element_index = 0
 
         self.water_image = pygame.image.load(f'{self.button_img_loc}/water_button.png').convert_alpha()
         self.water_hover_image = pygame.image.load(f'{self.button_img_loc}/water_button_hover.png').convert_alpha()
@@ -136,6 +151,7 @@ class ImportElementsButton:
         self.fire_button.rect_image.center = (self.earth_button.rect_image.center[0] + self.x_offset, self.element_button_y)
 
     def import_element_buttons(self):
+        self.highlight()
         self.lightning_button.draw_elements()
         self.lightning_button.player_input()
 
@@ -150,6 +166,36 @@ class ImportElementsButton:
 
         self.fire_button.draw_elements()
         self.fire_button.player_input()
+
+
+    def highlight(self):
+        if not Button.clicked_elements:
+            ElementsButton.is_clicking_timer = 0
+            ElementsButton.highlight_state = False
+
+        if Button.clicked_elements and not ElementsButton.highlight_state: # for highlights
+            ElementsButton.is_clicking_timer += 0.1
+
+            if int(ElementsButton.is_clicking_timer) >= ElementsButton.is_clicking_max_timer:
+                ElementsButton.highlight_state = True
+                ElementsButton.is_clicking_timer = 0
+            
+        if ElementsButton.highlight_state:
+            ElementsButton.highlight_time += 0.1
+            if not int(ElementsButton.highlight_time >= ElementsButton.highlight_duration):
+                ElementsButton.curr_highlight = self.element_list[self.element_index]
+
+            elif self.element_index >= 4:
+                self.element_index = 0
+                ElementsButton.highlight_state = False
+                ElementsButton.highlight_time = 0
+
+            elif int(ElementsButton.highlight_time >= ElementsButton.highlight_duration):
+                self.element_index += 1
+                ElementsButton.highlight_time = 0
+            
+            
+            
 
 
 class ImportMainMenuButton:
