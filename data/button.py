@@ -17,7 +17,7 @@ class Button:
         self.clicked = True
         self.hover_image = pygame.transform.scale(hover_image, (int(self.width*scale), int(self.height*scale)))
         self.hover_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_hover_sfx.mp3')
-        self.hover_sfx.set_volume(0.2)
+        self.hover_sfx.set_volume(0.1)
         self.clicked_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_clicked_sfx.wav')
         self.clicked_sfx.set_volume(0.4)
         self.is_hovered = False
@@ -172,6 +172,7 @@ class ImportElementsButton:
         if Button.clicked_elements:
             ElementsButton.is_clicking_timer = 0
             ElementsButton.highlight_state = False
+            ElementsButton.highlight_time = 0
             self.element_index = 0
 
         if not Button.clicked_elements and not ElementsButton.highlight_state: # for highlights
@@ -196,25 +197,26 @@ class ImportElementsButton:
                 ElementsButton.highlight_time = 0
             
             
-            
-
-
 class ImportMainMenuButton:
     def __init__(self, main_menu):
         self.main_menu = main_menu
         self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.main_menu.mid_w
         self.scale = 1
-        self.y_offset = 125
+        self.y_offset = 110
 
         self.start_image = pygame.image.load(f'{self.button_img_loc}/start_button.png').convert_alpha()
         self.start_hover_image = pygame.image.load(f'{self.button_img_loc}/start_button_hover.png').convert_alpha()
-        self.start_button = Button(self.mid_w, 370, self.start_image, self.scale, self.start_hover_image)
+        self.start_button = Button(self.mid_w, 325, self.start_image, self.scale, self.start_hover_image)
+
+        self.settings_image = pygame.image.load(f'{self.button_img_loc}/settings_button.png').convert_alpha()
+        self.settings_hover_image = pygame.image.load(f'{self.button_img_loc}/settings_button_hover.png').convert_alpha()
+        self.settings_button = Button(self.mid_w, self.start_button.rect_image.centery + self.y_offset, self.settings_image, self.scale, self.settings_hover_image)
 
 
         self.credits_image = pygame.image.load(f'{self.button_img_loc}/credits_button.png').convert_alpha()
         self.credits_hover_image = pygame.image.load(f'{self.button_img_loc}/credits_button_hover.png').convert_alpha()
-        self.credits_button = Button(self.mid_w, self.start_button.rect_image.centery + self.y_offset, self.credits_image, self.scale, self.credits_hover_image)
+        self.credits_button = Button(self.mid_w, self.settings_button.rect_image.centery + self.y_offset, self.credits_image, self.scale, self.credits_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
@@ -222,6 +224,7 @@ class ImportMainMenuButton:
 
     def import_menu_button(self):
         self.start_button.draw()
+        self.settings_button.draw()
         self.quit_button.draw()
         self.credits_button.draw()
         self.check_curr_menu()
@@ -230,6 +233,11 @@ class ImportMainMenuButton:
         if self.start_button.is_clicked2():
             self.main_menu.run_display = False
             Button.game.curr_menu = Button.game.max_points_menu
+        
+        elif self.settings_button.is_clicked2():
+            self.main_menu.run_display = False
+            Button.game.curr_menu = Button.game.settings_menu
+
 
         elif self.credits_button.is_clicked2():
             self.main_menu.run_display = False
@@ -237,6 +245,27 @@ class ImportMainMenuButton:
 
         elif self.quit_button.is_clicked2():
             Button.game.quit_game()
+
+
+class ImportSettingsMenuButton:
+    def __init__(self, settings_menu):
+        self.settings_menu = settings_menu
+        self.button_img_loc = 'assets/sent_images/button_images'
+        self.mid_w = self.settings_menu.mid_w
+
+        self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
+        self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
+        self.back_button = Button(self.mid_w, 650, self.back_image, 1, self.back_hover_image)
+
+    def import_settings_button(self):
+        self.back_button.draw()
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.back_button.is_clicked2():
+            self.settings_menu.run_display = False
+            Button.game.curr_menu = Button.game.main_menu
+
 
 
 class ImportMaxPointsMenuButton:

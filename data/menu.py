@@ -7,6 +7,7 @@ class Menu:
         self.mid_w, self.mid_h = self.game.DISPLAY_W/2, self.game.DISPLAY_H/2
         self.run_display = True
         self.bg_img_loc = 'assets/sent_images'
+        self.VIOLET = (142, 68, 173)
 
     def blit_canvas(self):
         self.game.window.blit(self.game.canvas, (0,0))
@@ -40,10 +41,7 @@ class MainMenu(Menu):
         self.run_display = True
         while self.run_display:
             self.bg_loader(self.bg_img, 1)
-            self.bg_loader(self.title, 1, self.mid_w, 200)
-
-            # self.draw_text('ELEMENTALS', 151, self.mid_w, 200, self.game.font_war, (204, 204, 0))
-            # self.draw_text('ELEMENTALS', 150, self.mid_w, 200, self.game.font_war, (38, 19, 0))
+            self.bg_loader(self.title, 1, self.mid_w, 150)
 
             self.game.check_events()
             self.menu_button.import_menu_button()
@@ -55,6 +53,23 @@ class MainMenu(Menu):
         text_rect = text_surface.get_rect()
         text_rect.center = (x, y)
         self.game.canvas.blit(text_surface, text_rect)
+
+class SettingsMenu(Menu):
+    def __init__(self, game):
+        Menu.__init__(self, game)
+        self.bg_rect = pygame.rect.Rect((0, 0), (self.game.DISPLAY_W, self.game.DISPLAY_H))
+        self.bg_rect.topleft = (0, 0)
+        self.settings_button = ImportSettingsMenuButton(self)
+  
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.check_events()
+            
+            pygame.draw.rect(self.game.canvas, self.VIOLET, self.bg_rect)
+            self.settings_button.import_settings_button()
+
+            self.blit_canvas()
 
 class MaxPointsMenu(Menu):
     def __init__(self, game):
