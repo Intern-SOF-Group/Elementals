@@ -3,7 +3,7 @@ import pygame
 
 class Button:
     game = None
-    clicked_elements = True
+    clicked_elements = False
     def __init__(self, x, y, image, scale, hover_image):
         self.mid_w, self.mid_h = self.game.mid_w, self.game.mid_h
         self.scale = scale
@@ -88,19 +88,19 @@ class ElementsButton(Button):
         mouse_pos = pygame.mouse.get_pos()
 
         if self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and Button.clicked_elements:
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicked and not Button.clicked_elements:
                 # print('Button Clicked!')
                 self.clicked = False
-                Button.clicked_elements = False
-                return True
-            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
-                self.clicked = True
                 Button.clicked_elements = True
+                return True
+            elif pygame.mouse.get_pressed()[0] == 0 and not self.clicked and Button.clicked_elements:
+                self.clicked = True
+                Button.clicked_elements = False
 
         elif not self.rect_image.collidepoint(mouse_pos):
-            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and not Button.clicked_elements:
+            if pygame.mouse.get_pressed()[0] == 0 and not self.clicked and Button.clicked_elements:
                 self.clicked = True
-                Button.clicked_elements = True
+                Button.clicked_elements = False
     
     def draw_elements(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -169,11 +169,12 @@ class ImportElementsButton:
 
 
     def highlight(self):
-        if not Button.clicked_elements:
+        if Button.clicked_elements:
             ElementsButton.is_clicking_timer = 0
             ElementsButton.highlight_state = False
+            self.element_index = 0
 
-        if Button.clicked_elements and not ElementsButton.highlight_state: # for highlights
+        if not Button.clicked_elements and not ElementsButton.highlight_state: # for highlights
             ElementsButton.is_clicking_timer += 0.1
 
             if int(ElementsButton.is_clicking_timer) >= ElementsButton.is_clicking_max_timer:
