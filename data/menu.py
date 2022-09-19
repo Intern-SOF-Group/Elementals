@@ -59,14 +59,16 @@ class SettingsMenu(Menu):
         Menu.__init__(self, game)
         self.bg_rect = pygame.rect.Rect((0, 0), (self.game.DISPLAY_W, self.game.DISPLAY_H))
         self.bg_rect.topleft = (0, 0)
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg1.png').convert_alpha()
+
+
         self.settings_button = ImportSettingsMenuButton(self)
   
     def display_menu(self):
         self.run_display = True
         while self.run_display:
             self.game.check_events()
-            
-            pygame.draw.rect(self.game.canvas, self.VIOLET, self.bg_rect)
+            self.bg_loader(self.bg_img, 1)
             self.settings_button.import_settings_button()
 
             self.blit_canvas()
@@ -146,4 +148,3 @@ class CreditsMenu(Menu):
             self.game.check_events()
             self.back_button.import_credits_button()
             self.blit_canvas()
-            

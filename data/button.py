@@ -406,14 +406,19 @@ class ImportWinLoseMenuButton:
 
         self.play_again_image = pygame.image.load(f'{self.button_img_loc}/play_again_button.png').convert_alpha()
         self.play_again_hover_image = pygame.image.load(f'{self.button_img_loc}/play_again_button_hover.png').convert_alpha()
-        self.play_again_button = Button(self.mid_w, 500, self.play_again_image, self.scale, self.play_again_hover_image)
+        self.play_again_button = Button(self.mid_w, 400, self.play_again_image, self.scale, self.play_again_hover_image)
+
+        self.main_menu_image = pygame.image.load(f'{self.button_img_loc}/main_menu_button.png').convert_alpha()
+        self.main_menu_hover_image = pygame.image.load(f'{self.button_img_loc}/main_menu_button_hover.png').convert_alpha()
+        self.main_menu_button = Button(self.mid_w, self.play_again_button.rect_image.centery + self.y_offset, self.main_menu_image, self.scale, self.main_menu_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
-        self.quit_button = Button(self.mid_w, self.play_again_button.rect_image.centery + self.y_offset, self.quit_image, self.scale, self.quit_hover_image)
+        self.quit_button = Button(self.mid_w, self.main_menu_button.rect_image.centery + self.y_offset, self.quit_image, self.scale, self.quit_hover_image)
 
     def import_win_lose_menu_button(self):
         self.play_again_button.draw()
+        self.main_menu_button.draw()
         self.quit_button.draw()
         self.check_curr_menu()
 
@@ -425,6 +430,9 @@ class ImportWinLoseMenuButton:
             Button.game.playing2 = True
             self.win_lose_menu.run_display = False
             Button.game.curr_menu = None
+        elif self.main_menu_button.is_clicked2():
+            self.win_lose_menu.run_display = False
+            Button.game.curr_menu = Button.game.main_menu
 
         elif self.quit_button.is_clicked2():
             Button.game.quit_game()
