@@ -146,3 +146,4 @@ class CreditsMenu(Menu):
             self.game.check_events()
             self.back_button.import_credits_button()
             self.blit_canvas()
+            

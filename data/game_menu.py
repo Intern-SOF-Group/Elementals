@@ -52,7 +52,7 @@ class Game:
         self.win_state = ''
 
         # Points text attributes
-        self.playersy = 210
+        self.playersy = 250
         self.CPU_pointsx, self.CPU_pointsy = 956, self.playersy
         self.player_pointsx, self.player_pointsy = 245, self.playersy
         self.point_size = 75
@@ -107,8 +107,8 @@ class Game:
             self.game_logic.game_IO_loop()
 
             # Draw texts
-            self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font)
-            self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font)
+            self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
+            self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font, color=(0, 0, 0))
 
             # Display turn images
             self.display_turn()

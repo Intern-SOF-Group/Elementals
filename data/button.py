@@ -315,7 +315,7 @@ class VolumeSlider:
         elif self.target_volume == 'sfx':
             self.game.sfx = self.volume
         else:
-            pass      
+            pass    
 
 class ImportSettingsMenuButton:
     def __init__(self, settings_menu):
