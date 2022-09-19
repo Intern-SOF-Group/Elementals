@@ -21,6 +21,7 @@ class Button:
         self.clicked_sfx = pygame.mixer.Sound('assets/audio_files/button_sfx/button_clicked_sfx.wav')
         self.clicked_sfx.set_volume(0.4)
         self.is_hovered = False
+        self.sfx = self.game.sfx
 
     def draw(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -29,6 +30,12 @@ class Button:
         elif not self.rect_image.collidepoint(mouse_pos):
             self.curr_image = self.image  
         self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y))
+
+        # Sounds
+        self.sfx = self.game.sfx
+        self.hover_sfx.set_volume(0.1*self.sfx)
+        self.clicked_sfx.set_volume(0.4*self.sfx)
+
 
 
     def is_clicked2(self):
@@ -75,6 +82,8 @@ class ElementsButton(Button):
             "water": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/water_sfx.wav'),
             "wind": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/wind_sfx.wav')
         }
+        self.sfx = self.game.sfx
+
 
         for i in self.elements_clicked_sfx.values():
             i.set_volume(0.4)
@@ -110,7 +119,12 @@ class ElementsButton(Button):
         elif not self.rect_image.collidepoint(mouse_pos):
             self.curr_image = self.image
 
-        self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y)) 
+        self.canvas.blit(self.curr_image, (self.rect_image.x, self.rect_image.y))
+
+        # Sounds
+        self.sfx = self.game.sfx
+        for i in self.elements_clicked_sfx.values():
+            i.set_volume(0.4*self.sfx)
 
     
 
@@ -248,13 +262,14 @@ class ImportMainMenuButton:
 
 
 class VolumeSlider:
-    def __init__(self, game) -> None:
+    def __init__(self, game, y, target_volume="None") -> None:
         self.game = game
+        self.target_volume = target_volume
         self.canvas = game.canvas
         self.mid_w = game.mid_w
         self.bar_slide = pygame.image.load(r'graphical demonstration\design\settings_buttons\bar.png')
         self.bar_rect = self.bar_slide.get_rect()
-        self.bar_rect.center = (self.mid_w, 250)
+        self.bar_rect.center = (self.mid_w, y)
 
         self.slider = pygame.image.load(r'graphical demonstration\design\settings_buttons\slider.png')
         self.slider_rect = self.slider.get_rect()
@@ -270,7 +285,7 @@ class VolumeSlider:
     def draw(self):
         self.canvas.blit(self.bar_slide, self.bar_rect)
         self.canvas.blit(self.slider, self.slider_rect)
-        print(self.volume)
+        # print(self.volume)
         # print(self.slider_rect.centerx)
 
     def check_input(self):
@@ -279,7 +294,7 @@ class VolumeSlider:
         if self.slider_rect.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0]:
                 self.slider_clicked = True
-        elif not pygame.mouse.get_pressed()[0]:
+        if not pygame.mouse.get_pressed()[0]:
             self.slider_clicked = False
 
         # This part is so that the slider does not go beyond the size of the bar
@@ -294,9 +309,13 @@ class VolumeSlider:
                 self.slider_rect.centerx = min(mouse_pos[0], self.bar_rect.right)
 
         # Changes the volume value according to the postition of the slider
-        self.volume = (self.slider_rect.centerx - self.bar_rect.left)/(self.bar_rect.width)
-        self.game.music = self.volume
-
+        self.volume = (self.slider_rect.centerx - self.bar_rect.left)/(self.bar_rect.width)    
+        if self.target_volume == 'music':
+            self.game.music = self.volume
+        elif self.target_volume == 'sfx':
+            self.game.sfx = self.volume
+        else:
+            pass      
 
 class ImportSettingsMenuButton:
     def __init__(self, settings_menu):
@@ -309,7 +328,8 @@ class ImportSettingsMenuButton:
         self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
         self.back_button = Button(self.mid_w, 650, self.back_image, 1, self.back_hover_image)
 
-        self.volume_button = VolumeSlider(self.settings_menu.game)
+        self.volume_button = VolumeSlider(self.settings_menu.game, 250, target_volume='music')
+        self.sfx_button = VolumeSlider(self.settings_menu.game, 350, target_volume='sfx')
 
 
 
@@ -320,14 +340,14 @@ class ImportSettingsMenuButton:
         self.volume_button.check_input()
         self.volume_button.draw()
 
+        self.sfx_button.check_input()
+        self.sfx_button.draw()
+
 
     def check_curr_menu(self):
         if self.back_button.is_clicked2():
             self.settings_menu.run_display = False
             Button.game.curr_menu = Button.game.main_menu
-
-
-
 
 
 class ImportMaxPointsMenuButton:

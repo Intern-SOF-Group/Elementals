@@ -95,10 +95,14 @@ class WinLoseMenu(Menu):
         self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg2.png').convert_alpha()
         self.win_sfx = pygame.mixer.Sound('assets/audio_files/win_sfx.wav')
         self.lose_sfx = pygame.mixer.Sound('assets/audio_files/lose_sfx.wav')
+        self.sfx = self.game.sfx
 
 
     def display_menu(self):
         self.run_display = True
+        self.sfx = self.game.sfx
+        self.win_sfx.set_volume(self.sfx)
+        self.lose_sfx.set_volume(self.sfx)
 
         if self.game.win_state == 'You Win!':
             self.win_sfx.play()

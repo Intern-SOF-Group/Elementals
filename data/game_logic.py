@@ -18,7 +18,7 @@ class GameLogic(PlayerObj):
         self.cpu_input = ''
         self.max_points = 0
         self.winner_state = ''
-        self.game_start = False
+        self.game_start = False # This is for checking if to display the rotating sprite or not
 
     def game_IO_loop(self):
         # self.game_menu.draw_text(f'for debugging purposes: {self.cpu_input}', 10, 700, 200)

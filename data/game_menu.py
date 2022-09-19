@@ -23,6 +23,13 @@ class Game:
         self.BLACK, self.WHITE = (0, 0, 0), (255, 255, 255)
         self.VIOLET = (142, 68, 173)
 
+        # Sounds
+        self.sfx = 1.0
+        self.music = 1.0
+        self.bg_music = pygame.mixer.Sound('assets/audio_files/bg1_music.mp3')
+        self.bg_music.set_volume(0.4)
+        self.bg_music.play(loops=-1, fade_ms=1000)
+
         # menus
         self.main_menu = MainMenu(self)
         self.settings_menu = SettingsMenu(self)
@@ -84,12 +91,7 @@ class Game:
         self.group_sprites.add(self.turn_sprite)
         self.group_sprites.add(self.CPU_turn_sprite)
 
-        # Sounds
-        self.sfx = 1.0
-        self.music = 1.0
-        self.bg_music = pygame.mixer.Sound('assets/audio_files/bg1_music.mp3')
-        self.bg_music.set_volume(0.4)
-        self.bg_music.play(loops=-1, fade_ms=1000)
+        
 
 
     def game_loop(self):
