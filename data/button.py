@@ -421,8 +421,12 @@ class ImportWinLoseMenuButton:
     def check_curr_menu(self):
         if self.play_again_button.is_clicked2():
             Button.game.win_state = ''
-            Button.game.curr_menu = Button.game.max_points_menu
+            # Button.game.curr_menu = Button.game.max_points_menu
+            Button.game.playing = True
+            Button.game.playing2 = True
             self.win_lose_menu.run_display = False
+            Button.game.curr_menu = None
+
         elif self.quit_button.is_clicked2():
             Button.game.quit_game()
 

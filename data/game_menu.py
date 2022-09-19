@@ -13,7 +13,7 @@ class Game:
         self.clicked_global = True
         self.running = True
         self.playing = False
-        self.playing2 = False # This is for hint buttons and also to have to states of playing
+        self.playing2 = False # This is for hint buttons and also to have two states of playing
         self.DISPLAY_W, self.DISPLAY_H = 1200, 750
         self.mid_w, self.mid_h = self.DISPLAY_W/2, self.DISPLAY_H/2
         self.canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
