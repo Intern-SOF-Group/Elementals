@@ -266,11 +266,11 @@ class VolumeSlider:
         self.target_volume = target_volume
         self.canvas = game.canvas
         self.mid_w = game.mid_w
-        self.bar_slide = pygame.image.load(r'graphical demonstration\design\settings_buttons\bar.png')
+        self.bar_slide = pygame.image.load(r"assets\sent_images\button_images\settings\bar.png")
         self.bar_rect = self.bar_slide.get_rect()
         self.bar_rect.center = (self.mid_w, y)
 
-        self.slider = pygame.image.load(r'graphical demonstration\design\settings_buttons\slider.png')
+        self.slider = pygame.image.load(r"assets\sent_images\button_images\settings\slider.png")
         self.slider_rect = self.slider.get_rect()
         self.slider_rect.centery = self.bar_rect.centery
         self.slider_rect.centerx = self.bar_rect.right
