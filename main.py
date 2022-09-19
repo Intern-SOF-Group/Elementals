@@ -1,4 +1,3 @@
-import pygame
 from data import game_menu
 
 g = game_menu.Game()
