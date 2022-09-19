@@ -98,7 +98,6 @@ class ElementsButton(Button):
 
         if self.rect_image.collidepoint(mouse_pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked and not Button.clicked_elements:
-                # print('Button Clicked!')
                 self.clicked = False
                 Button.clicked_elements = True
                 return True
