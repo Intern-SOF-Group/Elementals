@@ -247,9 +247,61 @@ class ImportMainMenuButton:
             Button.game.quit_game()
 
 
+class VolumeSlider:
+    def __init__(self, game) -> None:
+        self.game = game
+        self.canvas = game.canvas
+        self.mid_w = game.mid_w
+        self.bar_slide = pygame.image.load(r'graphical demonstration\design\settings_buttons\bar.png')
+        self.bar_rect = self.bar_slide.get_rect()
+        self.bar_rect.center = (self.mid_w, 250)
+
+        self.slider = pygame.image.load(r'graphical demonstration\design\settings_buttons\slider.png')
+        self.slider_rect = self.slider.get_rect()
+        self.slider_rect.centery = self.bar_rect.centery
+        self.slider_rect.centerx = self.bar_rect.right
+
+        # Slider rules
+        self.slider_clicked = False # the use of this is so that the slider can still slide while clicking even if it is not colliding with the mouse pointer
+
+        # Tester volume
+        self.volume = 1.0
+
+    def draw(self):
+        self.canvas.blit(self.bar_slide, self.bar_rect)
+        self.canvas.blit(self.slider, self.slider_rect)
+        print(self.volume)
+        # print(self.slider_rect.centerx)
+
+    def check_input(self):
+        mouse_pos  = pygame.mouse.get_pos()
+
+        if self.slider_rect.collidepoint(mouse_pos):
+            if pygame.mouse.get_pressed()[0]:
+                self.slider_clicked = True
+        elif not pygame.mouse.get_pressed()[0]:
+            self.slider_clicked = False
+
+        # This part is so that the slider does not go beyond the size of the bar
+        if self.slider_clicked:
+            if self.bar_rect.left < self.slider_rect.centerx < self.bar_rect.right:
+                self.slider_rect.centerx = mouse_pos[0]
+
+            elif self.slider_rect.centerx <= self.bar_rect.left:
+                self.slider_rect.centerx = max(mouse_pos[0], self.bar_rect.left)
+            
+            elif self.slider_rect.centerx >= self.bar_rect.right:
+                self.slider_rect.centerx = min(mouse_pos[0], self.bar_rect.right)
+
+        # Changes the volume value according to the postition of the slider
+        self.volume = (self.slider_rect.centerx - self.bar_rect.left)/(self.bar_rect.width)
+        self.game.music = self.volume
+
+
 class ImportSettingsMenuButton:
     def __init__(self, settings_menu):
         self.settings_menu = settings_menu
+        self.canvas = self.settings_menu.game.canvas
         self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.settings_menu.mid_w
 
@@ -257,14 +309,24 @@ class ImportSettingsMenuButton:
         self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
         self.back_button = Button(self.mid_w, 650, self.back_image, 1, self.back_hover_image)
 
+        self.volume_button = VolumeSlider(self.settings_menu.game)
+
+
+
     def import_settings_button(self):
         self.back_button.draw()
         self.check_curr_menu()
+
+        self.volume_button.check_input()
+        self.volume_button.draw()
+
 
     def check_curr_menu(self):
         if self.back_button.is_clicked2():
             self.settings_menu.run_display = False
             Button.game.curr_menu = Button.game.main_menu
+
+
 
 
 
@@ -389,7 +451,6 @@ class ImportHintButton:
             else:
                 self.game.curr_menu.run_display = False
                 self.game.curr_menu = Button.game.hint_menu          
-
 
 class ImportCreditsButton:
     def __init__(self, hint_menu):

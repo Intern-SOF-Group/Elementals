@@ -84,6 +84,14 @@ class Game:
         self.group_sprites.add(self.turn_sprite)
         self.group_sprites.add(self.CPU_turn_sprite)
 
+        # Sounds
+        self.sfx = 1.0
+        self.music = 1.0
+        self.bg_music = pygame.mixer.Sound('assets/audio_files/bg1_music.mp3')
+        self.bg_music.set_volume(0.4)
+        self.bg_music.play(loops=-1, fade_ms=1000)
+
+
     def game_loop(self):
         while self.playing:
             self.check_events()
@@ -106,6 +114,9 @@ class Game:
             # Display sprites
             self.draw_sprite()
 
+            
+
+
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
             self.clock.tick(60)
@@ -116,6 +127,9 @@ class Game:
                 self.running, self.playing, self.playing2 = False, False, False
                 pygame.quit()
                 sys.exit()
+        
+        # Sound settings
+        self.bg_music.set_volume(0.4*self.music)
 
     def draw_text(self, text, size, x, y, font_name=pygame.font.get_default_font(), color=(255, 255, 255)):
         font = pygame.font.Font(font_name, size)
