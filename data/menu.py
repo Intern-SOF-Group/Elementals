@@ -61,8 +61,10 @@ class SettingsMenu(Menu):
         self.bg_rect.topleft = (0, 0)
         self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg1.png').convert_alpha()
 
-
         self.settings_button = ImportSettingsMenuButton(self)
+
+        # Texts
+        self.music_txt = pygame.font.Font
   
     def display_menu(self):
         self.run_display = True
@@ -71,7 +73,18 @@ class SettingsMenu(Menu):
             self.bg_loader(self.bg_img, 1)
             self.settings_button.import_settings_button()
 
+            self.draw_text('Music', 80, self.game.mid_w, self.settings_button.volume_button.bar_rect.centery - 50, self.game.ancient_font)
+            self.draw_text('SFX', 80, self.game.mid_w, self.settings_button.sfx_button.bar_rect.centery - 50, self.game.ancient_font)
+
+
             self.blit_canvas()
+
+    def draw_text(self, text, size, x, y, font_name=pygame.font.get_default_font(), color=(255, 255, 255)):
+        font = pygame.font.Font(font_name, size)
+        text_surface = font.render(text, True, color)
+        text_rect = text_surface.get_rect()
+        text_rect.center = (x, y)
+        self.game.canvas.blit(text_surface, text_rect)
 
 class MaxPointsMenu(Menu):
     def __init__(self, game):

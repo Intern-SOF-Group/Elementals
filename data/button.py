@@ -311,7 +311,7 @@ class VolumeSlider:
 
             elif self.slider_rect.centerx <= self.bar_rect.left:
                 self.slider_rect.centerx = max(mouse_pos[0], self.bar_rect.left)
-            
+         
             elif self.slider_rect.centerx >= self.bar_rect.right:
                 self.slider_rect.centerx = min(mouse_pos[0], self.bar_rect.right)
 
@@ -336,7 +336,7 @@ class ImportSettingsMenuButton:
         self.back_button = Button(self.mid_w, 650, self.back_image, 1, self.back_hover_image)
 
         self.volume_button = VolumeSlider(self.settings_menu.game, 250, target_volume='music')
-        self.sfx_button = VolumeSlider(self.settings_menu.game, 350, target_volume='sfx')
+        self.sfx_button = VolumeSlider(self.settings_menu.game, 450, target_volume='sfx')
 
 
 
