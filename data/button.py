@@ -271,12 +271,16 @@ class VolumeSlider:
         self.bar_rect.center = (self.mid_w, y)
 
         self.slider = pygame.image.load(r"assets\sent_images\button_images\settings\slider.png")
+        self.slider_unclicked = pygame.image.load(r"assets\sent_images\button_images\settings\slider.png")
+        self.slider_hovered = pygame.image.load(r"assets\sent_images\button_images\settings\slider_hover.png")
+        self.slider_clicked = pygame.image.load(r"assets\sent_images\button_images\settings\slider_clicked.png")
+
         self.slider_rect = self.slider.get_rect()
         self.slider_rect.centery = self.bar_rect.centery
         self.slider_rect.centerx = self.bar_rect.right
 
         # Slider rules
-        self.slider_clicked = False # the use of this is so that the slider can still slide while clicking even if it is not colliding with the mouse pointer
+        self.slider_isclicked = False # the use of this is so that the slider can still slide while clicking even if it is not colliding with the mouse pointer
 
         # Tester volume
         self.volume = 1.0
@@ -289,15 +293,19 @@ class VolumeSlider:
 
     def check_input(self):
         mouse_pos  = pygame.mouse.get_pos()
+        self.slider = self.slider_unclicked # I placed it at the top so that if any of the arguments below are true it will just be overwritten
 
         if self.slider_rect.collidepoint(mouse_pos):
+            self.slider = self.slider_hovered
             if pygame.mouse.get_pressed()[0]:
-                self.slider_clicked = True
+                self.slider_isclicked = True
+
         if not pygame.mouse.get_pressed()[0]:
-            self.slider_clicked = False
+            self.slider_isclicked = False
 
         # This part is so that the slider does not go beyond the size of the bar
-        if self.slider_clicked:
+        if self.slider_isclicked:
+            self.slider = self.slider_clicked
             if self.bar_rect.left < self.slider_rect.centerx < self.bar_rect.right:
                 self.slider_rect.centerx = mouse_pos[0]
 
@@ -400,13 +408,13 @@ class ImportWinLoseMenuButton:
         self.win_lose_menu = win_lose_menu
         self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.win_lose_menu.mid_w
-        self.scale = 1
-        self.y_offset = 125
+        self.scale = 0.8
+        self.y_offset = 100
 
 
         self.play_again_image = pygame.image.load(f'{self.button_img_loc}/play_again_button.png').convert_alpha()
         self.play_again_hover_image = pygame.image.load(f'{self.button_img_loc}/play_again_button_hover.png').convert_alpha()
-        self.play_again_button = Button(self.mid_w, 400, self.play_again_image, self.scale, self.play_again_hover_image)
+        self.play_again_button = Button(self.mid_w, 350, self.play_again_image, self.scale, self.play_again_hover_image)
 
         self.main_menu_image = pygame.image.load(f'{self.button_img_loc}/main_menu_button.png').convert_alpha()
         self.main_menu_hover_image = pygame.image.load(f'{self.button_img_loc}/main_menu_button_hover.png').convert_alpha()

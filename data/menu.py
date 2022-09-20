@@ -1,5 +1,5 @@
 import pygame
-from data.button import *
+from data.button import ImportMainMenuButton, ImportSettingsMenuButton, ImportMaxPointsMenuButton, ImportHintButton, ImportWinLoseMenuButton, ImportHintMenuButton, ImportCreditsButton
 
 class Menu:
     def __init__(self, game):
