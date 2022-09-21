@@ -7,52 +7,52 @@ class GameSprites(pygame.sprite.Sprite):
         self.sprite_loc = 'assets/sent_images/sprites'
         # Earth sprites
         self.earth_sprite = []
-        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 1.png'))
-        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 2.png'))
-        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 3.png'))
-        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 4.png'))
-        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 5.png'))
-        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 6.png'))
-        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 7.png'))
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 1.png').convert_alpha())
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 2.png').convert_alpha())
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 3.png').convert_alpha())
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 4.png').convert_alpha())
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 5.png').convert_alpha())
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 6.png').convert_alpha())
+        self.earth_sprite.append(pygame.image.load(f'{self.sprite_loc}/earth_button_sprite/Earth 7.png').convert_alpha())
 
         # Fire sprites
         self.fire_sprite = []
-        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 1.png'))
-        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 2.png'))
-        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 3.png'))
-        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 4.png'))
-        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 5.png'))
-        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 6.png'))
-        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 7.png'))
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 1.png').convert_alpha())
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 2.png').convert_alpha())
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 3.png').convert_alpha())
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 4.png').convert_alpha())
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 5.png').convert_alpha())
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 6.png').convert_alpha())
+        self.fire_sprite.append(pygame.image.load(f'{self.sprite_loc}/fire_button_sprite/Fire 7.png').convert_alpha())
 
         # Lightning sprites
         self.lightning_sprite = []
-        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 1.png'))
-        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 2.png'))
-        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 3.png'))
-        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 4.png'))
-        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 5.png'))
-        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 6.png'))
-        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 7.png'))
+        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 1.png').convert_alpha())
+        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 2.png').convert_alpha())
+        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 3.png').convert_alpha())
+        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 4.png').convert_alpha())
+        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 5.png').convert_alpha())
+        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 6.png').convert_alpha())
+        self.lightning_sprite.append(pygame.image.load(f'{self.sprite_loc}/lightning_button_sprite/Lightning 7.png').convert_alpha())
 
         # Water sprites
         self.water_sprite = []
-        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 1.png'))
-        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 2.png'))
-        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 3.png'))
-        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 4.png'))
-        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 5.png'))
-        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 6.png'))
-        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 7.png'))
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 1.png').convert_alpha())
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 2.png').convert_alpha())
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 3.png').convert_alpha())
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 4.png').convert_alpha())
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 5.png').convert_alpha())
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 6.png').convert_alpha())
+        self.water_sprite.append(pygame.image.load(f'{self.sprite_loc}/water_button_sprite/Water 7.png').convert_alpha())
         # Wind sprites
         self.wind_sprite = []
-        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 1.png'))
-        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 2.png'))
-        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 3.png'))
-        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 4.png'))
-        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 5.png'))
-        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 6.png'))
-        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 7.png'))
+        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 1.png').convert_alpha())
+        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 2.png').convert_alpha())
+        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 3.png').convert_alpha())
+        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 4.png').convert_alpha())
+        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 5.png').convert_alpha())
+        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 6.png').convert_alpha())
+        self.wind_sprite.append(pygame.image.load(f'{self.sprite_loc}/wind_button_sprite/Wind 7.png').convert_alpha())
 
 
         self.turn = ''
@@ -92,7 +92,28 @@ class GameSprites(pygame.sprite.Sprite):
 
 
 class ScrollSprite(pygame.sprite.Sprite):
-    def __init__(self, pos_x, pos_y):
+    def __init__(self, pos_x):
         super().__init__()
+        self.sprite_loc = 'assets/sent_images/sprites/scroll_sprite'
 
-        
+        # Total of 10 sprite images
+        self.scroll_sprite = []
+        for i in range(1,11):
+            self.scroll_sprite.append(pygame.image.load(f'{self.sprite_loc}/Scroll {i}.png'))
+
+        self.curr_sprite = 0
+        self.image = self.scroll_sprite[int(self.curr_sprite)]
+        self.rect = self.image.get_rect()
+        self.rect.center = (pos_x, 300)
+        self.display_sprites = True 
+
+    def update(self):
+
+        if self.display_sprites:
+            self.curr_sprite += 0.2
+            if int(self.curr_sprite >= 10): 
+                self.curr_sprite = 9
+                self.display_sprites = False
+        self.image = self.scroll_sprite[int(self.curr_sprite)]
+
+

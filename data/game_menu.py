@@ -92,14 +92,25 @@ class Game:
         self.group_sprites.add(self.turn_sprite)
         self.group_sprites.add(self.CPU_turn_sprite)
 
+        # Scroll Sprite
+        self.scroll = sprites.ScrollSprite(self.player_pointsx)
+        self.scroll_sprite_group = pygame.sprite.Group()
+        self.scroll_sprite_group.add(self.scroll)
+
         
 
 
     def game_loop(self):
         while self.playing:
             self.check_events()
+
             self.scroll_game_canvas.blit(self.bg_img, self.image_rect.topleft)
+            self.scroll_sprite_group.update()
+            self.scroll_sprite_group.draw(self.scroll_game_canvas)
+
             self.canvas.blit(self.scroll_game_canvas, (0, 0))
+            
+
 
 
             # draw element buttons and check for inputs
