@@ -89,4 +89,10 @@ class GameSprites(pygame.sprite.Sprite):
             self.curr_element = self.water_sprite
         elif self.turn == 'wind':
             self.curr_element = self.wind_sprite
-     
+
+
+class ScrollSprite(pygame.sprite.Sprite):
+    def __init__(self, pos_x, pos_y):
+        super().__init__()
+
+        

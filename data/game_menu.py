@@ -17,6 +17,7 @@ class Game:
         self.DISPLAY_W, self.DISPLAY_H = 1200, 750
         self.mid_w, self.mid_h = self.DISPLAY_W/2, self.DISPLAY_H/2
         self.canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
+        self.scroll_game_canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H)) # the reason for another canvas because of the animation scroll
         self.window = pygame.display.set_mode((self.DISPLAY_W, self.DISPLAY_H))
         self.font_name = pygame.font.get_default_font()
         self.font_war = 'assets/sent_images/warpriest.ttf'
@@ -41,7 +42,7 @@ class Game:
 
         # game background
         self.bg_img_loc = 'assets/sent_images'
-        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg3.png').convert_alpha()
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg4.png').convert_alpha()
         self.image_rect = self.bg_img.get_rect()
         self.image_rect.topleft = (0, 0)
 
@@ -97,8 +98,9 @@ class Game:
     def game_loop(self):
         while self.playing:
             self.check_events()
-            self.canvas.fill(self.VIOLET)
-            self.canvas.blit(self.bg_img, self.image_rect.topleft)
+            self.scroll_game_canvas.blit(self.bg_img, self.image_rect.topleft)
+            self.canvas.blit(self.scroll_game_canvas, (0, 0))
+
 
             # draw element buttons and check for inputs
             self.element_buttons.import_element_buttons()
