@@ -93,9 +93,13 @@ class Game:
         self.group_sprites.add(self.CPU_turn_sprite)
 
         # Scroll Sprite
-        self.scroll = sprites.ScrollSprite(self.player_pointsx)
+        self.player_scroll = sprites.ScrollSprite(self.player_pointsx)
+        self.CPU_scroll = sprites.ScrollSprite(self.CPU_pointsx)
         self.scroll_sprite_group = pygame.sprite.Group()
-        self.scroll_sprite_group.add(self.scroll)
+        self.scroll_sprite_group.add(self.player_scroll)
+        self.scroll_sprite_group.add(self.CPU_scroll)
+        
+
 
         
 
@@ -112,22 +116,22 @@ class Game:
             
 
 
+            if self.CPU_scroll.is_animation_done:
+                # draw element buttons and check for inputs
+                self.element_buttons.import_element_buttons()
+                self.hint_button.import_hint_button()
 
-            # draw element buttons and check for inputs
-            self.element_buttons.import_element_buttons()
-            self.hint_button.import_hint_button()
+                self.game_logic.game_IO_loop()
 
-            self.game_logic.game_IO_loop()
+                # Draw texts
+                self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
+                self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font, color=(0, 0, 0))
 
-            # Draw texts
-            self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
-            self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font, color=(0, 0, 0))
+                # Display turn images
+                self.display_turn()
 
-            # Display turn images
-            self.display_turn()
-
-            # Display sprites
-            self.draw_sprite()
+                # Display sprites
+                self.draw_sprite()
 
             
 

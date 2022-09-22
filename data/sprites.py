@@ -105,7 +105,8 @@ class ScrollSprite(pygame.sprite.Sprite):
         self.image = self.scroll_sprite[int(self.curr_sprite)]
         self.rect = self.image.get_rect()
         self.rect.center = (pos_x, 300)
-        self.display_sprites = True 
+        self.display_sprites = True
+        self.is_animation_done = False 
 
     def update(self):
 
@@ -114,6 +115,5 @@ class ScrollSprite(pygame.sprite.Sprite):
             if int(self.curr_sprite >= 10): 
                 self.curr_sprite = 9
                 self.display_sprites = False
+                self.is_animation_done = True
         self.image = self.scroll_sprite[int(self.curr_sprite)]
-
-
