@@ -124,8 +124,11 @@ class Game:
                 self.game_logic.game_IO_loop()
 
                 # Draw texts
-                self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
+                self.draw_text("Player", self.point_size, self.player_pointsx, self.player_pointsy - 100, self.ancient_font, color=(0, 0, 0))
                 self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font, color=(0, 0, 0))
+
+                self.draw_text("CPU", self.point_size, self.CPU_pointsx, self.CPU_pointsy - 100, self.ancient_font, color=(0, 0, 0))
+                self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
 
                 # Display turn images
                 self.display_turn()
