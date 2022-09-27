@@ -117,3 +117,8 @@ class ScrollSprite(pygame.sprite.Sprite):
                 self.display_sprites = False
                 self.is_animation_done = True
         self.image = self.scroll_sprite[int(self.curr_sprite)]
+
+    def reset_var(self):
+        self.curr_sprite = 0
+        self.display_sprites = True
+        self.is_animation_done = False

@@ -199,6 +199,8 @@ class GameLogic(PlayerObj):
 
             # Resets the important variables after the game finishes
             self.game_start = False
+            self.game_menu.player_scroll.reset_var() # Resets the scroll variables so that every restart of the game it unfolds again.
+            self.game_menu.CPU_scroll.reset_var()
             self.game_menu.turn_sprite.display_sprites = False
             self.game_menu.CPU_turn_sprite.display_sprites = False
             self.player_move = ''
