@@ -489,7 +489,25 @@ class ImportHintButton:
                 self.game.curr_menu = Button.game.hint_menu
             else:
                 self.game.curr_menu.run_display = False
-                self.game.curr_menu = Button.game.hint_menu          
+                self.game.curr_menu = Button.game.hint_menu
+
+
+class ImportPauseButton:
+    def __init__(self, x, y, scale, game):
+        self.game = game
+        self.scale = scale
+        self.button_img_loc = 'assets/sent_images/button_images'
+        self.pause_image = pygame.image.load(f'{self.button_img_loc}/pause_button.png').convert_alpha()
+        self.pause_hover_image = pygame.image.load(f'{self.button_img_loc}/pause_button_hover.png').convert_alpha()
+        self.pause_button = Button(x, y, self.pause_image, self.scale, self.pause_hover_image)   
+
+    def import_pause_button(self):
+        self.pause_button.draw()
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.pause_button.is_clicked2():
+            pass
 
 class ImportCreditsButton:
     def __init__(self, hint_menu):

@@ -1,6 +1,6 @@
 import sys
 import pygame
-from data.button import Button, ImportElementsButton, ImportHintButton
+from data.button import Button, ImportElementsButton, ImportHintButton, ImportPauseButton
 from data import game_logic, sprites
 from data.menu import CreditsMenu, MainMenu, SettingsMenu, MaxPointsMenu, WinLoseMenu, HintMenu
 
@@ -63,6 +63,7 @@ class Game:
         # buttons
         self.element_buttons = ImportElementsButton()
         self.hint_button = ImportHintButton(60, 700, 1, self)
+        self.pause_button = ImportPauseButton(150, 700, 1, self)
 
         # element images
         self.turny = 400
@@ -120,6 +121,7 @@ class Game:
                 # draw element buttons and check for inputs
                 self.element_buttons.import_element_buttons()
                 self.hint_button.import_hint_button()
+                self.pause_button.import_pause_button()
 
                 self.game_logic.game_IO_loop()
 
