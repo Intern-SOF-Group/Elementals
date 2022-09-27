@@ -366,11 +366,11 @@ class ImportMaxPointsMenuButton:
         self.y_offset = 125
 
         self.long_game_image = pygame.image.load(f'{self.button_img_loc}/long_game_button.png').convert_alpha()
-        self.long_game_hover_image = pygame.image.load(f'{self.button_img_loc}/long_game_button_hover.png').convert_alpha()
+        self.long_game_hover_image = pygame.image.load(f'{self.button_img_loc}/long_game_button_hover2.png').convert_alpha()
         self.long_game_button = Button(self.mid_w, 250, self.long_game_image, self.scale, self.long_game_hover_image)
 
         self.short_game_image = pygame.image.load(f'{self.button_img_loc}/short_game_button.png').convert_alpha()
-        self.short_game_hover_image = pygame.image.load(f'{self.button_img_loc}/short_game_button_hover.png').convert_alpha()
+        self.short_game_hover_image = pygame.image.load(f'{self.button_img_loc}/short_game_button_hover2.png').convert_alpha()
         self.short_game_button = Button(self.mid_w, self.long_game_button.rect_image.centery + self.y_offset, self.short_game_image, self.scale, self.short_game_hover_image)
 
         self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
