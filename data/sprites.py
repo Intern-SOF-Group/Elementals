@@ -99,7 +99,7 @@ class ScrollSprite(pygame.sprite.Sprite):
         # Total of 10 sprite images
         self.scroll_sprite = []
         for i in range(1,11):
-            self.scroll_sprite.append(pygame.image.load(f'{self.sprite_loc}/Scroll {i}.png'))
+            self.scroll_sprite.append(pygame.image.load(f'{self.sprite_loc}/Scroll {i}.png').convert_alpha())
 
         self.curr_sprite = 0
         self.image = self.scroll_sprite[int(self.curr_sprite)]

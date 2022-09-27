@@ -1,5 +1,5 @@
 import pygame
-from data.button import ImportMainMenuButton, ImportSettingsMenuButton, ImportMaxPointsMenuButton, ImportHintButton, ImportWinLoseMenuButton, ImportHintMenuButton, ImportCreditsButton
+from data.button import *
 
 class Menu:
     def __init__(self, game):
@@ -147,6 +147,22 @@ class HintMenu(Menu):
             self.hint_button.import_hint_menu_button()
             self.blit_canvas()
 
+class PauseMenu(Menu):
+    def __init__(self, game):
+        Menu.__init__(self, game)
+        self.pause_button = ImportPauseMenuButton(self)
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg3_pause.png').convert_alpha()
+        self.bg2_img = pygame.image.load(f'{self.bg_img_loc}/sprites/scroll_sprite/Scroll 10.png').convert_alpha()
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.game.canvas.blit(self.game.canvas2, (0, 0))
+            self.bg_loader(self.bg_img, 1)
+            self.bg_loader(self.bg2_img, 1, self.mid_w, self.mid_h)
+            self.game.check_events()
+            self.pause_button.import_pause_menu_button()
+            self.blit_canvas()
 
 class CreditsMenu(Menu):
     def __init__(self, game):

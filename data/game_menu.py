@@ -2,7 +2,7 @@ import sys
 import pygame
 from data.button import Button, ImportElementsButton, ImportHintButton, ImportPauseButton
 from data import game_logic, sprites
-from data.menu import CreditsMenu, MainMenu, SettingsMenu, MaxPointsMenu, WinLoseMenu, HintMenu
+from data.menu import CreditsMenu, MainMenu, SettingsMenu, MaxPointsMenu, WinLoseMenu, HintMenu, PauseMenu
 
 
 class Game:
@@ -17,6 +17,8 @@ class Game:
         self.DISPLAY_W, self.DISPLAY_H = 1200, 750
         self.mid_w, self.mid_h = self.DISPLAY_W/2, self.DISPLAY_H/2
         self.canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H))
+        self.canvas2 = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H)) # For capturing the last frame before pausing
+
         self.scroll_game_canvas = pygame.Surface((self.DISPLAY_W, self.DISPLAY_H)) # the reason for another canvas because of the animation scroll
         self.window = pygame.display.set_mode((self.DISPLAY_W, self.DISPLAY_H))
         self.font_name = pygame.font.get_default_font()
@@ -37,6 +39,7 @@ class Game:
         self.max_points_menu = MaxPointsMenu(self)
         self.win_lose_menu = WinLoseMenu(self)
         self.hint_menu = HintMenu(self)
+        self.pause_menu = PauseMenu(self)
         self.credits_menu = CreditsMenu(self)
         self.curr_menu = self.main_menu
 
@@ -53,7 +56,7 @@ class Game:
         self.win_state = ''
 
         # Points text attributes
-        self.playersy = 250
+        self.playersy = 275
         self.CPU_pointsx, self.CPU_pointsy = 956, self.playersy
         self.player_pointsx, self.player_pointsy = 245, self.playersy
         self.point_size = 75
@@ -126,10 +129,10 @@ class Game:
                 self.game_logic.game_IO_loop()
 
                 # Draw texts
-                self.draw_text("Player", self.point_size, self.player_pointsx, self.player_pointsy - 100, self.ancient_font, color=(0, 0, 0))
+                self.draw_text("Player", self.point_size, self.player_pointsx, self.player_pointsy - 90, self.ancient_font, color=(0, 0, 0))
                 self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font, color=(0, 0, 0))
 
-                self.draw_text("CPU", self.point_size, self.CPU_pointsx, self.CPU_pointsy - 100, self.ancient_font, color=(0, 0, 0))
+                self.draw_text("CPU", self.point_size, self.CPU_pointsx, self.CPU_pointsy - 90, self.ancient_font, color=(0, 0, 0))
                 self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
 
                 # Display turn images

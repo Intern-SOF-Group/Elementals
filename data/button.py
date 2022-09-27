@@ -507,7 +507,27 @@ class ImportPauseButton:
 
     def check_curr_menu(self):
         if self.pause_button.is_clicked2():
-            pass
+            self.game.canvas2.blit(self.game.canvas, self.game.canvas2.get_rect()) # Captures the last frame before pausing
+            self.game.playing = False
+            self.game.curr_menu = Button.game.pause_menu
+
+class ImportPauseMenuButton:
+    def __init__(self, pause_menu):
+        self.pause_menu = pause_menu
+        self.button_img_loc = 'assets/sent_images/button_images'
+
+        self.resume_image = pygame.image.load(f'{self.button_img_loc}/resume_button.png').convert_alpha()
+        self.resume_hover_image = pygame.image.load(f'{self.button_img_loc}/resume_button_hover.png').convert_alpha()
+        self.resume_button = Button(Button.game.mid_w, 250, self.resume_image, 1, self.resume_hover_image)
+
+    def import_pause_menu_button(self):
+        self.resume_button.draw()
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.resume_button.is_clicked2():
+            self.pause_menu.run_display = False
+            Button.game.playing = True
 
 class ImportCreditsButton:
     def __init__(self, hint_menu):
