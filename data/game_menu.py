@@ -187,6 +187,12 @@ class Game:
         self.draw_text("Player2", self.point_size, self.CPU_pointsx, self.CPU_pointsy - 90, self.ancient_font, color=(0, 0, 0))
         self.draw_text(str(self.game_logic.player2.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
 
+        if not self.game_logic.is_player2_turn:
+            self.draw_text("Player1 turn", self.point_size, self.mid_w, 100, self.ancient_font, color=(255, 255, 255))
+        elif self.game_logic.is_player2_turn:
+            self.draw_text("Player2 turn", self.point_size, self.mid_w, 100, self.ancient_font, color=(255, 255, 255))
+
+
     def quit_game(self):
         self.curr_menu.run_display = False
         pygame.event.post(pygame.event.Event(pygame.QUIT))
