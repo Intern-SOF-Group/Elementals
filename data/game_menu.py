@@ -2,7 +2,7 @@ import sys
 import pygame
 from data.button import Button, ImportElementsButton, ImportHintButton, ImportPauseButton
 from data import game_logic, sprites
-from data.menu import CreditsMenu, MainMenu, SettingsMenu, MaxPointsMenu, WinLoseMenu, HintMenu, PauseMenu
+from data.menu import CreditsMenu, MainMenu, QuitMenu, SettingsMenu, MaxPointsMenu, WinLoseMenu, HintMenu, PauseMenu
 
 
 class Game:
@@ -40,6 +40,7 @@ class Game:
         self.win_lose_menu = WinLoseMenu(self)
         self.hint_menu = HintMenu(self)
         self.pause_menu = PauseMenu(self)
+        self.quit_menu = QuitMenu(self)
         self.credits_menu = CreditsMenu(self)
         self.curr_menu = self.main_menu
 

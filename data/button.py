@@ -553,7 +553,39 @@ class ImportPauseMenuButton:
             Button.game.curr_menu = Button.game.settings_menu
 
         elif self.quit_button.is_clicked2():
-            pass
+            self.pause_menu.run_display = False
+            Button.game.curr_menu = Button.game.quit_menu
+
+
+class ImportQuitMenuButton:
+    def __init__(self, quit_menu) -> None:
+        self.quit_menu = quit_menu
+        self.button_img_loc = 'assets/sent_images/button_images'
+        self.mid_w = self.quit_menu.mid_w
+        self.y_pos = 450
+
+        self.yes_image = pygame.image.load(f'{self.button_img_loc}/yes_button.png').convert_alpha()
+        self.yes_hover_image = pygame.image.load(f'{self.button_img_loc}/yes_button_hover.png').convert_alpha()
+        self.yes_button = Button(self.mid_w - 100, self.y_pos, self.yes_image, 1, self.yes_hover_image)
+
+        self.no_image = pygame.image.load(f'{self.button_img_loc}/no_button.png').convert_alpha()
+        self.no_hover_image = pygame.image.load(f'{self.button_img_loc}/no_button_hover.png').convert_alpha()
+        self.no_button = Button(self.mid_w + 100, self.y_pos, self.no_image, 1, self.no_hover_image)
+
+    def import_quit_menu_button(self):
+        self.yes_button.draw()
+        self.no_button.draw()
+
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.yes_button.is_clicked2():
+            Button.game.quit_game()
+        elif self.no_button.is_clicked2():
+            self.quit_menu.run_display = False
+            Button.game.curr_menu = Button.game.pause_menu
+
+
 
 
 class ImportCreditsButton:
