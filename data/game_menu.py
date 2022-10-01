@@ -53,7 +53,7 @@ class Game:
         # game logic
         self.single_player = game_logic.GameLogic(self)
         self.two_player = game_logic.GameLogic2Player(self)
-        self.game_logic = self.single_player
+        self.game_logic = self.two_player
         self.player1_input = ''
         self.player2_input = ''
         self.CPU_input = ''
@@ -132,8 +132,12 @@ class Game:
 
                 self.game_logic.game_IO_loop()
 
-                # Draw texts
-                self.draw_single_player()
+                # Draw texts if single player is chosen
+                if self.game_logic == self.single_player:
+                    self.draw_single_player()
+                elif self.game_logic == self.two_player:
+                    self.draw_two_player()
+ 
 
                 # Display turn images
                 self.display_turn()
@@ -171,6 +175,13 @@ class Game:
 
         self.draw_text("CPU", self.point_size, self.CPU_pointsx, self.CPU_pointsy - 90, self.ancient_font, color=(0, 0, 0))
         self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
+
+    def draw_two_player(self):
+        self.draw_text("Player1", self.point_size, self.player_pointsx, self.player_pointsy - 90, self.ancient_font, color=(0, 0, 0))
+        self.draw_text(str(self.game_logic.player1.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font, color=(0, 0, 0))
+
+        self.draw_text("Player2", self.point_size, self.CPU_pointsx, self.CPU_pointsy - 90, self.ancient_font, color=(0, 0, 0))
+        self.draw_text(str(self.game_logic.player2.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
 
     def quit_game(self):
         self.curr_menu.run_display = False

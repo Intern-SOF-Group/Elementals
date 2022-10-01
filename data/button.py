@@ -90,8 +90,9 @@ class ElementsButton(Button):
 
     def player_input(self):
         if self.is_clicked_elements():
-            self.player_output.player_move = self.player_output_str
-            self.elements_clicked_sfx[self.player_output_str].play()
+            if Button.game.game_logic == Button.game.single_player:
+                self.player_output.player_move = self.player_output_str
+                self.elements_clicked_sfx[self.player_output_str].play()
     
     def is_clicked_elements(self): # this fixes drag clicking
         mouse_pos = pygame.mouse.get_pos()

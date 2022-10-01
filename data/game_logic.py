@@ -388,12 +388,12 @@ class GameLogic2Player:
                         # print(f'Player points: {self.player1.point}')
                         # print(f'CPU points: {self.CPU.point}\n')
             
-            # for displaying sprites
-            self.game_menu.player1_input = self.player1_move
-            self.game_menu.CPU_input = self.player2_move
-            self.player1_move = ''
-            self.player2_move = ''
-            self.is_player2_turn = False
+                # for displaying sprites
+                self.game_menu.player1_input = self.player1_move
+                self.game_menu.player2_input = self.player2_move
+                self.player1_move = ''
+                self.player2_move = ''
+                self.is_player2_turn = False
 
         if (self.player1.point == self.max_points) or (self.player2.point == self.max_points):
             if self.player1.point == self.max_points:
