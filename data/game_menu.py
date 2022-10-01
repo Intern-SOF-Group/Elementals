@@ -51,8 +51,11 @@ class Game:
         self.image_rect.topleft = (0, 0)
 
         # game logic
-        self.game_logic = game_logic.GameLogic(self)
-        self.player_input = ''
+        self.single_player = game_logic.GameLogic(self)
+        self.two_player = game_logic.GameLogic2Player(self)
+        self.game_logic = self.single_player
+        self.player1_input = ''
+        self.player2_input = ''
         self.CPU_input = ''
         self.win_state = ''
 
@@ -130,11 +133,7 @@ class Game:
                 self.game_logic.game_IO_loop()
 
                 # Draw texts
-                self.draw_text("Player", self.point_size, self.player_pointsx, self.player_pointsy - 90, self.ancient_font, color=(0, 0, 0))
-                self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font, color=(0, 0, 0))
-
-                self.draw_text("CPU", self.point_size, self.CPU_pointsx, self.CPU_pointsy - 90, self.ancient_font, color=(0, 0, 0))
-                self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
+                self.draw_single_player()
 
                 # Display turn images
                 self.display_turn()
@@ -166,6 +165,13 @@ class Game:
         text_rect.center = (x, y)
         self.canvas.blit(text_surface, text_rect)
 
+    def draw_single_player(self):
+        self.draw_text("Player", self.point_size, self.player_pointsx, self.player_pointsy - 90, self.ancient_font, color=(0, 0, 0))
+        self.draw_text(str(self.game_logic.player.point), self.point_size, self.player_pointsx, self.player_pointsy, self.ancient_font, color=(0, 0, 0))
+
+        self.draw_text("CPU", self.point_size, self.CPU_pointsx, self.CPU_pointsy - 90, self.ancient_font, color=(0, 0, 0))
+        self.draw_text(str(self.game_logic.CPU.point), self.point_size, self.CPU_pointsx, self.CPU_pointsy, self.ancient_font, color=(0, 0, 0))
+
     def quit_game(self):
         self.curr_menu.run_display = False
         pygame.event.post(pygame.event.Event(pygame.QUIT))
@@ -174,22 +180,22 @@ class Game:
     def display_turn(self):
         if self.game_logic.game_start:
             self.turn_sprite.display_sprites = True
-            self.turn_sprite.turn = self.player_input
+            self.turn_sprite.turn = self.player1_input
             self.CPU_turn_sprite.turn = self.CPU_input
 
-            if self.player_input == 'water':
+            if self.player1_input == 'water':
                 self.water_rect.center = (self.player_pointsx, self.turny)
                 # self.canvas.blit(self.water_image, self.water_rect)
-            elif self.player_input == 'wind':
+            elif self.player1_input == 'wind':
                 self.wind_rect.center = (self.player_pointsx, self.turny)
                 # self.canvas.blit(self.wind_image, self.wind_rect)
-            elif self.player_input == 'lightning':
+            elif self.player1_input == 'lightning':
                 self.lightning_rect.center = (self.player_pointsx, self.turny)
                 # self.canvas.blit(self.lightning_image, self.lightning_rect)
-            elif self.player_input == 'earth':
+            elif self.player1_input == 'earth':
                 self.earth_rect.center = (self.player_pointsx, self.turny)
                 # self.canvas.blit(self.earth_image, self.earth_rect)
-            elif self.player_input == 'fire':
+            elif self.player1_input == 'fire':
                 self.fire_rect.center = (self.player_pointsx, self.turny)
                 # self.canvas.blit(self.fire_image, self.fire_rect)
 
