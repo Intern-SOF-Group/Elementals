@@ -89,6 +89,7 @@ class ElementsButton(Button):
             i.set_volume(0.4)
 
     def player_input(self):
+        self.player_output = self.game.game_logic
         if self.is_clicked_elements():
             if Button.game.game_logic == Button.game.single_player:
                 self.player_output.player_move = self.player_output_str
@@ -255,7 +256,7 @@ class ImportMainMenuButton:
     def check_curr_menu(self):
         if self.start_button.is_clicked2():
             self.main_menu.run_display = False
-            Button.game.curr_menu = Button.game.max_points_menu
+            Button.game.curr_menu = Button.game.game_mode_menu
         
         elif self.settings_button.is_clicked2():
             self.main_menu.run_display = False
@@ -268,6 +269,40 @@ class ImportMainMenuButton:
 
         elif self.quit_button.is_clicked2():
             Button.game.quit_game()
+
+
+class ImportGameModeMenuButton:
+    def __init__(self, game_mode_menu) -> None:
+        self.game_mode_menu = game_mode_menu
+        self.button_img_loc = 'assets/sent_images/button_images'
+        self.mid_w = self.game_mode_menu.mid_w
+        self.scale = 1
+        self.y_offset = 110
+
+        self.oneplayer_image = pygame.image.load(f'{self.button_img_loc}/oneplayer_button.png').convert_alpha()
+        self.oneplayer_hover_image = pygame.image.load(f'{self.button_img_loc}/oneplayer_button_hover.png').convert_alpha()
+        self.oneplayer_button = Button(self.mid_w, 325, self.oneplayer_image, self.scale, self.oneplayer_hover_image)
+
+        self.twoplayer_image = pygame.image.load(f'{self.button_img_loc}/twoplayer_button.png').convert_alpha()
+        self.twoplayer_hover_image = pygame.image.load(f'{self.button_img_loc}/twoplayer_button_hover.png').convert_alpha()
+        self.twoplayer_button = Button(self.mid_w, 500, self.twoplayer_image, self.scale, self.twoplayer_hover_image)
+
+    def import_game_mode_menu_button(self):
+        self.oneplayer_button.draw()
+        self.twoplayer_button.draw()
+        self.check_curr_menu()
+
+    def check_curr_menu(self):
+        if self.oneplayer_button.is_clicked2():
+            self.game_mode_menu.run_display = False
+            Button.game.game_logic = Button.game.single_player
+            Button.game.curr_menu = Button.game.max_points_menu
+
+        elif self.twoplayer_button.is_clicked2():
+            self.game_mode_menu.run_display = False
+            Button.game.game_logic = Button.game.two_player
+            Button.game.curr_menu = Button.game.max_points_menu
+
 
 
 class VolumeSlider:
@@ -415,7 +450,7 @@ class ImportMaxPointsMenuButton:
 
         elif self.back_button.is_clicked2():
             self.max_points_menu.run_display = False
-            Button.game.curr_menu = Button.game.main_menu
+            Button.game.curr_menu = Button.game.game_mode_menu
 
         
 class ImportWinLoseMenuButton:

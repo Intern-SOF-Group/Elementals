@@ -86,6 +86,21 @@ class SettingsMenu(Menu):
         text_rect.center = (x, y)
         self.game.canvas.blit(text_surface, text_rect)
 
+
+class GameModeMenu(Menu):
+    def __init__(self, game):
+        Menu.__init__(self, game)
+        self.game_mode_menu_button = ImportGameModeMenuButton(self)
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/bg2.png').convert_alpha()
+
+    def display_menu(self):
+        self.run_display = True
+        while self.run_display:
+            self.bg_loader(self.bg_img, 1)
+            self.game.check_events()
+            self.game_mode_menu_button.import_game_mode_menu_button()
+            self.blit_canvas()
+
 class MaxPointsMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
