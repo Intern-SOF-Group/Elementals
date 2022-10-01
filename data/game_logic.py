@@ -232,6 +232,7 @@ class GameLogic2Player:
         if self.player1_move:
             self.is_player2_turn = True
             if self.player2_move:
+                self.game_start = True
                 if self.player1_move == 'lightning':
                     if self.player2_move == 'lightning':
                         # print('Tie!')

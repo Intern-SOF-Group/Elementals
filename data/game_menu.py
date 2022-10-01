@@ -100,6 +100,13 @@ class Game:
         self.group_sprites.add(self.turn_sprite)
         self.group_sprites.add(self.CPU_turn_sprite)
 
+        # Sprites for 2 player
+        self.player1_turn_sprite = sprites.GameSprites(self.player_pointsx, self.turny)
+        self.player2_turn_sprite = sprites.GameSprites(self.CPU_pointsx, self.turny)
+        self.two_player_group_sprites = pygame.sprite.Group()
+        self.two_player_group_sprites.add(self.player1_turn_sprite)
+        self.two_player_group_sprites.add(self.player2_turn_sprite)
+
         # Scroll Sprite
         self.player_scroll = sprites.ScrollSprite(self.player_pointsx)
         self.CPU_scroll = sprites.ScrollSprite(self.CPU_pointsx)
@@ -135,18 +142,15 @@ class Game:
                 # Draw texts if single player is chosen
                 if self.game_logic == self.single_player:
                     self.draw_single_player()
+                    # Display sprites
+                    self.draw_sprite()
+
                 elif self.game_logic == self.two_player:
                     self.draw_two_player()
+                    self.draw_turn_sprite_2player()
  
-
-                # Display turn images
+                # Display turn sprites
                 self.display_turn()
-
-                # Display sprites
-                self.draw_sprite()
-
-            
-
 
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
@@ -190,43 +194,24 @@ class Game:
     # displays turn images
     def display_turn(self):
         if self.game_logic.game_start:
-            self.turn_sprite.display_sprites = True
-            self.turn_sprite.turn = self.player1_input
-            self.CPU_turn_sprite.turn = self.CPU_input
+            if self.game_logic == self.single_player:
+                self.turn_sprite.display_sprites = True
+                self.turn_sprite.turn = self.player1_input
+                self.CPU_turn_sprite.turn = self.CPU_input
+            
+            elif self.game_logic == self.two_player:
+                self.player1_turn_sprite.display_sprites = True
+                self.player2_turn_sprite.display_sprites = True
 
-            if self.player1_input == 'water':
-                self.water_rect.center = (self.player_pointsx, self.turny)
-                # self.canvas.blit(self.water_image, self.water_rect)
-            elif self.player1_input == 'wind':
-                self.wind_rect.center = (self.player_pointsx, self.turny)
-                # self.canvas.blit(self.wind_image, self.wind_rect)
-            elif self.player1_input == 'lightning':
-                self.lightning_rect.center = (self.player_pointsx, self.turny)
-                # self.canvas.blit(self.lightning_image, self.lightning_rect)
-            elif self.player1_input == 'earth':
-                self.earth_rect.center = (self.player_pointsx, self.turny)
-                # self.canvas.blit(self.earth_image, self.earth_rect)
-            elif self.player1_input == 'fire':
-                self.fire_rect.center = (self.player_pointsx, self.turny)
-                # self.canvas.blit(self.fire_image, self.fire_rect)
-
-            if self.CPU_input == 'water':
-                self.water_rect.center = (self.CPU_pointsx, self.turny)
-                # self.canvas.blit(self.water_image, self.water_rect)
-            elif self.CPU_input == 'wind':
-                self.wind_rect.center = (self.CPU_pointsx, self.turny)
-                # self.canvas.blit(self.wind_image, self.wind_rect)
-            elif self.CPU_input == 'lightning':
-                self.lightning_rect.center = (self.CPU_pointsx, self.turny)
-                # self.canvas.blit(self.lightning_image, self.lightning_rect)
-            elif self.CPU_input == 'earth':
-                self.earth_rect.center = (self.CPU_pointsx, self.turny)
-                # self.canvas.blit(self.earth_image, self.earth_rect)
-            elif self.CPU_input == 'fire':
-                self.fire_rect.center = (self.CPU_pointsx, self.turny)
-                # self.canvas.blit(self.fire_image, self.fire_rect)
-
+                self.player1_turn_sprite.turn = self.player1_input
+                self.player2_turn_sprite.turn = self.player2_input
+      
     def draw_sprite(self):
         self.group_sprites.update()
         if self.turn_sprite.display_sprites:
             self.group_sprites.draw(self.canvas)
+
+    def draw_turn_sprite_2player(self):
+        self.two_player_group_sprites.update()
+        if self.player1_turn_sprite.display_sprites:
+            self.two_player_group_sprites.draw(self.canvas)
