@@ -353,8 +353,13 @@ class ImportSettingsMenuButton:
 
     def check_curr_menu(self):
         if self.back_button.is_clicked2():
-            self.settings_menu.run_display = False
-            Button.game.curr_menu = Button.game.main_menu
+            if Button.game.playing2:
+                self.settings_menu.run_display = False
+                Button.game.curr_menu = Button.game.pause_menu
+                
+            else:
+                self.settings_menu.run_display = False
+                Button.game.curr_menu = Button.game.main_menu
 
 
 class ImportMaxPointsMenuButton:
@@ -544,7 +549,9 @@ class ImportPauseMenuButton:
             self.pause_menu.run_display = False
             Button.game.playing = True
         elif self.settings_button.is_clicked2():
-            pass
+            self.pause_menu.run_display = False
+            Button.game.curr_menu = Button.game.settings_menu
+
         elif self.quit_button.is_clicked2():
             pass
 

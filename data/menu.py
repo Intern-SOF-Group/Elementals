@@ -164,6 +164,10 @@ class PauseMenu(Menu):
             self.pause_button.import_pause_menu_button()
             self.blit_canvas()
 
+class QuitMenu(Menu):
+    def __init__(self, game):
+        pass
+
 class CreditsMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
