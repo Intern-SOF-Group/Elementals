@@ -115,6 +115,16 @@ class Game:
         self.scroll_sprite_group = pygame.sprite.Group()
         self.scroll_sprite_group.add(self.player_scroll)
         self.scroll_sprite_group.add(self.CPU_scroll)
+
+        # sfx of each element buttons (made into a dictionary for easy coding)
+        # imported in game menu to access in easily
+        self.elements_clicked_sfx = {
+            "earth": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/earth_sfx.wav'),
+            "fire": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/fire_sfx.wav'),
+            "lightning": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/lightning_sfx.mp3'),
+            "water": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/water_sfx.wav'),
+            "wind": pygame.mixer.Sound('assets/audio_files/button_sfx/elements_button_sfx/wind_sfx.wav')
+        }
    
 
     def game_loop(self):

@@ -216,20 +216,20 @@ class GameLogic(PlayerObj):
 
     def reset_variables(self):
         # Resets the important variables after the game finishes
-            self.player.point = 0
-            self.CPU.point = 0
-            self.game_start = False
-            self.game_menu.player_scroll.reset_var() # Resets the scroll variables so that every restart of the game it unfolds again.
-            self.game_menu.CPU_scroll.reset_var()
-            self.game_menu.turn_sprite.display_sprites = False
-            self.game_menu.CPU_turn_sprite.display_sprites = False
-            self.player_move = ''
-            self.cpu_input = ''
-            self.game_menu.player_input = self.player_move
-            self.game_menu.CPU_input = self.cpu_input
-            self.winner_state = ''
-            self.game_menu.playing = False
-            self.game_menu.playing2 = False
+        self.player.point = 0
+        self.CPU.point = 0
+        self.game_start = False
+        self.game_menu.player_scroll.reset_var() # Resets the scroll variables so that every restart of the game it unfolds again.
+        self.game_menu.CPU_scroll.reset_var()
+        self.game_menu.turn_sprite.display_sprites = False
+        self.game_menu.CPU_turn_sprite.display_sprites = False
+        self.player_move = ''
+        self.cpu_input = ''
+        self.game_menu.player_input = self.player_move
+        self.game_menu.CPU_input = self.cpu_input
+        self.winner_state = ''
+        self.game_menu.playing = False
+        self.game_menu.playing2 = False
 
 
 class GameLogic2Player:
@@ -405,10 +405,17 @@ class GameLogic2Player:
                         self.winner_state = 'Player2 Wins!'
                         # print(f'Player points: {self.player1.point}')
                         # print(f'CPU points: {self.CPU.point}\n')
-            
+
+                # for playing sound after a player wins
+                if self.winner_state == 'Player1 Wins!':
+                    self.game_menu.elements_clicked_sfx[self.player1_move].play()
+                elif self.winner_state == 'Player2 Wins!':
+                    self.game_menu.elements_clicked_sfx[self.player2_move].play()
+
                 # for displaying sprites
                 self.game_menu.player1_input = self.player1_move
                 self.game_menu.player2_input = self.player2_move
+
                 self.player1_move = ''
                 self.player2_move = ''
                 self.is_player2_turn = False
