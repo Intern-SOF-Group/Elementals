@@ -587,7 +587,7 @@ class ImportPauseMenuButton:
 
         self.resume_image = pygame.image.load(f'{self.button_img_loc}/resume_button.png').convert_alpha()
         self.resume_hover_image = pygame.image.load(f'{self.button_img_loc}/resume_button_hover.png').convert_alpha()
-        self.resume_button = Button(Button.game.mid_w, 300, self.resume_image, 0.6, self.resume_hover_image)
+        self.resume_button = Button(Button.game.mid_w, 280, self.resume_image, 0.6, self.resume_hover_image)
 
         self.settings_image = pygame.image.load(f'{self.button_img_loc}/settings_button.png').convert_alpha()
         self.settings_hover_image = pygame.image.load(f'{self.button_img_loc}/settings_button_hover.png').convert_alpha()
