@@ -279,20 +279,28 @@ class ImportGameModeMenuButton:
         self.game_mode_menu = game_mode_menu
         self.button_img_loc = 'assets/sent_images/button_images'
         self.mid_w = self.game_mode_menu.mid_w
+        self.mid_h = self.game_mode_menu.mid_h
         self.scale = 1
-        self.y_offset = 110
+        self.y_offset = 150
 
-        self.oneplayer_image = pygame.image.load(f'{self.button_img_loc}/oneplayer_button.png').convert_alpha()
-        self.oneplayer_hover_image = pygame.image.load(f'{self.button_img_loc}/oneplayer_button_hover.png').convert_alpha()
-        self.oneplayer_button = Button(self.mid_w, 325, self.oneplayer_image, self.scale, self.oneplayer_hover_image)
+        
 
         self.twoplayer_image = pygame.image.load(f'{self.button_img_loc}/twoplayer_button.png').convert_alpha()
         self.twoplayer_hover_image = pygame.image.load(f'{self.button_img_loc}/twoplayer_button_hover.png').convert_alpha()
-        self.twoplayer_button = Button(self.mid_w, 500, self.twoplayer_image, self.scale, self.twoplayer_hover_image)
+        self.twoplayer_button = Button(self.mid_w, self.mid_h, self.twoplayer_image, self.scale, self.twoplayer_hover_image)
+
+        self.oneplayer_image = pygame.image.load(f'{self.button_img_loc}/oneplayer_button.png').convert_alpha()
+        self.oneplayer_hover_image = pygame.image.load(f'{self.button_img_loc}/oneplayer_button_hover.png').convert_alpha()
+        self.oneplayer_button = Button(self.mid_w, self.twoplayer_button.rect_image.centery - self.y_offset, self.oneplayer_image, self.scale, self.oneplayer_hover_image)
+
+        self.back_image = pygame.image.load(f'{self.button_img_loc}/back_button.png').convert_alpha()
+        self.back_hover_image = pygame.image.load(f'{self.button_img_loc}/back_button_hover.png').convert_alpha()
+        self.back_button = Button(self.mid_w, self.twoplayer_button.rect_image.centery + self.y_offset, self.back_image, 1, self.back_hover_image)
 
     def import_game_mode_menu_button(self):
         self.oneplayer_button.draw()
         self.twoplayer_button.draw()
+        self.back_button.draw()
         self.check_curr_menu()
 
     def check_curr_menu(self):
@@ -305,6 +313,10 @@ class ImportGameModeMenuButton:
             self.game_mode_menu.run_display = False
             Button.game.game_logic = Button.game.two_player
             Button.game.curr_menu = Button.game.max_points_menu
+
+        elif self.back_button.is_clicked2():
+            self.game_mode_menu.run_display = False
+            Button.game.curr_menu = Button.game.main_menu
 
 
 
@@ -496,7 +508,9 @@ class ImportWinLoseMenuButton:
             Button.game.curr_menu = Button.game.main_menu
 
         elif self.quit_button.is_clicked2():
-            Button.game.quit_game()
+            self.win_lose_menu.run_display = False
+            Button.game.last_menu = Button.game.win_lose_menu
+            Button.game.curr_menu = Button.game.quit_menu
 
 
 class ImportHintMenuButton:
