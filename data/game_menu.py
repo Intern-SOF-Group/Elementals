@@ -43,6 +43,7 @@ class Game:
         self.pause_menu = PauseMenu(self)
         self.quit_menu = QuitMenu(self)
         self.credits_menu = CreditsMenu(self)
+        self.last_menu = None # This is not fully implemented in the code and it is just newly placed
         self.curr_menu = self.main_menu
 
         # game background

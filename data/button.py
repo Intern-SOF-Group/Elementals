@@ -268,7 +268,10 @@ class ImportMainMenuButton:
             Button.game.curr_menu = Button.game.credits_menu
 
         elif self.quit_button.is_clicked2():
-            Button.game.quit_game()
+            self.main_menu.run_display = False
+            Button.game.last_menu = Button.game.main_menu
+            Button.game.curr_menu = Button.game.quit_menu
+
 
 
 class ImportGameModeMenuButton:
@@ -599,6 +602,7 @@ class ImportPauseMenuButton:
 
         elif self.quit_button.is_clicked2():
             self.pause_menu.run_display = False
+            Button.game.last_menu = Button.game.pause_menu
             Button.game.curr_menu = Button.game.quit_menu
 
 
@@ -628,7 +632,7 @@ class ImportQuitMenuButton:
             Button.game.quit_game()
         elif self.no_button.is_clicked2():
             self.quit_menu.run_display = False
-            Button.game.curr_menu = Button.game.pause_menu
+            Button.game.curr_menu = Button.game.last_menu
 
 
 
