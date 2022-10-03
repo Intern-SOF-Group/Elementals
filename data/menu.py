@@ -150,7 +150,7 @@ class HintMenu(Menu):
     def __init__(self, game):
         Menu.__init__(self, game)
         self.hint_button = ImportHintMenuButton(self)
-        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/hint.png').convert_alpha()
+        self.bg_img = pygame.image.load(f'{self.bg_img_loc}/instructions.png').convert_alpha()
         self.bg2_img = pygame.image.load(f'{self.bg_img_loc}/bg2.png').convert_alpha()
 
     def display_menu(self):
