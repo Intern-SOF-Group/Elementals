@@ -115,11 +115,7 @@ class Game:
         self.scroll_sprite_group = pygame.sprite.Group()
         self.scroll_sprite_group.add(self.player_scroll)
         self.scroll_sprite_group.add(self.CPU_scroll)
-        
-
-
-        
-
+   
 
     def game_loop(self):
         while self.playing:

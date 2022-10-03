@@ -583,25 +583,30 @@ class ImportPauseMenuButton:
         self.pause_menu = pause_menu
         self.button_img_loc = 'assets/sent_images/button_images'
 
-        self.y_offset = 100
-
-        self.settings_image = pygame.image.load(f'{self.button_img_loc}/settings_button.png').convert_alpha()
-        self.settings_hover_image = pygame.image.load(f'{self.button_img_loc}/settings_button_hover.png').convert_alpha()
-        self.settings_button = Button(Button.game.mid_w, Button.game.mid_h, self.settings_image, 0.6, self.settings_hover_image)
+        self.y_offset = 70
 
         self.resume_image = pygame.image.load(f'{self.button_img_loc}/resume_button.png').convert_alpha()
         self.resume_hover_image = pygame.image.load(f'{self.button_img_loc}/resume_button_hover.png').convert_alpha()
-        self.resume_button = Button(Button.game.mid_w, self.settings_button.rect_image.centery - self.y_offset, self.resume_image, 0.6, self.resume_hover_image)
+        self.resume_button = Button(Button.game.mid_w, 300, self.resume_image, 0.6, self.resume_hover_image)
+
+        self.settings_image = pygame.image.load(f'{self.button_img_loc}/settings_button.png').convert_alpha()
+        self.settings_hover_image = pygame.image.load(f'{self.button_img_loc}/settings_button_hover.png').convert_alpha()
+        self.settings_button = Button(Button.game.mid_w, self.resume_button.rect_image.centery + self.y_offset, self.settings_image, 0.6, self.settings_hover_image)
+
+        self.main_menu_image = pygame.image.load(f'{self.button_img_loc}/main_menu_button.png').convert_alpha()
+        self.main_menu_hover_image = pygame.image.load(f'{self.button_img_loc}/main_menu_button_hover.png').convert_alpha()
+        self.main_menu_button = Button(Button.game.mid_w, self.settings_button.rect_image.centery + self.y_offset, self.main_menu_image, 0.6, self.main_menu_hover_image)
 
         self.quit_image = pygame.image.load(f'{self.button_img_loc}/quit_button.png').convert_alpha()
         self.quit_hover_image = pygame.image.load(f'{self.button_img_loc}/quit_button_hover.png').convert_alpha()
-        self.quit_button = Button(Button.game.mid_w, self.settings_button.rect_image.centery + self.y_offset, self.quit_image, 0.6, self.quit_hover_image)
+        self.quit_button = Button(Button.game.mid_w, self.main_menu_button.rect_image.centery + self.y_offset, self.quit_image, 0.6, self.quit_hover_image)
 
 
 
     def import_pause_menu_button(self):
         self.resume_button.draw()
         self.settings_button.draw()
+        self.main_menu_button.draw()
         self.quit_button.draw()
 
         self.check_curr_menu()
@@ -613,6 +618,13 @@ class ImportPauseMenuButton:
         elif self.settings_button.is_clicked2():
             self.pause_menu.run_display = False
             Button.game.curr_menu = Button.game.settings_menu
+
+        elif self.main_menu_button.is_clicked2():
+            self.pause_menu.run_display = False
+            Button.game.game_logic.reset_variables()
+            Button.game.curr_menu = Button.game.main_menu
+
+
 
         elif self.quit_button.is_clicked2():
             self.pause_menu.run_display = False

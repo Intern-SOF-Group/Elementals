@@ -214,6 +214,23 @@ class GameLogic(PlayerObj):
 
         self.game_menu.draw_text(self.winner_state, 80, self.game_menu.mid_w, self.game_menu.mid_h, self.game_menu.ancient_font)
 
+    def reset_variables(self):
+        # Resets the important variables after the game finishes
+            self.player.point = 0
+            self.CPU.point = 0
+            self.game_start = False
+            self.game_menu.player_scroll.reset_var() # Resets the scroll variables so that every restart of the game it unfolds again.
+            self.game_menu.CPU_scroll.reset_var()
+            self.game_menu.turn_sprite.display_sprites = False
+            self.game_menu.CPU_turn_sprite.display_sprites = False
+            self.player_move = ''
+            self.cpu_input = ''
+            self.game_menu.player_input = self.player_move
+            self.game_menu.CPU_input = self.cpu_input
+            self.winner_state = ''
+            self.game_menu.playing = False
+            self.game_menu.playing2 = False
+
 
 class GameLogic2Player:
     def __init__(self, game_menu):
@@ -422,3 +439,20 @@ class GameLogic2Player:
             self.game_menu.curr_menu = self.game_menu.win_lose_menu
 
         self.game_menu.draw_text(self.winner_state, 80, self.game_menu.mid_w, self.game_menu.mid_h, self.game_menu.ancient_font)
+
+    def reset_variables(self):
+        # Resets the important variables after the game finishes
+        self.player1.point = 0
+        self.player2.point = 0
+        self.game_start = False
+        self.game_menu.player_scroll.reset_var() # Resets the scroll variables so that every restart of the game it unfolds again.
+        self.game_menu.CPU_scroll.reset_var()
+        self.game_menu.turn_sprite.display_sprites = False
+        self.game_menu.CPU_turn_sprite.display_sprites = False
+        self.player1_move = ''
+        self.player2_move = ''
+        self.game_menu.player_input = self.player1_move
+        self.game_menu.CPU_input = self.player2_move
+        self.winner_state = ''
+        self.game_menu.playing = False
+        self.game_menu.playing2 = False
