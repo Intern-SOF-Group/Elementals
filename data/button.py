@@ -72,6 +72,7 @@ class ElementsButton(Button):
         # This is the I/O of this class to the game logic part of the game
         self.player_output_str = player_output_str
         self.player_output = self.game.game_logic
+        self.key_pressed = False
 
         
         # sfx of each element buttons (made into a dictionary for easy coding)
@@ -102,6 +103,19 @@ class ElementsButton(Button):
                     self.player_output.player2_move = self.player_output_str
 
                 # self.elements_clicked_sfx[self.player_output_str].play()
+
+    def player_input_keys(self):
+        if self.key_pressed:
+            if Button.game.game_logic == Button.game.single_player:
+                self.player_output.player_move = self.player_output_str
+                self.elements_clicked_sfx[self.player_output_str].play()
+
+            elif Button.game.game_logic == Button.game.two_player:
+                if not self.player_output.player1_move:
+                    self.player_output.player1_move = self.player_output_str
+                elif self.player_output.player1_move:
+                    self.player_output.player2_move = self.player_output_str
+            self.key_pressed = False
 
     
     def is_clicked_elements(self): # this fixes drag clicking
@@ -144,6 +158,8 @@ class ImportElementsButton:
         self.element_button_y = 660
         self.scale = 1
         self.x_offset = 150
+        self.is_key_pressed = False
+
 
         # for highlight
         self.element_list = ['lightning', 'wind', 'water', 'earth', 'fire']
@@ -176,20 +192,27 @@ class ImportElementsButton:
 
     def import_element_buttons(self):
         self.highlight()
+        self.check_key_inputs()
         self.lightning_button.draw_elements()
         self.lightning_button.player_input()
+        self.lightning_button.player_input_keys()
+
 
         self.wind_button.draw_elements()
         self.wind_button.player_input()
+        self.wind_button.player_input_keys()
 
         self.water_button.draw_elements()
         self.water_button.player_input()
+        self.water_button.player_input_keys()
 
         self.earth_button.draw_elements()
         self.earth_button.player_input()
+        self.earth_button.player_input_keys()
 
         self.fire_button.draw_elements()
         self.fire_button.player_input()
+        self.fire_button.player_input_keys()
 
 
     def highlight(self):
@@ -219,6 +242,28 @@ class ImportElementsButton:
             elif int(ElementsButton.highlight_time >= ElementsButton.highlight_duration):
                 self.element_index += 1
                 ElementsButton.highlight_time = 0
+
+    def check_key_inputs(self):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_q] and not self.is_key_pressed:
+            self.lightning_button.key_pressed = True
+            self.is_key_pressed = True
+        elif keys[pygame.K_w] and not self.is_key_pressed:
+            self.wind_button.key_pressed = True
+            self.is_key_pressed = True
+        elif keys[pygame.K_e] and not self.is_key_pressed:
+            self.water_button.key_pressed = True
+            self.is_key_pressed = True
+        elif keys[pygame.K_r] and not self.is_key_pressed:
+            self.earth_button.key_pressed = True
+            self.is_key_pressed = True
+        elif keys[pygame.K_t] and not self.is_key_pressed:
+            self.fire_button.key_pressed = True
+            self.is_key_pressed = True
+
+        elif not keys[pygame.K_q] and not keys[pygame.K_w] and not keys[pygame.K_e] and not keys[pygame.K_r] and not keys[pygame.K_t]:
+            self.is_key_pressed = False
+
             
             
 class ImportMainMenuButton:

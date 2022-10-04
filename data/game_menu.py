@@ -170,6 +170,19 @@ class Game:
                 self.running, self.playing, self.playing2 = False, False, False
                 pygame.quit()
                 sys.exit()
+
+            # elif event.type == pygame.KEYDOWN:
+            #     # print(event)
+            #     if event.key == 113: # q
+            #         print('q')
+            #     elif event.key == 119: # w
+            #         print('w')
+            #     elif event.key == 101: # e
+            #         print('e')
+            #     elif event.key == 114: # r
+            #         print('r')
+            #     elif event.key == 116: # t
+            #         print('t')
         
         # Sound settings
         self.bg_music.set_volume(0.4*self.music)
