@@ -159,6 +159,10 @@ class Game:
  
                 # Display turn sprites
                 self.display_turn()
+                
+            # sounds 
+            for i in self.elements_clicked_sfx.values():
+                i.set_volume(0.4*self.sfx)
 
             self.window.blit(self.canvas, (0, 0))
             pygame.display.update()
